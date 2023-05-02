@@ -1,0 +1,19 @@
+@startuml
+!pragma layout smetana
+
+left to right direction
+
+actor Admin
+actor Customer
+
+rectangle Carport_with_flat_roof{
+  Admin --> (manage carport options)
+  Admin --> (manage orders)
+
+  Customer --> (sign up for an account)
+  Customer --> (delete your account)
+  Customer --> (place an order)
+  Customer --> (track the orders process)
+  Customer --> (log in/out)
+}
+@enduml

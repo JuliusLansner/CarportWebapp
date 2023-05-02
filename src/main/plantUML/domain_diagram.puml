@@ -1,0 +1,43 @@
+@startuml
+!pragma layout smetana
+
+'domæne diagram er før vi koder = virkelig verden H.D.J
+' identicifere conceptuelle klasser --> finde navne ord. kunde, admin, stykliste, osv.
+' minder meget om EER diagram?
+
+left to right direction
+
+class Admin{
+    String name
+    String password
+    List<Order> allOrders
+}
+
+class Customer{
+    int ID
+    String name
+    String e-mail
+    String password
+    List<Order> myOrders
+}
+
+class Order{
+    int orderID
+    String date
+    String status
+    List <Product> items
+    String customerName
+    String customerEmail
+    double totalPrice
+}
+
+class Product{
+    int productID
+    String name
+    double price
+    int quantity
+}
+
+Customer --|>  Order :places
+Order --|> Product :contains
+@enduml
