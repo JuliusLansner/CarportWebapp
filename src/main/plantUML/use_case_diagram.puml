@@ -4,16 +4,17 @@
 left to right direction
 
 actor Admin
-actor Customer
+actor Kunde
 
-rectangle Carport_with_flat_roof{
-  Admin --> (manage carport options)
-  Admin --> (manage orders)
+rectangle Carport_med_fladt_tag{
+  Admin --> (administrere priser)
+  Admin --> (administrere ordrer)
+  Admin --> (godkende/afvise en bestilling)
 
-  Customer --> (sign up for an account)
-  Customer --> (delete your account)
-  Customer --> (place an order)
-  Customer --> (track the orders process)
-  Customer --> (log in/out)
+  Kunde --> (oprette en konto)
+  Kunde --> (slette en konto)
+  Kunde --> (afgive en ordre)
+  Kunde --> (følge en ordre)
+  Kunde --> (logge ind/logge ud)
 }
 @enduml

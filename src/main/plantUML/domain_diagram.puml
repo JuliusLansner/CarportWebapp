@@ -4,40 +4,39 @@
 'domæne diagram er før vi koder = virkelig verden H.D.J
 ' identicifere conceptuelle klasser --> finde navne ord. kunde, admin, stykliste, osv.
 ' minder meget om EER diagram?
+' kan lave til "alm mennesker". Evt. samme nmed martin. Et overblik og sammenspil mellem entiteter.
 
 left to right direction
 
 class Admin{
-    String name
-    String password
-    List<Order> allOrders
+
 }
 
-class Customer{
-    int ID
-    String name
-    String e-mail
-    String password
-    List<Order> myOrders
+class Kunde{
+
 }
 
 class Order{
-    int orderID
-    String date
-    String status
-    List <Product> items
-    String customerName
-    String customerEmail
-    double totalPrice
+
 }
 
 class Product{
-    int productID
-    String name
-    double price
-    int quantity
+
 }
 
-Customer --|>  Order :places
-Order --|> Product :contains
+class stykliste{
+}
+
+class tilbud{
+}
+
+class 3DModel{}
+
+Kunde --  Order :1 placerer 1
+Order -- 3DModel :1 indeholder 1
+Admin -- Order :1 godkender 1
+Admin -- tilbud : laver
+tilbud -- Kunde : godkende/afvis
+Order -- stykliste : indeholder
+stykliste -- Product : indeholder
 @enduml
