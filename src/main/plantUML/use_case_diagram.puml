@@ -1,0 +1,20 @@
+@startuml
+!pragma layout smetana
+
+left to right direction
+
+actor Admin
+actor Kunde
+
+rectangle Carport_med_fladt_tag{
+  Admin --> (administrere priser)
+  Admin --> (administrere ordrer)
+  Admin --> (godkende/afvise en bestilling)
+
+  Kunde --> (oprette en konto)
+  Kunde --> (slette en konto)
+  Kunde --> (afgive en ordre)
+  Kunde --> (følge en ordre)
+  Kunde --> (logge ind/logge ud)
+}
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+Title Quick_Byg_Carport
+|Kunde|
+
+
+start
+:gå til hjemmeside;
+|Hjemmeside|
+:bestil carport;
+:vælg længde;
+:vælg brede;
+:vælg trapeztag;
+:udfyld kontaktoplysninger;
+:opret bruger;
+|Admin|
+:godkend/afvis bestilling;
+:lave tilbud inkl. stykliste;
+|Kunde|
+:gå til hjemmeside;
+|Hjemmeside|
+
+:følge ordre;
+:godkende/afivs tilbud;
+|Hjemmeside|
+:afslutte ordre;
+
+@enduml
