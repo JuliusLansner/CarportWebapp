@@ -1,8 +1,8 @@
 @startuml
-Title Quick_Byg_Carport
+!pragma layout smetana
+Title Carport_med_fladt_tag
+
 |Kunde|
-
-
 start
 :gå til hjemmeside;
 |Hjemmeside|
@@ -14,7 +14,8 @@ start
 :opret bruger;
 |Admin|
 :godkend/afvis bestilling;
-:lave tilbud inkl. stykliste;
+:lav tilbud inkl. stykliste;
+:send til kunde;
 |Kunde|
 :gå til hjemmeside;
 |Hjemmeside|
