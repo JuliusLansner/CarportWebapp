@@ -7,66 +7,91 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class UserMapper
-{
-    static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException
-    {
+class UserMapper {
+    static User login(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
 
+
         User user = null;
+        int id;
+        String address = null;
+        int zip = 0;
+        int phone = 0;
+        String role = null;
+        String sql = "SELECT * FROM bruger WHERE email = ? AND password = ?";
 
-        String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
-
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
-                ps.setString(1, username);
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, email);
                 ps.setString(2, password);
+
                 ResultSet rs = ps.executeQuery();
-                if (rs.next())
-                {
-                    String role = rs.getString("role");
-                    user = new User(username, password, role);
-                } else
-                {
-                    throw new DatabaseException("Wrong username or password");
+                if (rs.next()) {
+                    id = rs.getInt("idbruger");
+                    address = rs.getString("adresse");
+                    zip = rs.getInt("postnr_idpostnr");
+                    phone = rs.getInt("telefon");
+                    role = rs.getString("role");
+                    user = new User(id, email, password, address, zip, phone, role);
+                } else {
+                    throw new DatabaseException("Wrong email or password");
                 }
             }
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new DatabaseException(ex, "Error logging in. Something went wrong with the database");
         }
         return user;
     }
 
-    static User createUser(String username, String password, String role, ConnectionPool connectionPool) throws DatabaseException
-    {
-        Logger.getLogger("web").log(Level.INFO, "");
-        User user;
-        String sql = "insert into user (username, password, role) values (?,?,?)";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
-                ps.setString(1, username);
-                ps.setString(2, password);
-                ps.setString(3, role);
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
-                    user = new User(username, password, role);
-                } else
-                {
-                    throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
-                }
+    public static User createUser(String email, String password, String address, int zip, int phone, ConnectionPool connectionPool) throws SQLException, DatabaseException {
+        String sql = "INSERT INTO bruger (email, password, adresse, postnr_idpostnr, telefon) VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, email);
+            statement.setString(2, password);
+            statement.setString(3, address);
+            statement.setInt(4, zip);
+            statement.setInt(5, phone);
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Failed to insert user with email " + email + " into the database");
+            }
+
+            User user = new User(email, password, address, zip, phone);
+
+            return user;
+        }
+    }
+
+    public static User findUserByEmail(String email, ConnectionPool connectionPool) throws SQLException {
+        String sql = "SELECT * FROM bruger WHERE email = ?";
+        User user = null;
+        try (Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, email);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                int userId = rs.getInt("idbruger");
+                String password = rs.getString("password");
+                String address = rs.getString("adresse");
+                int zip = rs.getInt("postnr_idpostnr");
+                int phone = rs.getInt("telefon");
+                String role = rs.getString("rolle");
+                user = new User(userId, email, password, address, zip, phone, role);
             }
         }
-        catch (SQLException ex)
-        {
-            throw new DatabaseException(ex, "Could not insert username into database");
-        }
         return user;
+    }
+
+    public static void deleteMyAccount(String email, String password, ConnectionPool connectionPool) throws SQLException {
+        String sql = "DELETE FROM bruger WHERE email = ? and password = ?";
+        try (Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, email);
+            statement.setString(2, password);
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected == 0) {
+                throw new SQLException("No user with the given email and password found.");
+            }
+        }
     }
 
 

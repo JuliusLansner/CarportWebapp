@@ -4,25 +4,57 @@ import java.util.Objects;
 
 public class User
 {
-    private String username;
+    private int id;
+    private String email;
     private String password;
+    private String address;
+    private int zip;
+    private int phone;
     private String role;
 
-    public User(String username, String password, String role)
-    {
-        this.username = username;
+    public User(String email, String password, String address, int zip, int phone) {
+        this.email = email;
         this.password = password;
+        this.address = address;
+        this.zip = zip;
+        this.phone = phone;
         this.role = role;
     }
 
-    public String getUsername()
-    {
-        return username;
+    public User(int id, String email, String password, String address, int zip, int phone, String role) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.zip = zip;
+        this.phone = phone;
+        this.role = role;
     }
 
-    public void setUsername(String username)
+    public int getId() {
+        return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public String getEmail()
     {
-        this.username = username;
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
     }
 
     public String getPassword()
@@ -51,21 +83,21 @@ public class User
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) &&
+        return getEmail().equals(user.getEmail()) && getPassword().equals(user.getPassword()) &&
                 getRole().equals(user.getRole());
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getUsername(), getPassword(), getRole());
+        return Objects.hash(getEmail(), getPassword(), getRole());
     }
 
     @Override
     public String toString()
     {
         return "User{" +
-                "brugerNavn='" + username + '\'' +
+                "brugerNavn='" + email + '\'' +
                 ", kodeord='" + password + '\'' +
                 ", rolle='" + role + '\'' +
                 '}';
