@@ -6,20 +6,18 @@
 <t:website>
 
 
-
     <jsp:body>
-        <div class="welcome">
-            <h1>BESTIL DIN CARPORT IDAG</h1>
-            <img src="${pageContext.request.contextPath}/images/baggrundBil.png" width="100%" height="auto"/>
+        <div id="index-body">
+            <div class="welcome">
+                <h1>BESTIL DIN CARPORT IDAG</h1>
+
+                <form action="quickByg.jsp">
+
+                    <input class="bestilcarport" type="submit" value="BESTIL CARPORT">
+
+                </form>
+            </div>
         </div>
-
-
-        <form action="quickByg.jsp">
-
-
-            <input class="bestilcarport" type="submit" value="BESTIL CARPORT">
-
-        </form>
     </jsp:body>
 
 </t:website>
