@@ -3,28 +3,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
-<t:pagetemplate>
-    <jsp:attribute name="header">
-         Welcome to the frontpage
-    </jsp:attribute>
+<t:website>
 
-    <jsp:attribute name="footer">
-        Welcome to the frontpage
-    </jsp:attribute>
+
 
     <jsp:body>
-
-        <p>Startcode for 2nd semester </p>
-
-        <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
-        </c:if>
-
-        <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
-                    href="login.jsp">Login</a></p>
-        </c:if>
+        <div class="welcome">
+            <h1>BESTIL DIN CARPORT IDAG</h1>
+            <img src="${pageContext.request.contextPath}/images/baggrundBil.png" width="100%" height="auto"/>
+        </div>
 
     </jsp:body>
 
-</t:pagetemplate>
+</t:website>
