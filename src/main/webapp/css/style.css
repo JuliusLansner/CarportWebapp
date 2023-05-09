@@ -1,8 +1,20 @@
 /* CSS stylesheet  for application */
-
+* {
+    font-family: 'Poppins', sans-serif;
+}
 
 body {
     padding-top: 0 !important;
+}
+
+#body {
+    background-color: #F5F5F3;
+
+
+    width: 100%;
+
+    text-align: center;
+
 }
 
 /* Navbar */
@@ -39,7 +51,6 @@ body {
 }
 
 .welcome h1 {
-    font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 70px;
@@ -51,8 +62,72 @@ body {
 .bestilcarport {
     background-color: white;
     border-radius: 30px;
-    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     padding: 10px 25px;
     border: none;
+}
+
+
+/* quickbyg */
+.quickbyg-body {
+    width: 100% !important;
+    display: inline-block !important;
+    padding-top: 50px !important;
+    padding-bottom: 50px;
+}
+
+
+.quickbyg-top h1 {
+    padding-top: 50px !important;
+    padding-bottom: 30px !important;
+    font-weight: bold !important;
+}
+
+.carport-dropdowns {
+    width: 50%;
+    padding-top: 30px;
+
+    margin: 0 !important;
+    float: left !important;
+}
+
+.carport-dropdowns h2 {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    padding-bottom: 20px;
+}
+
+
+#antal select {
+    background-color: white !important;
+    color: #333333 !important;
+    font-family: 'Poppins', sans-serif;
+    border: 0 !important;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 10px 60px !important;
+    border-radius: 5px;
+}
+
+.fortsaet-bestilling {
+    background-color: #003D76 !important;
+    border-radius: 5px;
+    border: none;
+    color :white !important;
+    box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.55);
+    padding: 8px 30px !important;
+    margin-top: 20px !important;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+.quickbygbillede {
+    width: 50%;
+    margin: 0 !important;
+    float: right !important;
+
 }
