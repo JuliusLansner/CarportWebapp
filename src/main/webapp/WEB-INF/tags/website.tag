@@ -31,7 +31,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">bruger/admin side</a>
+
 
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
@@ -40,6 +40,7 @@
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/signUp.jsp">Opret bruger</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">bruger/admin side</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
                     </c:if>
                 </div>
