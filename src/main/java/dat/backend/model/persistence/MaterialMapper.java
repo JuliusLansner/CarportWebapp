@@ -24,10 +24,10 @@ public class MaterialMapper {
                 while (rs.next()) {
                     Material material = new Material(0, "","",0);
 
-                    material.setIdMateriale(rs.getInt(1));
-                    material.setBeskrivelse(rs.getString(2));
-                    material.setEnhed(rs.getString(3));
-                    material.setPrisprenhed(rs.getInt(4));
+                    material.setIdMaterial(rs.getInt(1));
+                    material.setDescription(rs.getString(2));
+                    material.setUnit(rs.getString(3));
+                    material.setPriceperunit(rs.getInt(4));
 
                     materialList.add(material);
                 }

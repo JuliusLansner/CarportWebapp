@@ -1,40 +1,40 @@
 package dat.backend.model.entities;
 
 public class Material {
-    int idMateriale;
-    String beskrivelse;
-    String enhed;
-    int prisprenhed;
+    int idMaterial;
+    String description;
+    String unit;
+    int priceperunit;
 
-    public Material(int idMateriale, String beskrivelse, String enhed, int prisprenhed) {
-        this.idMateriale = idMateriale;
-        this.beskrivelse = beskrivelse;
-        this.enhed = enhed;
-        this.prisprenhed = prisprenhed;
+    public Material(int idMaterial, String description, String unit, int priceperunit) {
+        this.idMaterial = idMaterial;
+        this.description = description;
+        this.unit = unit;
+        this.priceperunit = priceperunit;
 
 
     }
 //sets idMaterial, not sure about this one or if it's necessary.
-    public void setIdMateriale(int idMateriale) {
-        this.idMateriale = idMateriale;
+    public void setIdMaterial(int idMaterial) {
+        this.idMaterial = idMaterial;
     }
 
-    public void setBeskrivelse(String beskrivelse) {
-        this.beskrivelse = beskrivelse;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setEnhed(String enhed) {
-        this.enhed = enhed;
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
-    public void setPrisprenhed(int pris) {
-        this.prisprenhed = pris;
+    public void setPriceperunit(int priceperunit) {
+        this.priceperunit = priceperunit;
     }
 
 
     // returns beskrivelse, not sure about this one.
     @Override
     public String toString() {
-        return beskrivelse;
+        return description;
     }
 }
