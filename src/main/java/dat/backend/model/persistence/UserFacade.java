@@ -3,15 +3,26 @@ package dat.backend.model.persistence;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
-public class UserFacade
-{
-    public static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException
-    {
-        return UserMapper.login(username, password, connectionPool);
+import java.sql.SQLException;
+
+public class UserFacade {
+    public static User login(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
+        return UserMapper.login(email, password, connectionPool);
     }
 
-    public static User createUser(String username, String password, String role, ConnectionPool connectionPool) throws DatabaseException
-    {
-        return UserMapper.createUser(username, password, role, connectionPool);
+    public static User createUser(String email, String password, String adress, int zipCode, int phoneNumber, ConnectionPool connectionPool) throws DatabaseException, SQLException {
+        return UserMapper.createUser(email, password, adress, zipCode, phoneNumber, connectionPool);
+    }
+
+    public static void deleteUser(String email, ConnectionPool connectionPool) throws DatabaseException {
+        UserMapper.deleteUser(email, connectionPool);
+    }
+
+    public static User findUserByEmail(String email, ConnectionPool connectionPool) throws SQLException {
+        return UserMapper.findUserByEmail(email,connectionPool);
+    }
+
+    public static void deleteMyAccount(String email, String password, ConnectionPool connectionPool) throws SQLException {
+        UserMapper.deleteMyAccount(email,password,connectionPool);
     }
 }
