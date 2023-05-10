@@ -131,3 +131,10 @@ body {
     float: right !important;
 
 }
+/*kontakt info*/
+.kontaktinfo{
+    width: 100% !important;
+    display: inline-block !important;
+    padding-top: 50px !important;
+    padding-bottom: 50px;
+}
