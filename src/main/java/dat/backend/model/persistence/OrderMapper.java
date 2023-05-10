@@ -1,0 +1,85 @@
+package dat.backend.model.persistence;
+
+import dat.backend.model.entities.Order;
+import dat.backend.model.entities.User;
+import dat.backend.model.exceptions.DatabaseException;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+public class OrderMapper {
+    static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM ordre";
+        ArrayList<Order> orderList = new ArrayList<>();
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            try (PreparedStatement pre = connection.prepareStatement(sql)) {
+                ResultSet rs = pre.executeQuery();
+
+                while (rs.next()) {
+                    Order order = new Order(0, 0, 0,0,0,null,0);
+
+                    order.setOrderId(rs.getInt(1));
+                    order.setLenght(rs.getInt(2));
+                    order.setWidth(rs.getInt(3));
+                    order.setTotalPrice(rs.getInt(4));
+                    order.setStatus(rs.getInt(5));
+                    order.setDate(rs.getTimestamp(6));
+                    order.setUserId(rs.getInt(7));
+
+                    orderList.add(order);
+                }
+            } catch (SQLException ex) {
+                throw new DatabaseException(ex, "Something with the sql or the java syntax is wrong");
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException(e, "Error logging in. Something went wrong with the database");
+        }
+
+        return orderList;
+    }
+
+
+    static int createOrder(int length, int width, int totalPrice, int userId,  ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "INSERT INTO ordre(længde, brede, samlet_pris, bruger_id) VALUES (?,?,?,?)";
+        ResultSet generatedKeys = null;
+        int id = 0;
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            try (PreparedStatement pre = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ) {
+
+
+                pre.setInt(1, length);
+                pre.setInt(2, width);
+                pre.setInt(3, totalPrice);
+                pre.setInt(4, userId);
+
+                pre.executeUpdate();
+                generatedKeys = pre.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    id = generatedKeys.getInt(1);
+                    generatedKeys.close();
+                }
+
+                if (id == 0) {
+                    System.out.println("Id not found");
+                }
+
+
+            } catch (SQLException ex) {
+                throw new DatabaseException(ex, "Something with the sql or the java syntax is wrong");
+            }
+
+        } catch (SQLException | DatabaseException e) {
+            throw new DatabaseException(e, "Something went wrong with the database");
+        }
+        return id;
+    }
+
+
+
+}
