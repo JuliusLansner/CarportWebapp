@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@64.226.126.239" uuid="f12ed3ad-7257-4673-8439-f24e9e1b5953">
+    <data-source source="LOCAL" name="carport@64.226.126.239" uuid="17b0f203-55e4-4f8b-a8e5-6ee02d4b2433">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://64.226.126.239:3306</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="@64.226.126.239" uuid="0685cd30-27fa-432a-951b-2482ec88f7b3">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://64.226.126.239:3306</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="@64.226.126.239" uuid="e306d7ad-1061-4b1b-b9c7-dbae0d57ce50">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://64.226.126.239:3306</jdbc-url>
+      <jdbc-url>jdbc:mysql://64.226.126.239:3306/carport</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

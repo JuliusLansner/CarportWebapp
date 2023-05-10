@@ -18,7 +18,7 @@ public class OrderMapper {
                 ResultSet rs = pre.executeQuery();
 
                 while (rs.next()) {
-                    Order order = new Order(0, 0, 0,0,0,null,0);
+                    Order order = new Order(0, 0, 0, 0, 0, null, 0);
 
                     order.setOrderId(rs.getInt(1));
                     order.setLenght(rs.getInt(2));
@@ -42,7 +42,7 @@ public class OrderMapper {
     }
 
 
-    static int createOrder(int length, int width, int totalPrice, int userId,  ConnectionPool connectionPool) throws DatabaseException {
+    static int createOrder(int length, int width, int totalPrice, int userId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO ordre(længde, brede, samlet_pris, bruger_id) VALUES (?,?,?,?)";
         ResultSet generatedKeys = null;
         int id = 0;
@@ -80,6 +80,50 @@ public class OrderMapper {
         return id;
     }
 
+    public static Order findOrderByUserId(int userId, ConnectionPool connectionPool) throws SQLException {
+        String sql = "SELECT * FROM ordre WHERE bruger_id = ?";
+        Order order = null;
+        try (Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int orderId = rs.getInt(1);
+                int length = rs.getInt(2);
+                int width = rs.getInt(3);
+                int totalPrice = rs.getInt(4);
+                int status = rs.getInt(5);
+                Timestamp date = rs.getTimestamp(6);
+
+                order = new Order(orderId,length,width,totalPrice,status,date,userId);
+            }
+        }
+
+        return order;
+    }
+
+    public static Order findOrderByOrderId(int orderId, ConnectionPool connectionPool) throws SQLException {
+        String sql = "SELECT * FROM ordre WHERE idordre = ?";
+        Order order = null;
+        try (Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, orderId);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+
+                int length = rs.getInt(2);
+                int width = rs.getInt(3);
+                int totalPrice = rs.getInt(4);
+                int status = rs.getInt(5);
+                Timestamp date = rs.getTimestamp(6);
+                int userId = rs.getInt(7);
+
+                order = new Order(orderId,length,width,totalPrice,status,date,userId);
+            }
+        }
+
+        return order;
+    }
 
 
 }

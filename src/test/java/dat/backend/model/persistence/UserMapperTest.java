@@ -13,11 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserMapperTest {
 
     private ConnectionPool connectionPool;
-    private Connection connection;
+    private final static String USER = "dev";
+    private final static String PASSWORD = "3r!DE32*/fDe";
+    private final static String URL = "jdbc:mysql://64.226.126.239:3306/carport_test";
 
     @BeforeEach
     void setUp() throws SQLException {
-        connectionPool = new ConnectionPool();
+        connectionPool = new ConnectionPool(USER, PASSWORD, URL);
     }
 
     @Test
