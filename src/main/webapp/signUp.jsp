@@ -20,6 +20,18 @@
 
           <label for="password">Kodeord: </label>
           <input type="password" id="password" name="password"/>
+
+          <label for="password">Kodeord igen: </label>
+          <input type="password" id="password2" name="password"/>
+
+          <label for="adress">Adresse: </label>
+          <input type="text" id="adress" name="adress"/>
+
+          <label for="number">Nummer: </label>
+          <input type="text" id="number" name="number"/>
+
+          <label for="zipcode">Postnr: </label>
+          <input type="text" id="zipcode" name="zipcode"/>
         </div>
 
         <input class="fortsaet-bestilling" type="submit" value="OPRET BRUGER">
