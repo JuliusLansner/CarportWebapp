@@ -129,12 +129,42 @@ body {
     width: 50%;
     margin: 0 !important;
     float: right !important;
-
 }
-/*kontakt info*/
+
+.quickbyg-top-text {
+    margin: 0 auto !important;
+    width: 50%;
+}
+
+/* Kontakt info */
+
 .kontaktinfo{
-    width: 100% !important;
-    display: inline-block !important;
     padding-top: 50px !important;
     padding-bottom: 50px;
+    margin: 0 auto !important;
+}
+
+.kontaktinfo-input {
+    display: block;
+    width: 40% !important;
+    margin: 0 auto !important;
+
+}
+
+.kontaktinfo-input label {
+    float: left;
+    padding-top: 15px;
+    font-size: 14px;
+}
+
+.kontaktinfo-input input {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.20);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.20);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.20);
+    padding: 10px 10px !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
 }
