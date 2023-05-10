@@ -53,7 +53,6 @@ class OrderMapperTest {
     @Test
     void findOrderByUserId() throws SQLException {
         Order order = OrderMapper.findOrderByUserId(47,connectionPool);
-
         System.out.println(order);
     }
 
