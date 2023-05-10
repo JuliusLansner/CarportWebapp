@@ -4,13 +4,13 @@ public class Material {
     int idMaterial;
     String description;
     String unit;
-    int priceperunit;
+    int pricePerUnit;
 
-    public Material(int idMaterial, String description, String unit, int priceperunit) {
+    public Material(int idMaterial, String description, String unit, int pricePerUnit) {
         this.idMaterial = idMaterial;
         this.description = description;
         this.unit = unit;
-        this.priceperunit = priceperunit;
+        this.pricePerUnit = pricePerUnit;
 
 
     }
@@ -27,12 +27,12 @@ public class Material {
         this.unit = unit;
     }
 
-    public void setPriceperunit(int priceperunit) {
-        this.priceperunit = priceperunit;
+    public void setPricePerUnit(int pricePerUnit) {
+        this.pricePerUnit = pricePerUnit;
     }
 
 
-    // returns beskrivelse, not sure about this one.
+    // returns description not sure about this one.
     @Override
     public String toString() {
         return description;

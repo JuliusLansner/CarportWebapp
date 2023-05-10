@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class MaterialMapper {
     /* This mapper picks up all the info about a specific material we've put in to the databse
-*/
+     */
     static ArrayList<Material> materialList(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM material";
         ArrayList<Material> materialList = new ArrayList<>();
@@ -22,12 +22,12 @@ public class MaterialMapper {
                 ResultSet rs = pre.executeQuery();
 
                 while (rs.next()) {
-                    Material material = new Material(0, "","",0);
+                    Material material = new Material(0, "", "", 0);
 
                     material.setIdMaterial(rs.getInt(1));
                     material.setDescription(rs.getString(2));
                     material.setUnit(rs.getString(3));
-                    material.setPriceperunit(rs.getInt(4));
+                    material.setPricePerUnit(rs.getInt(4));
 
                     materialList.add(material);
                 }
