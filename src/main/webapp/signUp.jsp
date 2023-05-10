@@ -15,6 +15,11 @@
       <input type="password" id="passwordCheck" name="passwordCheck" placeholder="Password:"/>
       <input type="submit"  value="sign up"/>
     </form>
+
+    <c:if test="${not empty error}">
+      <p> <c:out value="${error}" /></p>
+    </c:if>
+    
   </jsp:body>
 
 </t:website>

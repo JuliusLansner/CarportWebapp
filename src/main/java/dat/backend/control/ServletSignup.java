@@ -32,11 +32,13 @@ public class ServletSignup extends HttpServlet {
 
         if (PasswordSecurityCheck.securityCheck(password) == false) {
             //password is not secure and user goes back to signup.jsp
-            request.getRequestDispatcher("WEB-INF/signUp.jsp").forward(request,response);
+            request.setAttribute("error","password is not strong enough");
+            request.getRequestDispatcher("signUp.jsp").forward(request,response);
         }
 
         if (password != passwordCheck) {
-            request.getRequestDispatcher("WEB-INF/signUp.jsp");
+            request.setAttribute("error","your passwords dont match");
+            request.getRequestDispatcher("signUp.jsp").forward(request,response);
         }
 
         try {
@@ -49,7 +51,7 @@ public class ServletSignup extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
        request.getRequestDispatcher("login.jsp").forward(request,response);
     }
 }
