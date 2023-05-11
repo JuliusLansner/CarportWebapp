@@ -12,10 +12,10 @@
 
       </p>
     </div>
-      <form action="index.jsp" method="post">
+      <form action="ServletSignup" method="post">
         <div class="kontaktinfo-input">
-          <label for="username">Brugernavn: </label>
-          <input type="text" id="username" name="username"/>
+          <label for="email">email: </label>
+          <input type="text" id="email" name="email"/>
 
 
           <label for="password">Kodeord: </label>
@@ -24,11 +24,11 @@
           <label for="password">Kodeord igen: </label>
           <input type="password" id="password2" name="password"/>
 
-          <label for="adress">Adresse: </label>
-          <input type="text" id="adress" name="adress"/>
+          <label for="address">Adresse: </label>
+          <input type="text" id="address" name="adress"/>
 
-          <label for="number">Nummer: </label>
-          <input type="text" id="number" name="number"/>
+          <label for="phoneNumber">Nummer: </label>
+          <input type="text" id="phoneNumber" name="phoneNumber"/>
 
           <label for="zipcode">Postnr: </label>
           <input type="text" id="zipcode" name="zipcode"/>
