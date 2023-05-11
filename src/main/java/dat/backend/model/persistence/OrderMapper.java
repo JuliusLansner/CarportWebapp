@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderMapper {
-    static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
+    public static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM ordre";
         ArrayList<Order> orderList = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class OrderMapper {
     }
 
 
-    static int createOrder(int length, int width, int totalPrice, int userId, ConnectionPool connectionPool) throws DatabaseException {
+    public static int createOrder(int length, int width, int totalPrice, int userId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO ordre(længde, brede, samlet_pris, bruger_id) VALUES (?,?,?,?)";
         ResultSet generatedKeys = null;
         int id = 0;

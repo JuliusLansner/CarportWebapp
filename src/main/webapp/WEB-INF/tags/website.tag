@@ -41,7 +41,7 @@
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/signUp.jsp">Opret bruger</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">bruger/admin side</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/userPage.jsp">bruger/admin side</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
                     </c:if>
                 </div>
