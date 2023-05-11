@@ -14,8 +14,8 @@
     </div>
       <form action="ServletSignup" method="post">
         <div class="kontaktinfo-input">
-          <label for="email">email: </label>
-          <input type="text" id="email" name="email"/>
+          <label for="username">email: </label>
+          <input type="text" id="username" name="username"/>
 
 
           <label for="password">Kodeord: </label>
@@ -24,8 +24,8 @@
           <label for="password">Kodeord igen: </label>
           <input type="password" id="password2" name="password"/>
 
-          <label for="address">Adresse: </label>
-          <input type="text" id="address" name="adress"/>
+          <label for="adress">Adresse: </label>
+          <input type="text" id="adress" name="adress"/>
 
           <label for="phoneNumber">Nummer: </label>
           <input type="text" id="phoneNumber" name="phoneNumber"/>
@@ -37,6 +37,12 @@
         <input class="fortsaet-bestilling" type="submit" value="OPRET BRUGER">
 
       </form>
+
+    <c:if test="${not empty error}">
+      <p> <c:out value="${error}" /></p>
+    </c:if>
+
+
   </jsp:body>
 
 </t:website>

@@ -23,8 +23,8 @@ public class ServletSignup extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConnectionPool connectionPool = new ConnectionPool();
 
-        String email = request.getParameter("email");
-        String address = request.getParameter("address");
+        String email = request.getParameter("username");
+        String address = request.getParameter("adress");
         int zipcode = Integer.parseInt(request.getParameter("zipcode"));
         int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
         String password = request.getParameter("password");
@@ -32,7 +32,7 @@ public class ServletSignup extends HttpServlet {
 
         if (PasswordSecurityCheck.securityCheck(password) == false) {
             //password is not secure and user goes back to signup.jsp
-            request.setAttribute("error","password is not strong enough");
+            request.setAttribute("error","Kodeord er for svagt");
             request.getRequestDispatcher("signUp.jsp").forward(request,response);
         }
 
