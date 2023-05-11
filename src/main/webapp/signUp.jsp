@@ -19,7 +19,7 @@
     <c:if test="${not empty error}">
       <p> <c:out value="${error}" /></p>
     </c:if>
-    
+
   </jsp:body>
 
 </t:website>
