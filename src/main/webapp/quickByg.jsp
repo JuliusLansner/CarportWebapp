@@ -19,39 +19,36 @@
                 <h2>Carport med fladt tag</h2>
 
                 <p>Carport bredde</p>
-                <form name="antal" id="antal">
-                    <select name="antal">
-                        <option value="1">Vælg ting</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                <form name="width" id="width">
+                    <select name="width">
+                        <option value="1">240cm</option>
+                        <option value="2">270cm</option>
+
                     </select>
                     <br><br>
                 </form>
 
                 <p>Carport længde</p>
-                <form name="antal" id="antal">
-                    <select name="antal">
-                        <option value="1">Vælg ting</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                <form name="length" id="length">
+                    <select name="length">
+                        <option value="1">240cm</option>
+                        <option value="2">270cm</option>
+
                     </select>
                     <br><br>
                 </form>
 
                 <p>Carport trapeztag</p>
-                <form name="antal" id="antal">
-                    <select name="antal">
-                        <option value="1">Vælg ting</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                <form name="roof" id="roof">
+                    <select name="roof">
+                        <option value="1">uden tragplader</option>
+                        <option value="2">plast trapez</option>
+
                     </select>
                     <br><br>
                 </form>
 
-                <form action="contactInfo.jsp">
+                <form action="ServletQuickbyg" method="Post">
                     <input class="fortsaet-bestilling" type="submit" value="FORTSÆT BESTILLING">
                 </form>
 

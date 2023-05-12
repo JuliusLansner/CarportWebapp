@@ -2,6 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
+
 <!-- This needs to show the chosen carport with the width and length of the users choice
 as of right now this is impossible to make as the information is unavaiable to be had,
 however this will be a demonstration -->
@@ -17,10 +18,10 @@ however this will be a demonstration -->
 
 
             <p>Du har bestilt følgende:</p>
-            <p>dfgkjnsdfgæjklndfgsdfg:</p>
-            <p>dfgkjnsdfgæjklndfgsdfgssdfgfg:</p>
-            <p>dfgsdfgsdfg:</p>
-            <p>dfgkjnsdfgæjklndfgdfgsdfg:</p>
+            ${sessionScope.height}
+            ${sessionScope.length}
+            ${sessionScope.roof}
+            <p></p>
         </div>
 
     </jsp:body>
