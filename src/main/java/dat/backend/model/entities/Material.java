@@ -31,6 +31,21 @@ public class Material {
         this.pricePerUnit = pricePerUnit;
     }
 
+    public int getIdMaterial() {
+        return idMaterial;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public int getPricePerUnit() {
+        return pricePerUnit;
+    }
 
     // returns description not sure about this one.
     @Override

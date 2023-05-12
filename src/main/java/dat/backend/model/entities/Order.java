@@ -67,6 +67,10 @@ public class Order {
         this.status = status;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
     public void setDate(Timestamp date) {
         this.date = date;
     }

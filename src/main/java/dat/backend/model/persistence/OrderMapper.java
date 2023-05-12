@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderMapper {
-    static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
+    public static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM ordre";
         ArrayList<Order> orderList = new ArrayList<>();
 
@@ -125,5 +125,6 @@ public class OrderMapper {
         return order;
     }
 
+    public static void updateOrderStatus
 
 }

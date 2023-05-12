@@ -22,9 +22,9 @@ class MaterialMapperTest {
 
 
     @Test
-    void materialList() throws DatabaseException {
+    void materialList(ConnectionPool connectionPool) throws DatabaseException {
         Material expectedMaterial = new Material(1,"træ","m",100);
-        ArrayList<Material> actualMaterial = MaterialFacade.materialList();
+        ArrayList<Material> actualMaterial = MaterialFacade.materialList(connectionPool);
         assertEquals(expectedMaterial,actualMaterial);
     }
     @Test
