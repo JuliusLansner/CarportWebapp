@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <!-- This needs to show the chosen carport with the width and length of the users choice
@@ -18,10 +19,10 @@ however this will be a demonstration -->
 
 
             <p>Du har bestilt følgende:</p>
-            ${sessionScope.height}
-            ${sessionScope.length}
-            ${sessionScope.roof}
-            <p></p>
+                ${sessionScope.width}
+                ${sessionScope.length}
+                ${sessionScope.roof}
+
         </div>
 
     </jsp:body>

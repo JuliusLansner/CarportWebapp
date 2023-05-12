@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <t:website>
+     <jsp:attribute name="header">
+
+    </jsp:attribute>
     <jsp:body>
 
         <div class="quickbyg-top">
@@ -21,9 +24,8 @@
                 <p>Carport bredde</p>
                 <form name="width" id="width">
                     <select name="width">
-                        <option value="1">240cm</option>
-                        <option value="2">270cm</option>
-
+                        <option value="240cm">240cm</option>
+                        <option value="270cm">270cm</option>
                     </select>
                     <br><br>
                 </form>
@@ -31,9 +33,8 @@
                 <p>Carport længde</p>
                 <form name="length" id="length">
                     <select name="length">
-                        <option value="1">240cm</option>
-                        <option value="2">270cm</option>
-
+                        <option value="240cm">240cm</option>
+                        <option value="270cm">270cm</option>
                     </select>
                     <br><br>
                 </form>
@@ -41,14 +42,13 @@
                 <p>Carport trapeztag</p>
                 <form name="roof" id="roof">
                     <select name="roof">
-                        <option value="1">uden tragplader</option>
-                        <option value="2">plast trapez</option>
-
+                        <option value="uden tragplader">uden tragplader</option>
+                        <option value="plast trapez">plast trapez</option>
                     </select>
                     <br><br>
                 </form>
 
-                <form action="ServletQuickbyg" method="Post">
+                <form action="ServletQuickbyg" method="post">
                     <input class="fortsaet-bestilling" type="submit" value="FORTSÆT BESTILLING">
                 </form>
 
