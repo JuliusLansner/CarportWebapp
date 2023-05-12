@@ -98,7 +98,7 @@ body {
 }
 
 
-#width select,#length select, #roof select {
+#widthlengthroof select {
     background-color: white !important;
     color: #333333 !important;
     font-family: 'Poppins', sans-serif;

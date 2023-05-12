@@ -25,6 +25,6 @@ public class ServletQuickbyg extends HttpServlet {
         session.setAttribute("width",width);
         session.setAttribute("length",length);
         session.setAttribute("roof",roof);
-        request.getRequestDispatcher("valgtBestilling.jsp").forward(request,response);
+        request.getRequestDispatcher("contactInfo.jsp").forward(request,response);
     }
 }

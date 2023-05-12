@@ -19,9 +19,15 @@ however this will be a demonstration -->
 
 
             <p>Du har bestilt følgende:</p>
-                ${sessionScope.width}
-                ${sessionScope.length}
-                ${sessionScope.roof}
+            <p> En Carport, med:</p>
+                Bredde:
+                ${sessionScope.width}<br><br>
+                Længde:
+                ${sessionScope.length}<br><br>
+                Tag:
+                ${sessionScope.roof}<br><br>
+            <p>Din bestilling skal godkendes af os. Når den er blevet godkendt, så vil du få et tilbud tilbage, som du kan godkende eller afvise.</p><br><br>
+            <p>Dette kan du se på din bruger side. Den finder du oppe i navigationsbaren, hvor du blot skal logge ind og derefter skal du clicke på dit brugernavn.</p>
 
         </div>
 

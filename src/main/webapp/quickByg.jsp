@@ -42,7 +42,7 @@
                 <p>Carport trapeztag</p>
 
                     <select name="roof">
-                        <option value="uden tragplader">uden tragplader</option>
+                        <option value="uden tagplader">uden tragplader</option>
                         <option value="plast trapez">plast trapez</option>
                     </select>
                     <br><br>
