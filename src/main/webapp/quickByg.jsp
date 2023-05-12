@@ -22,34 +22,34 @@
                 <h2>Carport med fladt tag</h2>
 
                 <p>Carport bredde</p>
-                <form name="width" id="width">
+                <form name="wlr" action="ServletQuickbyg" method="post" id="widthlengthroof">
                     <select name="width">
                         <option value="240cm">240cm</option>
                         <option value="270cm">270cm</option>
                     </select>
                     <br><br>
-                </form>
+
 
                 <p>Carport længde</p>
-                <form name="length" id="length">
+
                     <select name="length">
                         <option value="240cm">240cm</option>
                         <option value="270cm">270cm</option>
                     </select>
                     <br><br>
-                </form>
+
 
                 <p>Carport trapeztag</p>
-                <form name="roof" id="roof">
+
                     <select name="roof">
                         <option value="uden tragplader">uden tragplader</option>
                         <option value="plast trapez">plast trapez</option>
                     </select>
                     <br><br>
-                </form>
 
-                <form action="ServletQuickbyg" method="post">
-                    <input class="fortsaet-bestilling" type="submit" value="FORTSÆT BESTILLING">
+
+
+                    <button type="submit" class="fortsaet-bestilling">Fortsæt bestilling</button>
                 </form>
 
             </div>
