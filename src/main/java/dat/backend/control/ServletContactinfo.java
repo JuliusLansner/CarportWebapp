@@ -15,6 +15,11 @@ import java.sql.SQLException;
 
 @WebServlet(name = "ServletContactinfo", value = "/ServletContactinfo")
 public class ServletContactinfo extends HttpServlet {
+    //Checks for the user by email in database - Then either signing up or adding a user ot the session
+    //that can be used to add the order to the account.
+    //Zipcode and phonenumber gets checked for not being 0, as isEmpty and != null doesn't work for int.
+    //It works in practice, but it's not super clean and has several issues.
+
     private ConnectionPool connectionPool;
 
     @Override
@@ -42,9 +47,7 @@ public class ServletContactinfo extends HttpServlet {
 
         try {
             User userFind = UserFacade.findUserByEmail(email, connectionPool);
-            //Zipcode and phonenumber gets checked for not being 0, as isEmpty and != null doesn't work for int.
-            //It works in practice, but it's not super clean.
-            if (userFind != null && !address.isEmpty() && zipcode!=0 && phoneNumber !=0) {
+            if (userFind != null && !address.isEmpty() && zipcode != 0 && phoneNumber != 0) {
                 User user = UserFacade.login(email, password, connectionPool);
                 session = request.getSession();
                 session.setAttribute("user", user);
