@@ -24,7 +24,7 @@ public class OrderFacade {
         return OrderMapper.findOrderByOrderId(orderId, connectionPool);
     }
 
-    public static void updateOrderStatus(int status, int ordreId, ConnectionPool connectionPool) throws DatabaseException {
-        OrderMapper.updateOrderStatus(status, ordreId, connectionPool);
+    public static void updateOrderStatus(int status, int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        OrderMapper.updateOrderStatus(status, orderId, connectionPool);
     }
 }

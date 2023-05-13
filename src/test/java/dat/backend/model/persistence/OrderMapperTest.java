@@ -7,14 +7,14 @@ import dat.backend.model.exceptions.DatabaseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class OrderMapperTest {
-    ConnectionPool connectionPool;
+    static ConnectionPool connectionPool;
     private final static String USER = "dev";
     private final static String PASSWORD = "3r!DE32*/fDe";
     private final static String URL = "jdbc:mysql://64.226.126.239:3306/carport_test";
@@ -22,6 +22,15 @@ class OrderMapperTest {
     @BeforeEach
     void setUp() throws SQLException {
         connectionPool = new ConnectionPool(USER, PASSWORD, URL);
+    }
+
+    @Test
+    void testConnection() throws SQLException {
+        Connection connection = connectionPool.getConnection();
+        assertNotNull(connection);
+        if (connection != null) {
+            connection.close();
+        }
     }
 
     @Test
@@ -62,5 +71,22 @@ class OrderMapperTest {
     void findOrderByOrderId() throws SQLException {
         Order order = OrderMapper.findOrderByOrderId(3,connectionPool);
         System.out.println(order);
+    }
+
+    @Test
+    void updateOrderStatus() throws SQLException, DatabaseException {
+
+
+        int newStatus = 0;
+        int orderId = 13;
+
+        Order testOrder = OrderMapper.findOrderByOrderId(orderId,connectionPool);
+        testOrder.setStatus(newStatus);
+
+        OrderFacade.updateOrderStatus(newStatus,orderId,connectionPool);
+
+        Order updatedOrderStatus = OrderMapper.findOrderByOrderId(orderId,connectionPool);
+        assertEquals(newStatus, updatedOrderStatus.getStatus());
+
     }
 }

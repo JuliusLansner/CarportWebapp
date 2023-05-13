@@ -46,21 +46,19 @@ public class MaterialMapper {
 
         String sql = "UPDATE carport.materiale SET pris_per_enhed = ? WHERE materiale.idmateriale = ?";
 
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
-                ps.setInt(1,updatedPricePrUnit);
-                ps.setInt(2,materialId);
+            ps.setInt(1, updatedPricePrUnit);
+            ps.setInt(2, materialId);
 
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected != 1) {
-                    throw new DatabaseException("Error updating material price");
-                }
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Error updating material price");
             }
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Error updating material price");
         }
     }
-
 }
 
