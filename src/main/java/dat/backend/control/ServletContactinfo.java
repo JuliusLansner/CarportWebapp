@@ -15,10 +15,11 @@ import java.sql.SQLException;
 
 @WebServlet(name = "ServletContactinfo", value = "/ServletContactinfo")
 public class ServletContactinfo extends HttpServlet {
-    //Checks for the user by email in database - Then either signing up or adding a user ot the session
+    //Checks for the user by email in database - Then either signing up or adding a user in the session
     //that can be used to add the order to the account.
     //Zipcode and phonenumber gets checked for not being 0, as isEmpty and != null doesn't work for int.
     //It works in practice, but it's not super clean and has several issues.
+    //name, email, address,zipcode and phonenumber stored in session for further use.
 
     private ConnectionPool connectionPool;
 
@@ -38,6 +39,7 @@ public class ServletContactinfo extends HttpServlet {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
         session.setAttribute("user", null);
+        String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String address = request.getParameter("adress");
@@ -47,7 +49,7 @@ public class ServletContactinfo extends HttpServlet {
 
         try {
             User userFind = UserFacade.findUserByEmail(email, connectionPool);
-            if (userFind != null && !address.isEmpty() && zipcode != 0 && phoneNumber != 0) {
+            if (userFind != null && !address.isEmpty() && zipcode != 0 && phoneNumber != 0 && !name.isEmpty()) {
                 User user = UserFacade.login(email, password, connectionPool);
                 session = request.getSession();
                 session.setAttribute("user", user);
@@ -75,6 +77,12 @@ public class ServletContactinfo extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        session.setAttribute("currentName",name);
+        session.setAttribute("currentEmail",email);
+        session.setAttribute("currentAddress",address);
+        session.setAttribute("currentZip",zipcode);
+        session.setAttribute("currentPhone",phoneNumber);
+
         request.getRequestDispatcher("valgtBestilling.jsp").forward(request, response);
     }
 }
