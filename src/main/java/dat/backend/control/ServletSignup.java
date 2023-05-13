@@ -23,7 +23,7 @@ public class ServletSignup extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConnectionPool connectionPool = new ConnectionPool();
 
-        String email = request.getParameter("username");
+        String email = request.getParameter("email");
         String address = request.getParameter("adress");
         int zipcode = Integer.parseInt(request.getParameter("zipcode"));
         int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));

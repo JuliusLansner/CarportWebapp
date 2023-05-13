@@ -14,7 +14,7 @@
             </p>
         </div>
         <div class="kontaktinfo">
-            <form action="valgtBestilling.jsp" method="post">
+            <form action="ServletContactinfo" method="post">
                 <div class="kontaktinfo-input">
                     <label for="name">Navn: </label>
                     <input type="text" id="name" name="name"/>
@@ -24,16 +24,16 @@
                     <input type="text" id="adress" name="adress"/>
                 </div>
                 <div class="kontaktinfo-input">
-                    <label for="postcode">Postnummer: </label>
-                    <input type="text" id="postcode" name="postcode"/>
+                    <label for="zipcode">Postnummer: </label>
+                    <input type="text" id="zipcode" name="zipcode"/>
                 </div>
                 <div class="kontaktinfo-input">
                     <label for="by">By: </label>
                     <input type="by" id="by" name="by"/>
                 </div>
                 <div class="kontaktinfo-input">
-                    <label for="telefon">Telefon: </label>
-                    <input type="text" id="telefon" name="telefon"/>
+                    <label for="phoneNumber">Telefon: </label>
+                    <input type="text" id="phoneNumber" name="phoneNumber"/>
                 </div>
                 <div class="kontaktinfo-input">
                 <br/><br/>
@@ -42,15 +42,17 @@
                         Hvis du har en konto, bliver det brugt til at behandle ordren via din konto.
                     </p>
                     <br/>
-                    <label for="username">Brugernavn: </label>
-                    <input type="text" id="username" name="username"/>
+                    <label for="email">Brugernavn: </label>
+                    <input type="text" id="email" name="email"/>
                 </div>
                 <div class="kontaktinfo-input">
                     <label for="password">Kodeord: </label>
                     <input type="password" id="password" name="password"/>
+                    <label for="passwordCheck">Kodeord igen: </label>
+                    <input type="password" id="passwordCheck" name="passwordCheck"/>
                 </div>
 
-                <input class="fortsaet-bestilling" type="submit" value="BESTIL">
+                <button type="submit" class="fortsaet-bestilling">Bestil</button>
 
             </form>
         </div>
