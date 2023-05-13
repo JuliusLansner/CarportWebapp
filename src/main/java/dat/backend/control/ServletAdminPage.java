@@ -49,7 +49,6 @@ public class ServletAdminPage extends HttpServlet {
             e.printStackTrace();
         }
 
-
         request.getRequestDispatcher("adminPage.jsp").forward(request, response);
     }
 
@@ -84,9 +83,45 @@ public class ServletAdminPage extends HttpServlet {
                     break;
                 }
             }
+            session.setAttribute("materialList",updatedMaterialList);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
+
+
+        //   --- changes the status of an order via. the approval and decline buttons ---
+        String statusParameter = request.getParameter("status");
+        String orderIdParameter = request.getParameter("orderId");
+        String action = request.getParameter("action");
+
+        int status = 0;
+        int orderId = 0;
+
+        if ( statusParameter != null && !statusParameter.isEmpty()) {
+            status = Integer.parseInt(statusParameter);
+        }
+
+        if (orderIdParameter != null && !orderIdParameter.isEmpty()) {
+            orderId = Integer.parseInt(orderIdParameter);
+        }
+
+        if ("afvis".equals(action)) {
+            status = 1;
+        }
+        try {
+            OrderFacade.updateOrderStatus(status, orderId, connectionPool);
+            HttpSession session = request.getSession();
+            List<Order> updatedOrderStatusList = (List<Order>) session.getAttribute("userOrders");
+            for (Order order : updatedOrderStatusList) {
+                if (order.getOrderId() == orderId) {
+                    order.setStatus(status);
+                    break;
+                }
+            }
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+
         request.getRequestDispatcher("adminPage.jsp").forward(request, response);
     }
 }

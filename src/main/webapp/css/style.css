@@ -150,15 +150,47 @@ body {
     text-align: center;
 }
 
-.order-table {
+.order-table-div{
+    position: relative;
+    overflow-y: auto;
+    max-height: 50vh;
     margin: 0 auto;
-    text-align: center;
+    width: 50%;
+}
+
+.order-table {
+    width:100% ;
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 
 .order-table th{
     padding: 10px 20px;
+    text-align: center;
 }
 
+.order-table td{
+    text-align: center;
+}
+
+
+.order-table-header-div{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.order-table-header-div table{
+    width: 50%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.order-table-header-div th{
+    padding: 10px 20px;
+    text-align: center;
+}
 .price-overview{
     text-align: center;
 }

@@ -30,44 +30,63 @@
         <br>
         <br>
 
-        <table id="order-table" class="order-table">
-            <thead>
-            <tr>
-                <th>Ordre-id</th>
-                <th>Status</th>
-                <th>Pris</th>
-                <th>Butik</th>
-                <th>Dato</th>
-                <th>Godkend</th>
-                <th>Afvis</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="item" items="${sessionScope.userOrders}">
+        <div class="order-table-header-div">
+            <table class="order-table-header-div">
+                <thead>
                 <tr>
-                    <td>${item.orderId}</td>
-                    <td style="color:${item.status == 0 ? 'red' : 'green'}"><c:choose>
-                        <c:when test="${item.status eq 0}">
-                            AFVENTER
-                        </c:when>
-                        <c:when test="${item.status eq 1}">
-                            GODKENDT
-                        </c:when>
-                    </c:choose>
-                    </td>
-                    <td>${item.totalPrice}</td>
-                    <td>Værebro fog</td>
-                    <td>${item.date}</td>
-                    <td>
-                        <button type="button" class="approve-button">Godkend</button>
-                    </td>
-                    <td>
-                        <button type="button" class="declined-button">Afvis</button>
-                    </td>
+                    <th>Ordre-id</th>
+                    <th>Status</th>
+                    <th>Pris</th>
+                    <th>Butik</th>
+                    <th>Dato</th>
+                    <th>Godkend</th>
+                    <th>Afvis</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+            </table>
+        </div>
+        <div class="order-table-div">
+            <table id="order-table" class="order-table">
+                <tbody>
+                <c:forEach var="item" items="${sessionScope.userOrders}">
+                    <tr>
+                        <td>${item.orderId}</td>
+                        <td style="color:${item.status == 2 ? 'green' : 'red'}"><c:choose>
+                            <c:when test="${item.status eq 0}">
+                                AFVENTER
+                            </c:when>
+                            <c:when test="${item.status eq 1}">
+                                AFVIST
+                            </c:when>
+                            <c:when test="${item.status eq 2}">
+                                GODKENDT
+                            </c:when>
+                        </c:choose>
+                        </td>
+                        <td>${item.totalPrice}</td>
+                        <td>Værebro fog</td>
+                        <td>${item.date}</td>
+                        <td>
+                            <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
+                                <input type="hidden" name="orderId" value="${item.orderId}">
+                                <input type="hidden" name="status" value="2">
+                                <button type="submit" name="action" value="godkend" class="approve-button">Godkend
+                                </button>
+                            </form>
+
+                        </td>
+                        <td>
+                            <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
+                                <input type="hidden" name="orderId" value="${item.orderId}">
+                                <input type="hidden" name="status" value="1">
+                                <button type="submit" name="action" value="afvis" class="declined-button">Afvis</button>
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <br>
@@ -82,7 +101,8 @@
         <table id="price-table" class="price-table">
             <thead>
             <tr>
-                <th>Vare-id</th>
+                <th>Materiale-id</th>
+                <th>Beskrivelse</th>
                 <th>Nuværende pris pr. enhed</th>
                 <th>Fremtidige pris pr. enhed</th>
                 <th>Butik</th>
@@ -92,6 +112,7 @@
             <c:forEach var="material" items="${sessionScope.materialList}">
                 <tr>
                     <td>${material.idMaterial}</td>
+                    <td>${material.description}</td>
                     <td>${material.pricePerUnit}</td>
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
