@@ -14,6 +14,12 @@ public class MaterialVariant {
         this.partslistID = partslistID;
     }
 
+    public MaterialVariant(int materialeID, int length) {
+        this.materialeID = materialeID;
+        this.length = length;
+        this.partslistID = partslistID;
+    }
+
     public int getMaterialeVariantID() {
         return materialeVariantID;
     }

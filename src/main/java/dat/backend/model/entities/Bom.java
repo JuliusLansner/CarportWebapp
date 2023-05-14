@@ -4,13 +4,11 @@ public class Bom {
     int id;
     int price;
     int orderId;
-    String beskrivelse;
 
-    public Bom(int id, int price, int orderId, String beskrivelse) {
+    public Bom(int id, int price, int orderId) {
         this.id = id;
         this.price = price;
         this.orderId = orderId;
-        this.beskrivelse = beskrivelse;
     }
 
     public int getId() {
@@ -37,13 +35,6 @@ public class Bom {
         this.orderId = orderId;
     }
 
-    public String getBeskrivelse() {
-        return beskrivelse;
-    }
-
-    public void setBeskrivelse(String beskrivelse) {
-        this.beskrivelse = beskrivelse;
-    }
 
     @Override
     public String toString() {
@@ -51,7 +42,6 @@ public class Bom {
                 "id=" + id +
                 ", price=" + price +
                 ", orderId=" + orderId +
-                ", beskrivelse='" + beskrivelse + '\'' +
                 '}';
     }
 }
