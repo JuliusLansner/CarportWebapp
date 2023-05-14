@@ -26,7 +26,8 @@ public class MaterialVariantMapper {
                     int materialeID = rs.getInt("materiale_id");
                     int length = rs.getInt("længde");
                     int partslistID = rs.getInt("stykliste_idstykliste");
-                    materialVariant = new MaterialVariant(IDMaterialVariant, materialeID, length, partslistID);
+                    int price = rs.getInt("price");
+                    materialVariant = new MaterialVariant(IDMaterialVariant, materialeID, length, partslistID,price);
                 } else {
                     throw new DatabaseException("No material variant were found with: " + IDMaterialVariant);
                 }
@@ -62,13 +63,14 @@ public class MaterialVariantMapper {
 
     static public void createMaterialVariant(MaterialVariant materialVariant, ConnectionPool connectionPool) throws DatabaseException {
 
-        String sql = "INSERT INTO m_variant (materiale_id, længde, stykliste_idstykliste) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO m_variant (materiale_id, længde, stykliste_idstykliste, price) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, materialVariant.getMaterialeID());
                 ps.setInt(2, materialVariant.getLength());
                 ps.setInt(3, materialVariant.getPartslistID());
+                ps.setInt(4, materialVariant.getPrice());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected != 1) {
                     throw new DatabaseException("Error creating material variant");
@@ -115,4 +117,6 @@ public class MaterialVariantMapper {
             throw new DatabaseException("Error deleting material variant with ID: : " + IDMaterialVariant);
         }
     }
+
+
 }

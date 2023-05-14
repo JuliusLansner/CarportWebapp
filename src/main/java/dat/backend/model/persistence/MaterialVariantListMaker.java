@@ -7,12 +7,10 @@ import java.util.ArrayList;
 
 public class MaterialVariantListMaker {
     public void carportMaterialList(int lengthInCm, int widthInCm){
-       stolpMaker(lengthInCm,widthInCm);
-       spærMaker(lengthInCm,widthInCm);
 
     }
 
-    public static ArrayList<MaterialVariant>stolpMaker(int lengthInCm, int widthInCm){
+    public static ArrayList<MaterialVariant>stolpMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool){
         ArrayList<MaterialVariant>stolps = new ArrayList<>();
 
         double maxDistStolpsInCm = 310;
@@ -23,14 +21,15 @@ public class MaterialVariantListMaker {
         System.out.println(amountOfStolps);
 
         for (int i = 0; i < amountOfStolps; i++) {
-            MaterialVariant stolpVariant = new MaterialVariant(2,heigtOfStolp);
+            MaterialVariant stolpVariant = new MaterialVariant(2,heigtOfStolp,2,2);
             stolps.add(stolpVariant);
         }
         return stolps;
     }
 
-    public static ArrayList<MaterialVariant>spærMaker(int lengthInCm, int widthInCm){
+    public static ArrayList<MaterialVariant>spærMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool){
         ArrayList<MaterialVariant>spær = new ArrayList<>();
+
 
         double maxDistSpærInCm = 60;
         double widthOfSpær = 45;
@@ -38,7 +37,7 @@ public class MaterialVariantListMaker {
         double amountOfSpær = Math.ceil(lengthInCm/(maxDistSpærInCm+widthOfSpær));
         System.out.println(amountOfSpær);
         for (int i = 0; i < amountOfSpær; i++) {
-            MaterialVariant spærVariant = new MaterialVariant(1,widthInCm);
+            MaterialVariant spærVariant = new MaterialVariant(1,widthInCm,2,2);
             spær.add(spærVariant);
         }
         return spær;

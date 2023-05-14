@@ -6,18 +6,29 @@ public class MaterialVariant {
     private int materialeID;
     private int length;
     private int partslistID;
+    private int price;
 
-    public MaterialVariant(int m_variantID, int materialeID, int length, int partslistID) {
-        this.materialeVariantID = m_variantID;
+    public MaterialVariant(int materialeVariantID, int materialeID, int length, int partslistID, int price) {
+        this.materialeVariantID = materialeVariantID;
         this.materialeID = materialeID;
         this.length = length;
         this.partslistID = partslistID;
+        this.price = price;
     }
 
-    public MaterialVariant(int materialeID, int length) {
+    public MaterialVariant(int materialeID, int length, int partslistID, int price) {
         this.materialeID = materialeID;
         this.length = length;
         this.partslistID = partslistID;
+        this.price = price;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public int getMaterialeVariantID() {
