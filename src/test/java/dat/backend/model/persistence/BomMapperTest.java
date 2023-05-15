@@ -19,7 +19,7 @@ ConnectionPool connectionPool;
 
     @BeforeEach
     void setUp() {
-        connectionPool = new ConnectionPool(USER, PASSWORD, URL);
+        connectionPool = new ConnectionPool();
     }
 
     @Test
@@ -37,7 +37,7 @@ ConnectionPool connectionPool;
 
     @Test
     void makeBom() throws SQLException, DatabaseException {
-        Bom bom = BomMapper.makeBom(200,1,"Er cool",connectionPool);
+        Bom bom = BomMapper.makeBom(200,2,connectionPool);
         System.out.println(bom.getId());
     }
 }
