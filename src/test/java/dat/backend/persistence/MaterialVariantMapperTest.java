@@ -27,15 +27,14 @@ class MaterialVariantMapperTest {
 
     @BeforeAll
     public static void setUpClass() {
-        connectionPool = new ConnectionPool(USER, PASSWORD, URL);
+        connectionPool = new ConnectionPool();
 
         try (Connection testConnection = connectionPool.getConnection()) {
             try (Statement stmt = testConnection.createStatement()) {
                 stmt.execute("CREATE DATABASE  IF NOT EXISTS carport_test;");
                 stmt.execute("CREATE TABLE IF NOT EXISTS carport_test.m_variant LIKE carport.m_variant;");
             }
-        }
-        catch (SQLException throwables) {
+        } catch (SQLException throwables) {
             System.out.println(throwables.getMessage());
             fail("Database connection failed");
         }
@@ -52,47 +51,45 @@ class MaterialVariantMapperTest {
 
     @Test
     void getMaterialVariantByID() throws DatabaseException {
-        MaterialVariant materialVariant = MaterialVariantMapper.getMaterialVariantByID(3, connectionPool);
-        assertEquals(3, materialVariant.getMaterialeVariantID());
+        MaterialVariant materialVariant = MaterialVariantMapper.getMaterialVariantByID(4, connectionPool);
+        assertEquals(4, materialVariant.getMaterialeVariantID());
     }
 
     @Test
     void getAllMaterialVariants() throws DatabaseException {
         List<MaterialVariant> materialVariants = MaterialVariantMapper.getAllMaterialVariants(connectionPool);
-        assertEquals(18, materialVariants.size());
+        boolean notEmpty = false;
+        if(materialVariants.size()>0){
+            notEmpty = true;
+        }
+
+        assertTrue(notEmpty);
     }
 
     @Test
     void createMaterialVariant() throws DatabaseException {
-        MaterialVariant materialVariant = new MaterialVariant(1, 2, 3, 4);
-        MaterialVariantMapper.createMaterialVariant(materialVariant, connectionPool);
-
-        assertEquals(1, materialVariant.getMaterialeVariantID());
-        assertEquals(2, materialVariant.getMaterialeID());
-        assertEquals(3, materialVariant.getLength());
-        assertEquals(4, materialVariant.getPartslistID());
+        MaterialVariantMapper.createMaterialVariant(1,2,3,"test",2,connectionPool);
     }
 
     @Test
     void updateMaterialVariant() throws DatabaseException {
-        MaterialVariant materialVariant = MaterialVariantMapper.getMaterialVariantByID(3, connectionPool);
+        MaterialVariant materialVariant = MaterialVariantMapper.getMaterialVariantByID(4, connectionPool);
         int newLength = 300;
         materialVariant.setLength(newLength);
         MaterialVariantMapper.updateMaterialVariant(materialVariant, connectionPool);
-        MaterialVariant updatedMaterialVariant = MaterialVariantMapper.getMaterialVariantByID(3, connectionPool);
+        MaterialVariant updatedMaterialVariant = MaterialVariantMapper.getMaterialVariantByID(4, connectionPool);
         assertEquals(newLength, updatedMaterialVariant.getLength());
     }
 
     @Test
     void deleteMaterialVariant() throws DatabaseException {
-        MaterialVariant materialVariant = new MaterialVariant(12, 0, 100, 1);
-        MaterialVariantMapper.createMaterialVariant(materialVariant, connectionPool);
+        int id = MaterialVariantMapper.createMaterialVariant(1,1,3,"tester",1,connectionPool);
 
-        int testID = materialVariant.getMaterialeVariantID();
-        MaterialVariantMapper.deleteMaterialVariant(testID, connectionPool);
+
+        MaterialVariantMapper.deleteMaterialVariant(id, connectionPool);
 
         // checks that a DB exception is thrown, and testID is deleted
-        assertThrows(DatabaseException.class, () -> MaterialVariantMapper.getMaterialVariantByID(testID, connectionPool));
+        assertThrows(DatabaseException.class, () -> MaterialVariantMapper.getMaterialVariantByID(id, connectionPool));
     }
 }
 

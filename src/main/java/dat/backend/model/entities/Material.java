@@ -14,7 +14,14 @@ public class Material {
 
 
     }
-//sets idMaterial, not sure about this one or if it's necessary.
+
+    public Material(String description, String unit, int pricePerUnit) {
+        this.description = description;
+        this.unit = unit;
+        this.pricePerUnit = pricePerUnit;
+    }
+
+    //sets idMaterial, not sure about this one or if it's necessary.
     public void setIdMaterial(int idMaterial) {
         this.idMaterial = idMaterial;
     }
