@@ -42,6 +42,7 @@ class OrderMapperTest {
         if (orderlist.size() > 0) {
             notEmpty = true;
         }
+        System.out.println(orderlist.get(0).getOrderId());
         assertTrue(notEmpty);
     }
 

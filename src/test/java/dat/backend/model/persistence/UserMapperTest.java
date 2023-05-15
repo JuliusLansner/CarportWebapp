@@ -37,6 +37,8 @@ class UserMapperTest {
     User user = UserMapper.login("Tester1","123",connectionPool);
         System.out.println(user.getEmail());
         System.out.println(testUser.getEmail());
+
+        System.out.println(user.getIdUser());
     assertEquals(user.getEmail(),testUser.getEmail());
 
     UserMapper.deleteMyAccount("Tester1","123",connectionPool);

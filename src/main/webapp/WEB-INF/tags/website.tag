@@ -35,11 +35,11 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
 
-                    <c:if test="${sessionScope.user eq 'user'}">
+                    <c:if test="${sessionScope.user.role eq 'USER'}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/userPage.jsp">bruger
                             side</a>
                     </c:if>
-                    <c:if test="${sessionScope.user eq 'admin'}">
+                    <c:if test="${sessionScope.user.role eq 'ADMIN'}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ServletAdminPage">admin
                             side</a>
                     </c:if>
