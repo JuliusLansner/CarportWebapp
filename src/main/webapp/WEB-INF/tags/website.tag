@@ -10,7 +10,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><jsp:invoke fragment="header"/></title>
+    <title>
+        <jsp:invoke fragment="header"/>
+    </title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -23,7 +25,8 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">
-                <img src="${pageContext.request.contextPath}/images/foglogo.png" width="123" height="115" class="img-fluid"/>
+                <img src="${pageContext.request.contextPath}/images/foglogo.png" width="123" height="115"
+                     class="img-fluid"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,14 +35,20 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
 
-                    <c:if test="${sessionScope.user != null}">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ServletAdminPage">bruger/admin side</a>
+                    <c:if test="${sessionScope.user eq 'user'}">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/userPage.jsp">bruger
+                            side</a>
+                    </c:if>
+                    <c:if test="${sessionScope.user eq 'admin'}">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ServletAdminPage">admin
+                            side</a>
                     </c:if>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
                     </c:if>
                     <c:if test="${sessionScope.user == null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/signUp.jsp">Opret bruger</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/signUp.jsp">Opret
+                            bruger</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
@@ -51,7 +60,9 @@
 </header>
 
 <div id="body">
-    <h1><jsp:invoke fragment="header"/></h1>
+    <h1>
+        <jsp:invoke fragment="header"/>
+    </h1>
     <jsp:doBody/>
 
 </div>
@@ -61,8 +72,8 @@
 
     <div class="row mt-4">
         <img src="${pageContext.request.contextPath}/images/OmFog.png" width="100%" height="100%" class="img-fluid"/>
-        </div>
     </div>
+</div>
 
 </div>
 
