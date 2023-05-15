@@ -83,7 +83,7 @@ public class MaterialVariantListMaker {
         //sets measurement for stolp
         double maxDistStolpsInCm = 310;
         double widthOfStolp = 97;
-        int heigtOfStolp = 240;
+        int heigtOfStolp = 300;
 
         //calculates the amount of stolps needed based on the length
         double amountOfStolps = Math.ceil(lengthInCm / (maxDistStolpsInCm + 97)) * 2;
@@ -101,11 +101,18 @@ public class MaterialVariantListMaker {
     public static ArrayList<MaterialVariant> remVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> rems = new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 2; i++) {
             int price = variantPriceCalculater(lengthInCm, 1, connectionPool);
             MaterialVariant materialVariant = new MaterialVariant(1, lengthInCm, price);
             rems.add(materialVariant);
         }
+
+        for (int i = 0; i < 2; i++) {
+            int price = variantPriceCalculater(widthInCm, 1, connectionPool);
+            MaterialVariant materialVariant = new MaterialVariant(1, widthInCm, price);
+            rems.add(materialVariant);
+        }
+
         return rems;
     }
 
