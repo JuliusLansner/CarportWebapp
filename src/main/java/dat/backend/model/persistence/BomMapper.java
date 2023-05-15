@@ -18,6 +18,7 @@ public class BomMapper {
             int id = 0;
             int price = 0;
             int orderId = 0;
+            String description = null;
 
             ResultSet rs = statement.executeQuery();
 
@@ -25,16 +26,17 @@ public class BomMapper {
                 id = rs.getInt(1);
                 price = rs.getInt(2);
                 orderId = rs.getInt(3);
+                description = rs.getString(4);
 
-                bom = new Bom(id, price, orderId);
+                bom = new Bom(id, price, orderId, description);
                 bomList.add(bom);
             }
         }
         return bomList;
     }
 
-    public static Bom makeBom(int price, int orderId, ConnectionPool connectionPool) throws SQLException, DatabaseException {
-        String sql = "INSERT INTO stykliste (pris, ordre_idordre) VALUES (?, ?)";
+    public static Bom makeBom(int price, int orderId, String description, ConnectionPool connectionPool) throws SQLException, DatabaseException {
+        String sql = "INSERT INTO stykliste (pris, ordre_idordre, beskrivelse) VALUES (?, ?, ?)";
         ResultSet generatedKeys = null;
         int id = 0;
         Bom bom = null;
@@ -42,6 +44,7 @@ public class BomMapper {
         try (Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, price);
             statement.setInt(2, orderId);
+            statement.setString(3, description);
 
             int rowsAffected = statement.executeUpdate();
 
@@ -59,7 +62,7 @@ public class BomMapper {
                 System.out.println("Id not found");
             }
 
-            bom = new Bom(id, price, orderId);
+            bom = new Bom(id, price, orderId, description);
         }
         return bom;
     }

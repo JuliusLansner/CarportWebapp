@@ -15,8 +15,8 @@ public class MaterialVariantFacade {
         return MaterialVariantMapper.getAllMaterialVariants(connectionPool);
     }
 
-    static public void createMaterialVariant(int materialId, int length, int bonId, String description, int price, ConnectionPool connectionPool) throws DatabaseException {
-        MaterialVariantMapper.createMaterialVariant(materialId, length, bonId, description, price, connectionPool);
+    static public void createMaterialVariant(MaterialVariant materialVariant, ConnectionPool connectionPool) throws DatabaseException {
+        MaterialVariantMapper.createMaterialVariant(materialVariant, connectionPool);
     }
 
     static public void updateMaterialVariant(MaterialVariant materialVariant, ConnectionPool connectionPool) throws DatabaseException {
