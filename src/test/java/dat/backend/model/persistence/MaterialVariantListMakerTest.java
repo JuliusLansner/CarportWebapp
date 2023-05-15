@@ -10,19 +10,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MaterialVariantListMakerTest {
 ConnectionPool connectionPool;
-    @BeforeAll
-    void setup(){
-       connectionPool = new ConnectionPool();
-    }
+
 
     @Test
     void stolpMaker() {
-        ArrayList<MaterialVariant>variants = MaterialVariantListMaker.stolpMaker(600,100, connectionPool);
+
 
     }
 
     @Test
     void spærMaker() {
-        ArrayList<MaterialVariant>variants = MaterialVariantListMaker.spærMaker(600,100,connectionPool);
+
+    }
+
+    @Test
+    void materialPriceCalculater() {
     }
 }

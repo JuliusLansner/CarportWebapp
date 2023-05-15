@@ -11,6 +11,11 @@ public class Bom {
         this.orderId = orderId;
     }
 
+    public Bom(int price, int orderId) {
+        this.price = price;
+        this.orderId = orderId;
+    }
+
     public int getId() {
         return id;
     }
