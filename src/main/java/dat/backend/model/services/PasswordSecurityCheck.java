@@ -1,4 +1,4 @@
-package dat.backend.model.persistence;
+package dat.backend.model.services;
 
 public class PasswordSecurityCheck {
 

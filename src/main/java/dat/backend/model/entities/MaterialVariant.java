@@ -18,15 +18,10 @@ public class MaterialVariant {
         this.price = price;
     }
 
-    public MaterialVariant(int materialeID, int length, int partslistID, int price) {
+    public MaterialVariant(int materialeID, int length, int price) {
         this.materialeID = materialeID;
         this.length = length;
-        this.partslistID = partslistID;
         this.price = price;
-    }
-
-    public MaterialVariant(int i, int heigtOfStolp, int price) {
-
     }
 
     public String getDescription() {
@@ -68,6 +63,8 @@ public class MaterialVariant {
                 ", materialeID=" + materialeID +
                 ", length=" + length +
                 ", partslistID=" + partslistID +
+                ", price=" + price +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

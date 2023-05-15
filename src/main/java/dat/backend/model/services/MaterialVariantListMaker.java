@@ -1,9 +1,13 @@
-package dat.backend.model.persistence;
+package dat.backend.model.services;
 
 import dat.backend.model.entities.Bom;
 import dat.backend.model.entities.Material;
 import dat.backend.model.entities.MaterialVariant;
 import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.persistence.BomFacade;
+import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.persistence.MaterialFacade;
+import dat.backend.model.persistence.MaterialVariantFacade;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,10 +19,11 @@ public class MaterialVariantListMaker {
      * @param widthInCm      width of the carport
      * @param orderId
      * @param connectionPool
+     * @return
      * @throws SQLException
      * @throws DatabaseException
      */
-    public void carportMaterialList(int lengthInCm, int widthInCm, int orderId, ConnectionPool connectionPool) throws SQLException, DatabaseException {
+    public static Bom carportMaterialList(int lengthInCm, int widthInCm, int orderId, ConnectionPool connectionPool) throws SQLException, DatabaseException {
 
         //makes material variants of stolps based on carport height and width and puts into list named stolps.
         ArrayList<MaterialVariant> stolps = stolpVariantMaker(lengthInCm, widthInCm, connectionPool);
@@ -36,7 +41,6 @@ public class MaterialVariantListMaker {
 
         //adds a list to the DB for material variants and puts it into an objeckt named bom of type Bom
         Bom bom = BomFacade.makeBom(totalPrice, orderId, connectionPool);
-
         //adds all the stolp variants to the DB
         for (MaterialVariant mv : stolps) {
             String description = "Stolper til at putte i jorden";
@@ -49,6 +53,13 @@ public class MaterialVariantListMaker {
             MaterialVariantFacade.createMaterialVariant(mv.getMaterialeID(), mv.getLength(), bom.getId(), description, mv.getPrice(), connectionPool);
         }
 
+        //adds all the rem variants to the DB
+        for (MaterialVariant mv:rems){
+            String description = "hey";
+            MaterialVariantFacade.createMaterialVariant(mv.getMaterialeID(), mv.getLength(), bom.getId(), description, mv.getPrice(), connectionPool);
+        }
+
+        return bom;
     }
 
     private static int calculatePriceOfVariantList(ArrayList<MaterialVariant> variants) {
@@ -67,7 +78,7 @@ public class MaterialVariantListMaker {
      * @param connectionPool
      * @return returns a list of created stolp variants that are based on the carport length and width
      */
-    private static ArrayList<MaterialVariant> stolpVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
+    public static ArrayList<MaterialVariant> stolpVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> stolps = new ArrayList<>();
         //sets measurement for stolp
         double maxDistStolpsInCm = 310;
@@ -87,18 +98,18 @@ public class MaterialVariantListMaker {
         return stolps;
     }
 
-    private static ArrayList<MaterialVariant> remVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
+    public static ArrayList<MaterialVariant> remVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> rems = new ArrayList<>();
-
-        double widthOfRem = 45;
 
         for (int i = 0; i < 4; i++) {
             int price = variantPriceCalculater(lengthInCm, 1, connectionPool);
-            MaterialVariant materialVariant = new MaterialVariant(lengthInCm, 1, price);
+            MaterialVariant materialVariant = new MaterialVariant(1, lengthInCm, price);
             rems.add(materialVariant);
         }
         return rems;
     }
+
+
 
     /**
      * @param lengthInCm     length of the carport
@@ -106,7 +117,7 @@ public class MaterialVariantListMaker {
      * @param connectionPool
      * @return returns a list of created spær variants based on carport length and width
      */
-    private static ArrayList<MaterialVariant> spærVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
+    public static ArrayList<MaterialVariant> spærVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> spær = new ArrayList<>();
 
         double maxDistSpærInCm = 60;
@@ -133,5 +144,6 @@ public class MaterialVariantListMaker {
         //calculates the price based on material length
         return lengthInM * pricePerUnit;
     }
+
 
 }
