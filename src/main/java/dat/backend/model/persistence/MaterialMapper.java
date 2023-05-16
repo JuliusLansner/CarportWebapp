@@ -13,7 +13,7 @@ public class MaterialMapper {
     /* This mapper picks up all the info about a specific material we've put in to the databse
      */
     static ArrayList<Material> materialList(ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "SELECT * FROM material";
+        String sql = "SELECT * FROM carport.materiale";
         ArrayList<Material> materialList = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -42,29 +42,23 @@ public class MaterialMapper {
         return materialList;
     }
 
-    public static Material getMaterialById(int id, ConnectionPool connectionPool){
-        String sql = "SELECT * FROM materiale WHERE idmateriale = ?";
-        Material material = null;
+    public static void updateMaterialPricePrUnit(int updatedPricePrUnit, int materialId, ConnectionPool connectionPool) throws DatabaseException {
 
-        try(Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
+        String sql = "UPDATE carport.materiale SET pris_per_enhed = ? WHERE materiale.idmateriale = ?";
 
-            while(resultSet.next()){
-                String beskrivelse = resultSet.getString("beskrivelse");
-                String enhed = resultSet.getString("enhed");
-                int pris = resultSet.getInt("pris_per_enhed");
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
-                material = new Material(beskrivelse, enhed, pris);
+            ps.setInt(1, updatedPricePrUnit);
+            ps.setInt(2, materialId);
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Error updating material price");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Error updating material price");
         }
-
-        return material;
     }
-
-
-
 }
 

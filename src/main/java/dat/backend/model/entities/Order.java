@@ -21,7 +21,9 @@ public class Order {
         this.userId = userId;
     }
 
-
+    public int getStatus() {
+        return status;
+    }
 
     public int getWidth() {
         return width;

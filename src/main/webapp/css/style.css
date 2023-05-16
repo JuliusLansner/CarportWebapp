@@ -114,10 +114,10 @@ body {
     background-color: #003D76 !important;
     border-radius: 5px;
     border: none;
-    color :white !important;
-    box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.55);
-    -webkit-box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.55);
-    -moz-box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.55);
+    color: white !important;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
     padding: 8px 30px !important;
     margin-top: 20px !important;
     text-align: center;
@@ -136,12 +136,12 @@ body {
     width: 50%;
 }
 
-/* Kontakt info */
-
-.kontaktinfo{
+/*kontakt info*/
+.kontaktinfo {
+    width: 100% !important;
+    display: inline-block !important;
     padding-top: 50px !important;
     padding-bottom: 50px;
-    margin: 0 auto !important;
 }
 
 .kontaktinfo-input {
@@ -157,14 +157,162 @@ body {
     font-size: 14px;
 }
 
+.admin-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-overview {
+    text-align: center;
+}
+
+.order-table-div {
+    position: relative;
+    overflow-y: auto;
+    max-height: 50vh;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.order-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.order-table th {
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.order-table td {
+    text-align: center;
+}
+
+
+.order-table-header-div table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.order-table-header-div th {
+    text-align: center;
+    padding: 10px 15px;
+}
+
+.price-overview {
+    text-align: center;
+}
+
+.price-table {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.price-table th {
+    padding: 10px 20px;
+}
+
+.approve-button {
+    color: white;
+    background-color: green;
+}
+
+.declined-button {
+    color: white;
+    background-color: red;
+}
+
+.priceApprove-button {
+    color: white;
+    background-color: green;
+}
+
 .kontaktinfo-input input {
     width: 100%;
     border-radius: 5px;
     border: none;
-    box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.20);
-    -webkit-box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.20);
-    -moz-box-shadow: 0px 1px 16px -4px rgba(0,0,0,0.20);
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
     padding: 10px 10px !important;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
+}
+
+.table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    overflow-y: scroll;
+    width: 100%;
+    height: 150px;
+}
+
+.td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
+.table1 th:nth-child(1),
+.table1 th:nth-child(2),
+.table1 th:nth-child(3),
+.table1 th:nth-child(4),
+.table1 th:nth-child(5),
+.table1 th:nth-child(6),
+.table1 td:nth-child(1),
+.table1 td:nth-child(2),
+.table1 td:nth-child(3),
+.table1 td:nth-child(4),
+.table1 td:nth-child(5),
+.table1 td:nth-child(6) {
+    width: 16.66% !important;
+}
+
+.table2 th:nth-child(1),
+.table2 th:nth-child(2),
+.table2 th:nth-child(3),
+.table2 th:nth-child(4),
+.table2 th:nth-child(5),
+.table2 th:nth-child(6),
+.table2 td:nth-child(1),
+.table2 td:nth-child(2),
+.table2 td:nth-child(3),
+.table2 td:nth-child(4),
+.table2 td:nth-child(5),
+.table2 td:nth-child(6) {
+    width: 16.66% !important;
+}
+
+.userOrderTable {
+    overflow-y: scroll;
+    width: auto;
+    height: 150px;
+}
+
+.tableTitles {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    overflow-y: scroll;
+}
+
+.titles {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.orderDetails-table{
+    margin: 0 auto;
+    width: 80%;
+    height: 50%;
+    text-align: center;
+}
+
+.orderDetails-table th, .orderDetails-table td{
+    padding: 10px;
+    border: 1px solid #ddd;
 }
