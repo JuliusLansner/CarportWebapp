@@ -21,7 +21,9 @@ public class Order {
         this.userId = userId;
     }
 
-
+    public int getStatus() {
+        return status;
+    }
 
     public int getWidth() {
         return width;
@@ -65,10 +67,6 @@ public class Order {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public int getStatus() {
-        return status;
     }
 
     public void setDate(Timestamp date) {
