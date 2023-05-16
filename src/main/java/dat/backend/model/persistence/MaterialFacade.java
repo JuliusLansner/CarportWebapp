@@ -16,4 +16,8 @@ public class MaterialFacade {
         }
         return MaterialMapper.materialList(connectionPool);
     }
+
+    public static Material getMaterialById(int id, ConnectionPool connectionPool){
+        return MaterialMapper.getMaterialById(id,connectionPool);
+    }
 }
