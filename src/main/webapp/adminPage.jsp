@@ -50,11 +50,7 @@
                 <tbody>
                 <c:forEach var="item" items="${sessionScope.userOrders}">
                     <tr>
-                        <td>
-                            <a href="orderDetails.jsp?orderId=${item.orderId}&length=${item.lenght}&width=${item.width}&totalPrice=${item.totalPrice}&status=${item.status}&date=${item.date}">
-                                    ${item.orderId}
-                            </a>
-                        </td>
+                        <td>${item.orderId}</td>
                         <td style="color:${item.status == 2 ? 'green' : 'red'}"><c:choose>
                             <c:when test="${item.status eq 0}">
                                 AFVENTER
@@ -77,6 +73,7 @@
                                 <button type="submit" name="action" value="godkend" class="approve-button">Godkend
                                 </button>
                             </form>
+
                         </td>
                         <td>
                             <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
