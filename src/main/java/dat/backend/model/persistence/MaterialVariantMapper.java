@@ -3,10 +3,7 @@ package dat.backend.model.persistence;
 import dat.backend.model.entities.MaterialVariant;
 import dat.backend.model.exceptions.DatabaseException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +23,9 @@ public class MaterialVariantMapper {
                     int materialeID = rs.getInt("materiale_id");
                     int length = rs.getInt("længde");
                     int partslistID = rs.getInt("stykliste_idstykliste");
-                    materialVariant = new MaterialVariant(IDMaterialVariant, materialeID, length, partslistID);
+                    String description = rs.getString("beskrivelse");
+                    int price = rs.getInt("pris");
+                    materialVariant = new MaterialVariant(IDMaterialVariant, materialeID, length, partslistID, description, price);
                 } else {
                     throw new DatabaseException("No material variant were found with: " + IDMaterialVariant);
                 }
@@ -51,7 +50,9 @@ public class MaterialVariantMapper {
                     int materialeID = rs.getInt("materiale_id");
                     int length = rs.getInt("længde");
                     int partslistID = rs.getInt("stykliste_idstykliste");
-                    materialVariants.add(new MaterialVariant(IDMaterialVariant, materialeID, length, partslistID));
+                    int price = rs.getInt("pris");
+                    String description = rs.getString("beskrivelse");
+                    materialVariants.add(new MaterialVariant(IDMaterialVariant, materialeID, length, partslistID, description, price));
                 }
             }
         } catch (SQLException ex) {
@@ -60,23 +61,30 @@ public class MaterialVariantMapper {
         return materialVariants;
     }
 
-    static public void createMaterialVariant(MaterialVariant materialVariant, ConnectionPool connectionPool) throws DatabaseException {
-
-        String sql = "INSERT INTO m_variant (materiale_id, længde, stykliste_idstykliste) VALUES (?, ?, ?)";
+    static public int createMaterialVariant(int materialId, int length, int bonId, String description, int price, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "INSERT INTO m_variant (materiale_id, længde, stykliste_idstykliste, beskrivelse, pris) VALUES (?, ?, ?, ?, ?)";
+        ResultSet generatedKeys = null;
+        int id = 0;
 
         try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, materialVariant.getMaterialeID());
-                ps.setInt(2, materialVariant.getLength());
-                ps.setInt(3, materialVariant.getPartslistID());
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected != 1) {
-                    throw new DatabaseException("Error creating material variant");
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, materialId);
+                ps.setInt(2, length);
+                ps.setInt(3, bonId);
+                ps.setString(4, description);
+                ps.setInt(5, price);
+                ps.executeUpdate();
+
+                generatedKeys = ps.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    id = generatedKeys.getInt(1);
+                    generatedKeys.close();
                 }
             }
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Error creating material variant");
         }
+        return id;
     }
 
     static public void updateMaterialVariant(MaterialVariant materialVariant, ConnectionPool connectionPool) throws DatabaseException {
@@ -115,4 +123,5 @@ public class MaterialVariantMapper {
             throw new DatabaseException("Error deleting material variant with ID: : " + IDMaterialVariant);
         }
     }
+
 }

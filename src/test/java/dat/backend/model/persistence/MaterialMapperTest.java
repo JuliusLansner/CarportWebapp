@@ -2,6 +2,7 @@ package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Material;
 import dat.backend.model.exceptions.DatabaseException;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,9 @@ class MaterialMapperTest {
     private final static String PASSWORD = "3r!DE32*/fDe";
     private final static String URL = "jdbc:mysql://64.226.126.239:3306/carport_test";
 
-    private static ConnectionPool connectionPool;
+     ConnectionPool connectionPool;
+
+
 
 
 
@@ -27,14 +30,12 @@ class MaterialMapperTest {
         ArrayList<Material> actualMaterial = MaterialFacade.materialList();
         assertEquals(expectedMaterial,actualMaterial);
     }
+
+
     @Test
-    void testConnection() throws SQLException
-    {
-        Connection connection = connectionPool.getConnection();
-        assertNotNull(connection);
-        if (connection != null)
-        {
-            connection.close();
-        }
+    void getMaterialById() {
+        ConnectionPool connectionPool = new ConnectionPool();
+        Material material = MaterialMapper.getMaterialById(2,connectionPool);
+        System.out.println(material.getPricePerUnit());
     }
 }

@@ -41,5 +41,30 @@ public class MaterialMapper {
 
         return materialList;
     }
+
+    public static Material getMaterialById(int id, ConnectionPool connectionPool){
+        String sql = "SELECT * FROM materiale WHERE idmateriale = ?";
+        Material material = null;
+
+        try(Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                String beskrivelse = resultSet.getString("beskrivelse");
+                String enhed = resultSet.getString("enhed");
+                int pris = resultSet.getInt("pris_per_enhed");
+
+                material = new Material(beskrivelse, enhed, pris);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return material;
+    }
+
+
+
 }
 
