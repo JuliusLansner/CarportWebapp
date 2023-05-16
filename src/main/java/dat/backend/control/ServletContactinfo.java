@@ -21,10 +21,13 @@ public class ServletContactinfo extends HttpServlet {
     It works in practice, but it's not super clean and has several issues.
     name, email, address,zipcode and phonenumber stored in session for further use.
 
+     Sends user to valgtBestilling.jsp. En exception sends user to error.jsp. An error in passwordCheck sends user
+     to contactInfo.jsp again
      * @param userFind - finds user by email, has access to and uses the database.
-     * @return                 
+     * @return user- returns a user. If null, we make a user with the given email/password.
+     * @throws DatabaseException - if anything goes wrong in try/catch, we get a database exception(e)
      * @param passwordCheck - checks password against security measures.
-     * @param
+     *
      */
     private ConnectionPool connectionPool;
 
