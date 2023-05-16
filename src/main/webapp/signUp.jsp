@@ -14,8 +14,8 @@
     </div>
       <form action="ServletSignup" method="post">
         <div class="kontaktinfo-input">
-          <label for="username">email: </label>
-          <input type="text" id="username" name="username"/>
+          <label for="email">email: </label>
+          <input type="text" id="email" name="email"/>
 
 
           <label for="password">Kodeord: </label>
