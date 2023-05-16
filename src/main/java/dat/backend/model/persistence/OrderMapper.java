@@ -42,7 +42,7 @@ public class OrderMapper {
     }
 
 
-    public static int createOrder(int length, int width, int totalPrice, int userId, ConnectionPool connectionPool) throws DatabaseException {
+    static int createOrder(int length, int width, int totalPrice, int userId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO ordre(længde, brede, samlet_pris, bruger_id) VALUES (?,?,?,?)";
         ResultSet generatedKeys = null;
         int id = 0;

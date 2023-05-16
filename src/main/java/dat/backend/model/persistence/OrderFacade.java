@@ -12,7 +12,7 @@ public class OrderFacade {
         return OrderMapper.orderList(connectionPool);
     }
 
-    public static int createOrder(int length, int width, int totalPrice, int userId,  ConnectionPool connectionPool) throws DatabaseException {
+    public static int createOrder(int length, int width, int totalPrice, int userId, ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.createOrder(length, width, totalPrice, userId, connectionPool);
     }
 

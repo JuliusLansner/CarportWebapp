@@ -26,8 +26,8 @@ public class UserMapper {
                     int zipCode = rs.getInt("postnr_idpostnr");
                     int phoneNumber = rs.getInt("telefon");
                     String role = rs.getString("rolle");
-                    int userId = rs.getInt("idbruger");
-                    user = new User(userId, email, password, address, zipCode, phoneNumber, role);
+
+                    user = new User(email, password, address, zipCode, phoneNumber);
                 } else {
                     throw new DatabaseException("Wrong username or password");
                 }
