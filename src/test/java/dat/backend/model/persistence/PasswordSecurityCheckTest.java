@@ -1,5 +1,6 @@
 package dat.backend.model.persistence;
 
+import dat.backend.model.services.PasswordSecurityCheck;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
