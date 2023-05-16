@@ -19,4 +19,7 @@ public class MaterialFacade {
     public static void  updateMaterialPricePrUnit(int updatedPricePrUnit, int materialId , ConnectionPool connectionPool) throws DatabaseException {
         MaterialMapper.updateMaterialPricePrUnit(updatedPricePrUnit, materialId, connectionPool);
     }
+    public static Material getMaterialById(int id, ConnectionPool connectionPool){
+        return MaterialMapper.getMaterialById(id,connectionPool);
+    }
  }
