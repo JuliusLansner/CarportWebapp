@@ -1,7 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
+
 <!-- This needs to show the chosen carport with the width and length of the users choice
 as of right now this is impossible to make as the information is unavaiable to be had,
 however this will be a demonstration -->
@@ -17,10 +19,16 @@ however this will be a demonstration -->
 
 
             <p>Du har bestilt følgende:</p>
-            <p>dfgkjnsdfgæjklndfgsdfg:</p>
-            <p>dfgkjnsdfgæjklndfgsdfgssdfgfg:</p>
-            <p>dfgsdfgsdfg:</p>
-            <p>dfgkjnsdfgæjklndfgdfgsdfg:</p>
+            <p> En Carport, med:</p>
+                Bredde:
+                ${sessionScope.width}<br><br>
+                Længde:
+                ${sessionScope.length}<br><br>
+                Tag:
+                ${sessionScope.roof}<br><br>
+            <p>Din bestilling skal godkendes af os. Når den er blevet godkendt, så vil du få et tilbud tilbage, som du kan godkende eller afvise.</p><br><br>
+            <p>Dette kan du se på din bruger side. Den finder du oppe i navigationsbaren, hvor du blot skal logge ind og derefter skal du clicke på dit brugernavn.</p>
+
         </div>
 
     </jsp:body>
