@@ -15,12 +15,17 @@ import java.sql.SQLException;
 
 @WebServlet(name = "ServletContactinfo", value = "/ServletContactinfo")
 public class ServletContactinfo extends HttpServlet {
-    //Checks for the user by email in database - Then either signing up or adding a user in the session
-    //that can be used to add the order to the account.
-    //Zipcode and phonenumber gets checked for not being 0, as isEmpty and != null doesn't work for int.
-    //It works in practice, but it's not super clean and has several issues.
-    //name, email, address,zipcode and phonenumber stored in session for further use.
+    /**checks for the user by email in database - Then either signing up or adding a user in the session
+    that can be used to add the order to the account.
+    Zipcode and phonenumber gets checked for not being 0, as isEmpty and != null doesn't work for int.
+    It works in practice, but it's not super clean and has several issues.
+    name, email, address,zipcode and phonenumber stored in session for further use.
 
+     * @param userFind - finds user by email, has access to and uses the database.
+     * @return                 
+     * @param passwordCheck - checks password against security measures.
+     * @param
+     */
     private ConnectionPool connectionPool;
 
     @Override
