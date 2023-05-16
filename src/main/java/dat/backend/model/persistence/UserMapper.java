@@ -22,12 +22,13 @@ public class UserMapper {
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
+                    int id = rs.getInt("idbruger");
                     String address = rs.getString("adresse");
                     int zipCode = rs.getInt("postnr_idpostnr");
                     int phoneNumber = rs.getInt("telefon");
                     String role = rs.getString("rolle");
 
-                    user = new User(email, password, address, zipCode, phoneNumber);
+                    user = new User(id, email, password, address, zipCode, phoneNumber, role);
                 } else {
                     throw new DatabaseException("Wrong username or password");
                 }
