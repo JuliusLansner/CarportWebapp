@@ -12,20 +12,14 @@
 <t:website>
 
     <html>
-    <head>
-        <title>Ordredetaljer</title>
-    </head>
+
     <body>
-
-
     <br>
+    <h1>Ordredetaljer</h1>
+    <div class="orderDetails-body">
     <br>
-    <br>
-
-
-    <h2>Ordredetaljer</h2>
-    <div class="orderDetails-table">
-    <table>
+    <div class="orderDetails">
+    <table class="orderDetails-table">
         <tr>
             <th>Order ID</th>
             <td>${param.orderId}</td>
@@ -66,11 +60,13 @@
     </table>
     </div>
 
-    <button onclick="history.back()">Tilbage</button>
+    </div>
+    <br>
+    <button class="orderDetails-backButton" onclick="history.back()">Tilbage</button>
+    <br>
+
     </body>
 
-    <br>
-    <br>
     <br>
     </html>
 </t:website>

@@ -28,7 +28,6 @@ public class Index extends HttpServlet {
             e.printStackTrace();
         }
 
-
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }
 

@@ -24,69 +24,70 @@
 
     <br>
 
-    <div id="order-overview" class="order-overview">
-        <h2>Her kan du administrere ordrer</h2>
+    <h2>Her kan du administrere ordrer</h2>
+    <br>
+    <br>
 
-        <br>
-        <br>
+    <div class="overviewOfAllOrders">
+        <table class="overviewOfAllOrdersTable">
+            <thead>
+            <tr>
+                <th>Ordre-id</th>
+                <th>Status</th>
+                <th>Pris</th>
+                <th>Butik</th>
+                <th>Dato</th>
+                <th>Godkend</th>
+                <th>Afvis</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="allOrders-div">
+        <table class="order-table">
 
-        <div class="order-table-header-div">
-            <table class="order-table-header-div">
-                <thead>
+            <tbody>
+            <c:forEach var="item" items="${sessionScope.userOrders}">
                 <tr>
-                    <th>Ordre-id</th>
-                    <th>Status</th>
-                    <th>Pris</th>
-                    <th>Butik</th>
-                    <th>Dato</th>
-                    <th>Godkend</th>
-                    <th>Afvis</th>
+                    <td class="ordre-id-data">
+                        <a href="orderDetails.jsp?orderId=${item.orderId}&length=${item.lenght}&width=${item.width}&totalPrice=${item.totalPrice}&status=${item.status}&date=${item.date}">
+                                ${item.orderId}
+                        </a>
+                    </td>
+                    <td style="color:${item.status == 2 ? 'green' : 'red'}"><c:choose>
+                        <c:when test="${item.status eq 0}">
+                            AFVENTER
+                        </c:when>
+                        <c:when test="${item.status eq 1}">
+                            AFVIST
+                        </c:when>
+                        <c:when test="${item.status eq 2}">
+                            GODKENDT
+                        </c:when>
+                    </c:choose>
+                    </td>
+                    <td>${item.totalPrice}</td>
+                    <td>Værebro fog</td>
+                    <td>${item.date}</td>
+                    <td>
+                        <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
+                            <input type="hidden" name="orderId" value="${item.orderId}">
+                            <input type="hidden" name="status" value="2">
+                            <button type="submit" name="action" value="godkend" class="approve-button">Godkend
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
+                            <input type="hidden" name="orderId" value="${item.orderId}">
+                            <input type="hidden" name="status" value="1">
+                            <button type="submit" name="action" value="afvis" class="declined-button">Afvis</button>
+                        </form>
+                    </td>
                 </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="order-table-div">
-            <table id="order-table" class="order-table">
-                <tbody>
-                <c:forEach var="item" items="${sessionScope.userOrders}">
-                    <tr>
-                        <td>${item.orderId}</td>
-                        <td style="color:${item.status == 2 ? 'green' : 'red'}"><c:choose>
-                            <c:when test="${item.status eq 0}">
-                                AFVENTER
-                            </c:when>
-                            <c:when test="${item.status eq 1}">
-                                AFVIST
-                            </c:when>
-                            <c:when test="${item.status eq 2}">
-                                GODKENDT
-                            </c:when>
-                        </c:choose>
-                        </td>
-                        <td>${item.totalPrice}</td>
-                        <td>Værebro fog</td>
-                        <td>${item.date}</td>
-                        <td>
-                            <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
-                                <input type="hidden" name="orderId" value="${item.orderId}">
-                                <input type="hidden" name="status" value="2">
-                                <button type="submit" name="action" value="godkend" class="approve-button">Godkend
-                                </button>
-                            </form>
-
-                        </td>
-                        <td>
-                            <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
-                                <input type="hidden" name="orderId" value="${item.orderId}">
-                                <input type="hidden" name="status" value="1">
-                                <button type="submit" name="action" value="afvis" class="declined-button">Afvis</button>
-                            </form>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
 
     <br>
@@ -94,10 +95,8 @@
 
     <div id="price-overview" class="price-overview">
         <h2>Her kan du administrere priser</h2>
-
         <br>
         <br>
-
         <table id="price-table" class="price-table">
             <thead>
             <tr>
