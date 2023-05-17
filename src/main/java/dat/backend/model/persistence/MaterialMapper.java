@@ -13,7 +13,7 @@ public class MaterialMapper {
     /* This mapper picks up all the info about a specific material we've put in to the databse
      */
     static ArrayList<Material> materialList(ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "SELECT * FROM material";
+        String sql = "SELECT * FROM materiale";
         ArrayList<Material> materialList = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection()) {

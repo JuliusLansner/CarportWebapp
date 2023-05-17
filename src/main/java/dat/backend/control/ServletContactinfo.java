@@ -1,11 +1,13 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
+import dat.backend.model.entities.Bom;
+import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.persistence.*;
+import dat.backend.model.services.MaterialVariantListMaker;
 import dat.backend.model.services.PasswordSecurityCheck;
-import dat.backend.model.persistence.UserFacade;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -90,6 +92,33 @@ public class ServletContactinfo extends HttpServlet {
         session.setAttribute("currentAddress",address);
         session.setAttribute("currentZip",zipcode);
         session.setAttribute("currentPhone",phoneNumber);
+
+//        //width, length and user for creating order and bom
+//        int width = (int) session.getAttribute("width");
+//        int length = (int) session.getAttribute("length");
+//        User user = (User) session.getAttribute("user");
+
+
+
+
+//        try {
+//            //creates order and stores id for order in int, so a bom with orderID can be created.
+//            int orderId = OrderFacade.createOrder(length,width,0,user.getIdUser(),connectionPool);
+//
+//
+//            //creates materialvariants based on length and width of the carport and creates a bom which is put into a objekt.
+//            Bom bom = MaterialVariantListMaker.carportMaterialList(length,width,orderId,connectionPool);
+//
+//            //updates the price of the order.
+//            OrderMapper.updateOrderPrice(bom.getPrice(),orderId,connectionPool);
+//
+//            //makes a session attribute to store bomID in for later when user needs to recieve it.
+//            session.setAttribute("bom",bom);
+//
+//        } catch (DatabaseException | SQLException e) {
+//            e.printStackTrace();
+//        }
+
 
         request.getRequestDispatcher("valgtBestilling.jsp").forward(request, response);
     }
