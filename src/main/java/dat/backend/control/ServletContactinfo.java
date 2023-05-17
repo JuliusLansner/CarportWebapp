@@ -18,10 +18,8 @@ public class ServletContactinfo extends HttpServlet {
     /**
      * checks for the user by email in database - Then either signing up or adding a user in the session
      * that can be used to add the order to the account.
-     * Zipcode and phonenumber gets checked for not being 0, as isEmpty and != null doesn't work for int.
-     * It works in practice, but it's not super clean and has several issues.
      * name, email, address,zipcode and phonenumber stored in session for further use.
-     * <p>
+     *
      * Sends user to valgtBestilling.jsp. En exception sends user to error.jsp. An error in passwordCheck sends user
      * to contactInfo.jsp. An error in number/zipcode not being an int, sends user to contactinfo.jsp with an error message.
      *
