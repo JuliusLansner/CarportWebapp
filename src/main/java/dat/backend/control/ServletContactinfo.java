@@ -53,15 +53,10 @@ public class ServletContactinfo extends HttpServlet {
         String address = request.getParameter("adress");
         String zipcode = request.getParameter("zipcode");
         String phoneNumber = request.getParameter("phoneNumber");
-        String passwordCheck = request.getParameter("passwordCheck");
+
 
 
         try {
-            /*if (address.isEmpty() || zipstring.isEmpty() || phonestring.isEmpty() || name.isEmpty()) {
-                session.setAttribute("Fejl", "alle felter skal udfyldes korrekt. ");
-                request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
-            }*/
-
             User userFind = UserFacade.findUserByEmail(email, connectionPool);
             if (userFind != null && !address.isEmpty() && zipcode.isEmpty() && phoneNumber.isEmpty() && !name.isEmpty()) {
                 User user = UserFacade.login(email, password, connectionPool);
@@ -80,9 +75,14 @@ public class ServletContactinfo extends HttpServlet {
                 }
 
                 try {
-                    int zipInt = Integer.parseInt(zipcode);
-                    int phoneInt = Integer.parseInt(phoneNumber);
-                    UserFacade.createUser(email, password, address, zipInt, phoneInt, connectionPool);
+                    try {
+                        int zipInt = Integer.parseInt(zipcode);
+                        int phoneInt = Integer.parseInt(phoneNumber);
+                        UserFacade.createUser(email, password, address, zipInt, phoneInt, connectionPool);
+                    } catch (NumberFormatException e) {
+                        request.setAttribute("Fejl", "Postkode og telefonnummer skal være tal. ");
+                        request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
+                    }
                 } catch (DatabaseException e) {
                     e.printStackTrace();
 
@@ -96,11 +96,18 @@ public class ServletContactinfo extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        session.setAttribute("currentName",name);
-        session.setAttribute("currentEmail",email);
-        session.setAttribute("currentAddress",address);
-        session.setAttribute("currentZip",zipcode);
-        session.setAttribute("currentPhone",phoneNumber);
+        try {
+            int zipInt = Integer.parseInt(zipcode);
+            int phoneInt = Integer.parseInt(phoneNumber);
+            session.setAttribute("currentName",name);
+            session.setAttribute("currentEmail",email);
+            session.setAttribute("currentAddress",address);
+            session.setAttribute("currentZip",zipInt);
+            session.setAttribute("currentPhone",phoneInt);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(e);
+        }
+
 
         request.getRequestDispatcher("valgtBestilling.jsp").forward(request, response);
     }
