@@ -73,7 +73,7 @@ public class ServletContactinfo extends HttpServlet {
 
                 try {
                     try {
-                        //tests if the zipcode and phonenumber string are Ints, if not throw an error.
+                        //tests if the zipcode and phonenumber string are numbers, if not throw an error.
                         int zipInt = Integer.parseInt(zipcode);
                         int phoneInt = Integer.parseInt(phoneNumber);
                         UserFacade.createUser(email, password, address, zipInt, phoneInt, connectionPool);
@@ -94,7 +94,7 @@ public class ServletContactinfo extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //tests if the zipcode and phonenumber string are Ints, if not throw an error.
+        //tests if the zipcode and phonenumber string are numbers, if not throw an error.
         try {
             int zipInt = Integer.parseInt(zipcode);
             int phoneInt = Integer.parseInt(phoneNumber);
