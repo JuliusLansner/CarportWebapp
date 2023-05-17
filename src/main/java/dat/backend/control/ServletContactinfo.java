@@ -78,7 +78,7 @@ public class ServletContactinfo extends HttpServlet {
                         int phoneInt = Integer.parseInt(phoneNumber);
                         UserFacade.createUser(email, password, address, zipInt, phoneInt, connectionPool);
                     } catch (NumberFormatException e) {
-                        request.setAttribute("Fejl", "Postkode og telefonnummer skal være tal. ");
+                        request.setAttribute("Fejl", "Postnummer og telefonnummer skal være tal. ");
                         request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
                     }
                 } catch (DatabaseException e) {
