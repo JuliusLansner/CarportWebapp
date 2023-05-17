@@ -11,8 +11,6 @@ public class Material {
         this.description = description;
         this.unit = unit;
         this.pricePerUnit = pricePerUnit;
-
-
     }
 
     public Material(String description, String unit, int pricePerUnit) {
