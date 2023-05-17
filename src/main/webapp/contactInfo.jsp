@@ -12,6 +12,13 @@
                 Hvis du ikke har en konto, så bruges email og password til at lave en konto.
                 Hvis du har en konto, bliver det brugt til at behandle ordren via din konto.
             </p>
+            <c:if test="${not empty requestScope.Fejl}">
+                <!-- Show the error div with message-->
+               <div class ="contacterrormsg">
+                       ${requestScope.Fejl}
+               </div>
+
+            </c:if>
         </div>
         <div class="kontaktinfo">
             <form action="ServletContactinfo" method="post">
@@ -51,10 +58,14 @@
                     <label for="passwordCheck">Kodeord igen: </label>
                     <input type="password" id="passwordCheck" name="passwordCheck"/>
                 </div>
-
+                <c:if test="${not empty requestScope.error}">
+                    <!-- Show the error div with message-->
+                    <div> <p> Fejl! alle felter skal udfyldes.</p></div>
+                </c:if>
                 <button type="submit" class="fortsaet-bestilling">Bestil</button>
 
             </form>
+
         </div>
 
 

@@ -338,3 +338,7 @@ body {
     background-color: red;
     color: white;
 }
+.contacterrormsg{
+    font-size: 30px;
+    background-color: red;
+}

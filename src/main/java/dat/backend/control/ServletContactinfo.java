@@ -51,27 +51,38 @@ public class ServletContactinfo extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String address = request.getParameter("adress");
-        int zipcode = Integer.parseInt(request.getParameter("zipcode"));
-        int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+        String zipcode = request.getParameter("zipcode");
+        String phoneNumber = request.getParameter("phoneNumber");
         String passwordCheck = request.getParameter("passwordCheck");
 
+
         try {
+            /*if (address.isEmpty() || zipstring.isEmpty() || phonestring.isEmpty() || name.isEmpty()) {
+                session.setAttribute("Fejl", "alle felter skal udfyldes korrekt. ");
+                request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
+            }*/
+
             User userFind = UserFacade.findUserByEmail(email, connectionPool);
-            if (userFind != null && !address.isEmpty() && zipcode != 0 && phoneNumber != 0 && !name.isEmpty()) {
+            if (userFind != null && !address.isEmpty() && zipcode.isEmpty() && phoneNumber.isEmpty() && !name.isEmpty()) {
                 User user = UserFacade.login(email, password, connectionPool);
                 session = request.getSession();
                 session.setAttribute("user", user);
                 request.getRequestDispatcher("valgtBestilling.jsp").forward(request, response);
-            } else {
+            }
+            else if(address.isEmpty() || zipcode.isEmpty() || phoneNumber.isEmpty() || name.isEmpty() ) {
+                request.setAttribute("Fejl", "Alle felter skal udfyldes korrekt. ");
+                request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
+            }
+           else {
                 if (!PasswordSecurityCheck.securityCheck(password)) {
+                    request.setAttribute("Fejl", "Adgangskoden skal skal have mindst 1 stort bokstav og en blanding af bokstaver og tal der udgør mindst 6 karaktere");
                     request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
                 }
 
-                if (!password.equals(passwordCheck)) {
-                    request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
-                }
                 try {
-                    UserFacade.createUser(email, password, address, zipcode, phoneNumber, connectionPool);
+                    int zipInt = Integer.parseInt(zipcode);
+                    int phoneInt = Integer.parseInt(phoneNumber);
+                    UserFacade.createUser(email, password, address, zipInt, phoneInt, connectionPool);
                 } catch (DatabaseException e) {
                     e.printStackTrace();
 
