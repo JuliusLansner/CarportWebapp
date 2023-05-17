@@ -35,9 +35,9 @@ public class Login extends HttpServlet
     {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
-        boolean loggedIn = false;
+
         session.setAttribute("user", null); // invalidating user object in session scope
-        session.setAttribute("loggedin",loggedIn);
+        Boolean loggedIn = (Boolean) session.getAttribute("loggedin");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
