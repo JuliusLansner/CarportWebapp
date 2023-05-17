@@ -21,7 +21,7 @@ class MaterialVariantListMakerTest {
 
     @Test
     void carportMaterialList() throws SQLException, DatabaseException {
-        MaterialVariantListMaker.carportMaterialList(600, 100, 3, connectionPool);
+        MaterialVariantListMaker.carportMaterialList(600, 1200, 3, connectionPool);
     }
 
 
@@ -51,5 +51,9 @@ class MaterialVariantListMakerTest {
             System.out.println(mv.getMaterialeID());
             System.out.println(mv.getLength());
         }
+    }
+
+    @Test
+    void testCarportMaterialList() {
     }
 }

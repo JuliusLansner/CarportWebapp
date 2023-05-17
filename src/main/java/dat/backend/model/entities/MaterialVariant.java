@@ -24,6 +24,13 @@ public class MaterialVariant {
         this.price = price;
     }
 
+    public MaterialVariant(int materialeID, int length, int price, String description) {
+        this.materialeID = materialeID;
+        this.length = length;
+        this.price = price;
+        this.description = description;
+    }
+
     public String getDescription() {
         return description;
     }
