@@ -17,6 +17,8 @@
         <title>userpage</title>
     </head>
     <body>
+    <br>
+    <br>
     <h1>Velkommen bruger</h1>
     <h2>Her kan du administrere dine bestillinger</h2>
 
@@ -116,21 +118,17 @@
             </table>
         </div>
     </div>
-
     <br>
     <br>
-
-    <div class="deleteOwnUserButton">
-        <form action="ServletUserPage" method="post">
-            <input type="hidden" name="deleteOwnAccount" value="true">
-            <input type="hidden" id="email" name="email" value="${sessionScope.user.email}">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Slet min konto</button>
-        </form>
-    </div>
-
-
+        <div class="deleteOwnUserButton">
+            <form action="ServletUserPage" method="post">
+                <input type="hidden" name="deleteOwnAccount" value="true">
+                <input type="hidden" id="email" name="email" value="${sessionScope.user.email}">
+                <label for="password">Indtast dit password for at slette din konto:</label><br>
+                <input type="password" id="password" name="password" required><br>
+                <button type="submit">Slet min konto</button>
+            </form>
+        </div>
     <br>
     <br>
     <br>

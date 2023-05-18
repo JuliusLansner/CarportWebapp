@@ -28,7 +28,6 @@ body {
 
 }
 
-
 /* Index */
 
 #index-body {
@@ -41,7 +40,6 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
 }
-
 
 .welcome {
     text-align: center;
@@ -67,7 +65,6 @@ body {
     border: none;
 }
 
-
 /* quickbyg */
 .quickbyg-body {
     width: 100% !important;
@@ -75,7 +72,6 @@ body {
     padding-top: 50px !important;
     padding-bottom: 50px;
 }
-
 
 .quickbyg-top h1 {
     padding-top: 50px !important;
@@ -96,7 +92,6 @@ body {
     font-weight: bold !important;
     padding-bottom: 20px;
 }
-
 
 #antal select {
     background-color: white !important;
@@ -123,7 +118,6 @@ body {
     text-align: center;
     margin-bottom: 50px;
 }
-
 
 .quickbygbillede {
     width: 50%;
@@ -243,7 +237,6 @@ body {
     padding: 8px;
 }
 
-
 .table1 th:nth-child(1),
 .table1 th:nth-child(2),
 .table1 th:nth-child(3),
@@ -327,16 +320,19 @@ body {
 }
 
 .deleteOwnUserButton {
-    text-align: left;
+    text-align: center;
 }
 
-.deleteOwnUserButton form {
-    display: inline-block;
-}
-
-.deleteOwnUserButton button[type=submit] {
+.deleteOwnUserButton button[type="submit"] {
+    width: 200px;
+    padding: 5px;
     background-color: red;
     color: white;
+}
+
+.deleteOwnUserButton input[type="password"] {
+    width: 200px;
+    padding: 5px;
 }
 
 .userPayBOMList {
@@ -356,7 +352,6 @@ body {
 
 .userPayBOMList tbody tr {
     border: 1px solid black;
-
 }
 
 .userPayBOMList tbody td {
