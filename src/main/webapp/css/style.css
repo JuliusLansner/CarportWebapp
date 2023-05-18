@@ -338,3 +338,27 @@ body {
     background-color: red;
     color: white;
 }
+
+.userPayBOMList {
+    background-color: white;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.userPayBOMList th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.userPayBOMList th {
+    font-weight: bold;
+}
+
+.userPayBOMList tbody tr {
+    border: 1px solid black;
+
+}
+
+.userPayBOMList tbody td {
+    border: 1px solid black;
+}

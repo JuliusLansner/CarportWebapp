@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MaterialVariantMapper {
 
-    static public MaterialVariant getMaterialVariantByID(int IDMaterialVariant, ConnectionPool connectionPool) throws DatabaseException {
+    public static MaterialVariant getMaterialVariantByID(int IDMaterialVariant, ConnectionPool connectionPool) throws DatabaseException {
 
         MaterialVariant materialVariant;
 
@@ -36,7 +36,7 @@ public class MaterialVariantMapper {
         return materialVariant;
     }
 
-    static public List<MaterialVariant> getAllMaterialVariants(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<MaterialVariant> getAllMaterialVariants(ConnectionPool connectionPool) throws DatabaseException {
 
         List<MaterialVariant> materialVariants = new ArrayList<>();
 
@@ -61,7 +61,7 @@ public class MaterialVariantMapper {
         return materialVariants;
     }
 
-    static public int createMaterialVariant(int materialId, int length, int bonId, String description, int price, ConnectionPool connectionPool) throws DatabaseException {
+    public static int createMaterialVariant(int materialId, int length, int bonId, String description, int price, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO m_variant (materiale_id, længde, stykliste_idstykliste, beskrivelse, pris) VALUES (?, ?, ?, ?, ?)";
         ResultSet generatedKeys = null;
         int id = 0;
@@ -87,7 +87,7 @@ public class MaterialVariantMapper {
         return id;
     }
 
-    static public void updateMaterialVariant(MaterialVariant materialVariant, ConnectionPool connectionPool) throws DatabaseException {
+    public static void updateMaterialVariant(MaterialVariant materialVariant, ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "UPDATE m_variant SET materiale_id = ?, længde = ?, stykliste_idstykliste = ? WHERE idm_variant = ?";
 
@@ -107,7 +107,7 @@ public class MaterialVariantMapper {
         }
     }
 
-    static public void deleteMaterialVariant(int IDMaterialVariant, ConnectionPool connectionPool) throws DatabaseException {
+    public static void deleteMaterialVariant(int IDMaterialVariant, ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "DELETE FROM m_variant WHERE idm_variant = ?";
 

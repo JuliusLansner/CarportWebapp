@@ -89,12 +89,12 @@
                                         ${item.orderId}
                                 </a>
                             </td>
-                            <td style="color: ${item.status == 2 ? 'red' : 'green'}" class="td">
+                            <td style="color: ${item.status == 2 ? 'green' : 'red'}" class="td">
                                 <c:choose>
-                                    <c:when test="${item.status eq 2}">
+                                    <c:when test="${item.status eq 1}">
                                         AFVIST
                                     </c:when>
-                                    <c:when test="${item.status eq 1}">
+                                    <c:when test="${item.status eq 2}">
                                         GODKENDT
                                     </c:when>
                                 </c:choose>
@@ -103,8 +103,9 @@
                             <td class="td">Værebro Fog</td>
                             <td class="td">${item.date}</td>
                             <td class="td">
-                                <c:if test="${item.status eq 1}">
+                                <c:if test="${item.status eq 2}">
                                     <form action="ServletBuyOrder" method="post">
+                                        <input type="hidden" name="orderId" value="${item.orderId}">
                                         <button type="submit">Betal</button>
                                     </form>
                                 </c:if>
