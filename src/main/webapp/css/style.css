@@ -167,17 +167,12 @@ body {
     justify-content: center;
     align-items: flex-start;
     overflow-y: auto;
-    max-height: calc(50vh - 20px);
+    max-height: 50vh;
     margin: 0 auto;
-    width: 50%;
-    padding-top: 20px;
+    width: 38%;
 }
 
-.overviewOfAllOrdersTable th {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
+.overviewOfAllOrdersTable th,
 .allOrders-div td {
     padding-left: 10px;
     padding-right: 10px;
