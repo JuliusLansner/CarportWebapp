@@ -28,7 +28,6 @@ body {
 
 }
 
-
 /* Index */
 
 #index-body {
@@ -41,7 +40,6 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
 }
-
 
 .welcome {
     text-align: center;
@@ -67,7 +65,6 @@ body {
     border: none;
 }
 
-
 /* quickbyg */
 .quickbyg-body {
     width: 100% !important;
@@ -75,7 +72,6 @@ body {
     padding-top: 50px !important;
     padding-bottom: 50px;
 }
-
 
 .quickbyg-top h1 {
     padding-top: 50px !important;
@@ -96,7 +92,6 @@ body {
     font-weight: bold !important;
     padding-bottom: 20px;
 }
-
 
 #antal select {
     background-color: white !important;
@@ -123,7 +118,6 @@ body {
     text-align: center;
     margin-bottom: 50px;
 }
-
 
 .quickbygbillede {
     width: 50%;
@@ -173,17 +167,12 @@ body {
     justify-content: center;
     align-items: flex-start;
     overflow-y: auto;
-    max-height: calc(50vh - 20px);
+    max-height: 50vh;
     margin: 0 auto;
-    width: 50%;
-    padding-top: 20px;
+    width: 38%;
 }
 
-.overviewOfAllOrdersTable th {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
+.overviewOfAllOrdersTable th,
 .allOrders-div td {
     padding-left: 10px;
     padding-right: 10px;
@@ -242,7 +231,6 @@ body {
     text-align: left;
     padding: 8px;
 }
-
 
 .table1 th:nth-child(1),
 .table1 th:nth-child(2),
@@ -327,18 +315,40 @@ body {
 }
 
 .deleteOwnUserButton {
-    text-align: left;
+    text-align: center;
 }
 
-.deleteOwnUserButton form {
-    display: inline-block;
-}
-
-.deleteOwnUserButton button[type=submit] {
+.deleteOwnUserButton button[type="submit"] {
+    width: 200px;
+    padding: 5px;
     background-color: red;
     color: white;
 }
-.contacterrormsg{
-    font-size: 30px;
-    background-color: red;
+
+.deleteOwnUserButton input[type="password"] {
+    width: 200px;
+    padding: 5px;
+}
+
+.userPayBOMList {
+    background-color: white;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.userPayBOMList th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.userPayBOMList th {
+    font-weight: bold;
+}
+
+.userPayBOMList tbody tr {
+    border: 1px solid black;
+}
+
+.userPayBOMList tbody td {
+    border: 1px solid black;
 }

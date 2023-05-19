@@ -14,20 +14,15 @@
 <t:website>
     <html>
     <body>
-
     <br>
     <br>
-
     <div id="admin-welcome" class="admin-welcome">
         <h1>Velkommen ${sessionScope.user.email}</h1>
     </div>
-
     <br>
-
     <h2>Her kan du administrere ordrer</h2>
     <br>
     <br>
-
     <div class="overviewOfAllOrders">
         <table class="overviewOfAllOrdersTable">
             <thead>
@@ -45,7 +40,6 @@
     </div>
     <div class="allOrders-div">
         <table class="order-table">
-
             <tbody>
             <c:forEach var="item" items="${sessionScope.userOrders}">
                 <tr>
@@ -89,10 +83,8 @@
             </tbody>
         </table>
     </div>
-
     <br>
     <br>
-
     <div id="price-overview" class="price-overview">
         <h2>Her kan du administrere priser</h2>
         <br>
@@ -126,16 +118,8 @@
             </tbody>
         </table>
     </div>
-
-
     </body>
-
     </html>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <br>
     <br>
 </t:website>
