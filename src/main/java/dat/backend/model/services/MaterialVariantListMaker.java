@@ -87,10 +87,10 @@ public class MaterialVariantListMaker {
         int heigtOfStolp = 300;
 
         //calculates the amount of stolps needed on the length of the carport
-        double amountOfStolpsLength = Math.ceil((lengthInCm / (maxDistStolpsInCm + 97)) * 2)+1;
+        double amountOfStolpsLength = Math.ceil((lengthInCm / (maxDistStolpsInCm + 97)))*2;
 
         //calculates the amount of stolps needed on the width of the carport
-        double amountOfStolpsWidth = Math.ceil((widthInCm / (maxDistStolpsInCm + 97)) * 2-4)+1;
+        double amountOfStolpsWidth = Math.ceil((widthInCm / (maxDistStolpsInCm + 97)))*2-4;
 
 
         //creates the amount of stolps needed for length and adds to the list

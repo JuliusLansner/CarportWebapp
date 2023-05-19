@@ -21,7 +21,7 @@ class MaterialVariantListMakerTest {
 
     @Test
     void carportMaterialList() throws SQLException, DatabaseException {
-        MaterialVariantListMaker.carportMaterialList(600, 1200, 3, connectionPool);
+        MaterialVariantListMaker.carportMaterialList(600, 1500, 3, connectionPool);
     }
 
 
