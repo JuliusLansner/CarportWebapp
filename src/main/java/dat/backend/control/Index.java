@@ -19,7 +19,6 @@ public class Index extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-
         ConnectionPool connectionPool = new ConnectionPool();
 
         try {
@@ -51,6 +50,5 @@ public class Index extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }
