@@ -28,21 +28,25 @@ public class Login extends HttpServlet
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("index");
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
+
         session.setAttribute("user", null); // invalidating user object in session scope
+        Boolean loggedIn = (Boolean) session.getAttribute("loggedin");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         try
         {
             User user = UserFacade.login(email, password, connectionPool);
+            loggedIn = true;
             session = request.getSession();
+            session.setAttribute("loggedin",loggedIn);
             session.setAttribute("user", user); // adding user object to session scope
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
         }

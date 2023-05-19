@@ -18,7 +18,8 @@ public class Index extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         ConnectionPool connectionPool = new ConnectionPool();
-
+        Boolean loggedIn = false;
+        session.setAttribute("loggedin",loggedIn);
         try {
 
             ArrayList<Order>orderList = OrderFacade.orderList(connectionPool);

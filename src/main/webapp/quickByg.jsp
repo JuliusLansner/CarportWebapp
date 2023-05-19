@@ -24,8 +24,8 @@
                 <p>Carport bredde</p>
                 <form name="wlr" action="ServletQuickbyg" method="post" id="widthlengthroof">
                     <select name="width">
-                        <option value="240cm">240cm</option>
-                        <option value="270cm">270cm</option>
+                        <option value="240">240cm</option>
+                        <option value="270">270cm</option>
                     </select>
                     <br><br>
 
@@ -33,8 +33,8 @@
                 <p>Carport længde</p>
 
                     <select name="length">
-                        <option value="240cm">240cm</option>
-                        <option value="270cm">270cm</option>
+                        <option value="240">240cm</option>
+                        <option value="270">270cm</option>
                     </select>
                     <br><br>
 

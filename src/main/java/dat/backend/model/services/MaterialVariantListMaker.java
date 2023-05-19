@@ -19,7 +19,7 @@ public class MaterialVariantListMaker {
      * @param widthInCm      width of the carport
      * @param orderId
      * @param connectionPool
-     * @return
+     * @return returns a bill og materials
      * @throws SQLException
      * @throws DatabaseException
      */
@@ -43,8 +43,8 @@ public class MaterialVariantListMaker {
         Bom bom = BomFacade.makeBom(totalPrice, orderId, connectionPool);
         //adds all the stolp variants to the DB
         for (MaterialVariant mv : stolps) {
-            String description = "Stolper til at putte i jorden";
-            MaterialVariantFacade.createMaterialVariant(mv.getMaterialeID(), mv.getLength(), bom.getId(), description, mv.getPrice(), connectionPool);
+            String description = "wtf";
+            MaterialVariantFacade.createMaterialVariant(mv.getMaterialeID(), mv.getLength(), bom.getId(), mv.getDescription(), mv.getPrice(), connectionPool);
         }
 
         //adds all the spær variants to the DB
@@ -55,12 +55,13 @@ public class MaterialVariantListMaker {
 
         //adds all the rem variants to the DB
         for (MaterialVariant mv:rems){
-            String description = "hey";
+            String description = "rem til oven på stolper";
             MaterialVariantFacade.createMaterialVariant(mv.getMaterialeID(), mv.getLength(), bom.getId(), description, mv.getPrice(), connectionPool);
         }
 
         return bom;
     }
+
 
     private static int calculatePriceOfVariantList(ArrayList<MaterialVariant> variants) {
         int totalPrice = 0;
@@ -85,16 +86,32 @@ public class MaterialVariantListMaker {
         double widthOfStolp = 97;
         int heigtOfStolp = 300;
 
-        //calculates the amount of stolps needed based on the length
-        double amountOfStolps = Math.ceil(lengthInCm / (maxDistStolpsInCm + 97)) * 2;
-        System.out.println(amountOfStolps);
+        //calculates the amount of stolps needed on the length of the carport
+        double amountOfStolpsLength = Math.ceil((lengthInCm / (maxDistStolpsInCm + 97)))*2;
 
-        //creates the amount of stolps needed and adds to the list
-        for (int i = 0; i < amountOfStolps; i++) {
-            int price = variantPriceCalculater(lengthInCm, 2, connectionPool);
-            MaterialVariant stolpVariant = new MaterialVariant(2, heigtOfStolp, price);
+        //calculates the amount of stolps needed on the width of the carport
+        double amountOfStolpsWidth = Math.ceil((widthInCm / (maxDistStolpsInCm + 97)))*2-4;
+
+
+        //creates the amount of stolps needed for length and adds to the list
+        for (int i = 0; i < amountOfStolpsLength; i++) {
+            int price = variantPriceCalculater(heigtOfStolp, 2, connectionPool);
+            String description = "Stolper til længde";
+            MaterialVariant stolpVariant = new MaterialVariant(2, heigtOfStolp, price, description);
             stolps.add(stolpVariant);
         }
+
+        //creates the amount of stolps needed for width and adds to the list
+        if(amountOfStolpsWidth>0){
+            for (int i = 0; i < amountOfStolpsWidth; i++) {
+                int price = variantPriceCalculater(heigtOfStolp, 2, connectionPool);
+                String description = "stolper til brede";
+                MaterialVariant stolpVariant = new MaterialVariant(2, heigtOfStolp, price, description);
+                stolps.add(stolpVariant);
+            }
+        }
+
+
         return stolps;
     }
 

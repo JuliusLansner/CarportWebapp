@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderMapper {
-    public static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
+     static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM ordre";
         ArrayList<Order> orderList = new ArrayList<>();
 
@@ -141,5 +141,23 @@ public class OrderMapper {
             } catch (SQLException ex) {
                 throw new DatabaseException(ex, "Error updating status for order: " + orderId);
             }
+    }
+
+    public static void updateOrderPrice(int price, int orderId, ConnectionPool connectionPool) throws DatabaseException{
+
+        String sql = "UPDATE carport.ordre SET samlet_pris = ? WHERE idordre = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, price);
+            ps.setInt(2, orderId);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Error updating status for order: " + orderId);
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Error updating status for order: " + orderId);
+        }
     }
 }
