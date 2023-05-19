@@ -43,7 +43,6 @@ public class MaterialVariantListMaker {
         Bom bom = BomFacade.makeBom(totalPrice, orderId, connectionPool);
         //adds all the stolp variants to the DB
         for (MaterialVariant mv : stolps) {
-            String description = "wtf";
             MaterialVariantFacade.createMaterialVariant(mv.getMaterialeID(), mv.getLength(), bom.getId(), mv.getDescription(), mv.getPrice(), connectionPool);
         }
 

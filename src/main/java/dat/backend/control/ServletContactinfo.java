@@ -74,13 +74,13 @@ public class ServletContactinfo extends HttpServlet {
                     request.setAttribute("Fejl", "Adgangskoden skal skal have mindst 1 stort bokstav, 1 lille bokstaver, 3 tal og mindst 6 karaktere");
                     request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
                 }
-
                 try {
                     try {
                         //tests if the zipcode and phonenumber string are numbers, if not throw an error.
                         int zipInt = Integer.parseInt(zipcode);
                         int phoneInt = Integer.parseInt(phoneNumber);
                         UserFacade.createUser(email, password, address, zipInt, phoneInt, connectionPool);
+
                     } catch (NumberFormatException e) {
                         request.setAttribute("Fejl", "Postnummer og telefonnummer skal være tal. ");
                         request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
@@ -110,7 +110,7 @@ public class ServletContactinfo extends HttpServlet {
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);
         }
-        User user = null;
+       
         //width, length and user for creating order and bom
         int width = (int) session.getAttribute("width");
         int length = (int) session.getAttribute("length");
