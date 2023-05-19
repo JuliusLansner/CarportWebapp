@@ -36,7 +36,7 @@
                         <tr>
                             <td>${material.description}</td>
                             <td>${materialVariant.length}</td>
-                            <td>${material.unit}</td>
+                            <td>cm</td>
                             <td>${materialVariant.description}</td>
                         </tr>
                     </c:if>
