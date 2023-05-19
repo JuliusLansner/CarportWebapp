@@ -1,10 +1,12 @@
 package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Order;
+import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderFacade {
 
