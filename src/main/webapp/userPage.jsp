@@ -20,9 +20,10 @@
     <br>
     <br>
     <h1>Velkommen bruger</h1>
-    <h2>Her kan du administrere dine bestillinger</h2>
+    <h3 style="margin-top: 30px;">Her kan du administrere dine bestillinger</h3>
 
     <div class="table1">
+        <h3 style="text-align: left; font-size: 18px; font-weight: bold; margin-bottom: 20px;">Afventer godkendelse</h3>
         <div class="tableTitles">
             <table class="titles">
                 <tr>
@@ -68,6 +69,7 @@
     </div>
 
     <div class="table2">
+        <h3 style="text-align: left; font-size: 18px; font-weight: bold; margin-bottom: 20px;">Godkendte og afviste ordrer</h3>
         <div class="tableTitles">
             <table class="titles">
                 <tr>
@@ -108,7 +110,7 @@
                                 <c:if test="${item.status eq 2}">
                                     <form action="ServletBuyOrder" method="post">
                                         <input type="hidden" name="orderId" value="${item.orderId}">
-                                        <button type="submit">Betal</button>
+                                        <button class="pay-button" type="submit">Betal</button>
                                     </form>
                                 </c:if>
                             </td>

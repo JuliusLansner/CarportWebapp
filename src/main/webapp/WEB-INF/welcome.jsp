@@ -5,7 +5,7 @@
 
 <t:website>
     <jsp:attribute name="header">
-         Welcome to the logged in area
+        <h1 class="login-header">Velkommen</h1>
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -14,14 +14,14 @@
 
     <jsp:body>
 
-        <p>You should be logged in now</p>
+        <p>Du er nu logget ind</p>
 
         <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
+            <p style="padding-bottom: 100px;">Du er logget ind med rollen "${sessionScope.user.role}".</p>
         </c:if>
 
         <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
+            <p>Du er ikke logget ind endnu. Du kan logge ind her: <a
                     href="../login.jsp">Login</a></p>
         </c:if>
 

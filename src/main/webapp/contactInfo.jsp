@@ -14,8 +14,8 @@
             </p>
             <c:if test="${not empty requestScope.Fejl}">
                 <!-- Show the error div with message-->
-               <div class ="contacterrormsg">
-                       ${requestScope.Fejl}
+               <div class="contacterrormsg">
+                      <i> ${requestScope.Fejl} </i>
                </div>
 
             </c:if>

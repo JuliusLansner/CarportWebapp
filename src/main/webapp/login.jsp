@@ -6,7 +6,7 @@
 
 <t:website>
     <jsp:attribute name="header">
-             Login
+        <h1 class="login-header">Login</h1>
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -15,12 +15,12 @@
 
     <jsp:body>
 
-        <h3>You can log in here</h3>
+        <h3 class="login-text">Du kan logge ind her</h3>
 
-        <form action="login" method="post">
-            <input type="text" id="email" name="email" placeholder="Email:"/>
-            <input type="password" id="password" name="password" placeholder="Password"/>
-            <input type="submit"  value="Log in"/>
+        <form class="login-form" action="login" method="post">
+            <input class="login-input" type="text" id="email" name="email" placeholder="Email:"/>
+            <input class="login-input" type="password" id="password" name="password" placeholder="Password"/>
+            <input class="login-button" type="submit"  value="Log ind"/>
         </form>
 
     </jsp:body>

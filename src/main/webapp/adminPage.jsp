@@ -23,7 +23,7 @@
     <h2>Her kan du administrere ordrer</h2>
     <br>
     <br>
-    <div class="overviewOfAllOrders">
+    <!--<div class="overviewOfAllOrders">
         <table class="overviewOfAllOrdersTable">
             <thead>
             <tr>
@@ -37,9 +37,22 @@
             </tr>
             </thead>
         </table>
-    </div>
+    </div>-->
     <div class="allOrders-div">
         <table class="order-table">
+
+            <thead>
+            <tr>
+                <th>Ordre-id</th>
+                <th>Status</th>
+                <th>Pris</th>
+                <th>Butik</th>
+                <th>Dato</th>
+                <th>Godkend</th>
+                <th>Afvis</th>
+            </tr>
+            </thead>
+
             <tbody>
             <c:forEach var="item" items="${sessionScope.userOrders}">
                 <tr>
@@ -108,7 +121,7 @@
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
                             <input type="hidden" name="materialId" value="${material.idMaterial}">
-                            <input type="number" name="updatedPricePrUnit" style="width: 80px">
+                            <input class="price-per-unit-input" type="number" name="updatedPricePrUnit" style="width: 80px">
                             <button type="submit" class="priceApprove-button">Godkend</button>
                         </form>
                     </td>

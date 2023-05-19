@@ -23,6 +23,10 @@ body {
     margin-bottom: -15px !important;
 }
 
+a.nav-link {
+    color: #003D76 !important;
+}
+
 .navbar-brand {
     padding: 0 !important;
 
@@ -93,7 +97,7 @@ body {
     padding-bottom: 20px;
 }
 
-#antal select {
+.quickbyg-select {
     background-color: white !important;
     color: #333333 !important;
     font-family: 'Poppins', sans-serif;
@@ -169,20 +173,21 @@ body {
     overflow-y: auto;
     max-height: 50vh;
     margin: 0 auto;
-    width: 38%;
+    width: 100%;
 }
 
-.overviewOfAllOrdersTable th,
+.allOrders-div th,
 .allOrders-div td {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px 20px;
+    /*padding-left: 10px;
+    padding-right: 10px;*/
 }
 
 .price-overview {
     text-align: center;
 }
 
-.price-table {
+.price-table, .order-table {
     margin: 0 auto;
     text-align: center;
 }
@@ -191,19 +196,40 @@ body {
     padding: 10px 20px;
 }
 
-.approve-button {
+.approve-button, .priceApprove-button {
     color: white;
     background-color: green;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 5px 15px !important;
+    text-align: center;
 }
 
 .declined-button {
     color: white;
     background-color: red;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 5px 15px !important;
+    text-align: center;
 }
 
 .priceApprove-button {
     color: white;
     background-color: green;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 5px 15px !important;
+    text-align: center;
 }
 
 .kontaktinfo-input input {
@@ -218,6 +244,18 @@ body {
     font-size: 14px;
 }
 
+.price-per-unit-input {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    padding: 7px;
+    margin-right: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
 .table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -227,45 +265,31 @@ body {
 }
 
 .td, th {
-    border: 1px solid #dddddd;
+    /*border: 1px solid #dddddd;*/
     text-align: left;
-    padding: 8px;
+    padding: 10px;
 }
 
-.table1 th:nth-child(1),
-.table1 th:nth-child(2),
-.table1 th:nth-child(3),
-.table1 th:nth-child(4),
-.table1 th:nth-child(5),
-.table1 th:nth-child(6),
-.table1 td:nth-child(1),
-.table1 td:nth-child(2),
-.table1 td:nth-child(3),
-.table1 td:nth-child(4),
-.table1 td:nth-child(5),
-.table1 td:nth-child(6) {
+
+.table1, .table2 {
+    margin: 0 auto;
+    margin-top: 70px !important;
+    margin-bottom: 70px !important;
+    width: 70%;
+}
+
+.table1 th,
+.table1 td,
+.table2 th,
+.table2 td{
     width: 16.66% !important;
 }
 
-.table2 th:nth-child(1),
-.table2 th:nth-child(2),
-.table2 th:nth-child(3),
-.table2 th:nth-child(4),
-.table2 th:nth-child(5),
-.table2 th:nth-child(6),
-.table2 td:nth-child(1),
-.table2 td:nth-child(2),
-.table2 td:nth-child(3),
-.table2 td:nth-child(4),
-.table2 td:nth-child(5),
-.table2 td:nth-child(6) {
-    width: 16.66% !important;
-}
 
 .userOrderTable {
     overflow-y: scroll;
     width: auto;
-    height: 150px;
+    height: 200px;
 }
 
 .tableTitles {
@@ -308,10 +332,15 @@ body {
 }
 
 .orderDetails-backButton {
-    background-color: #003D76;
-    color: white;
-    border: none;
+    background-color: #003D76 !important;
     border-radius: 5px;
+    border: none;
+    color: white !important;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 8px 30px !important;
+    text-align: center;
 }
 
 .deleteOwnUserButton {
@@ -322,12 +351,38 @@ body {
     width: 200px;
     padding: 5px;
     background-color: red;
+    color: white;border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pay-button {
     color: white;
+    background-color: green;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 5px 15px !important;
+    text-align: center;
 }
 
 .deleteOwnUserButton input[type="password"] {
     width: 200px;
     padding: 5px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    margin-top: 20px;
 }
 
 .userPayBOMList {
@@ -351,4 +406,48 @@ body {
 
 .userPayBOMList tbody td {
     border: 1px solid black;
+}
+
+.contacterrormsg {
+    margin-top: 20px;
+    color: #bf1111;
+    font-weight: bold;
+}
+
+.login-header {
+    padding-top: 70px;
+    margin-bottom: 20px;
+}
+
+.login-text {
+    font-size: 20px;
+}
+
+.login-form {
+    padding-bottom: 100px;
+    padding-top: 20px;
+}
+
+.login-input {
+    width: 20%;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    padding: 10px 10px !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.login-button {
+    background-color: #003D76 !important;
+    border-radius: 5px;
+    border: none;
+    color: white !important;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 8px 30px !important;
+    text-align: center;
 }

@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <jsp:invoke fragment="header"/>
+        Carport Quickbyg
     </title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
     <!-- Bootstrap CSS -->
@@ -36,11 +36,11 @@
                 <div class="navbar-nav">
 
                     <c:if test="${sessionScope.user.role eq 'USER'}">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/userPage.jsp">bruger
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/userPage.jsp">Bruger
                             side</a>
                     </c:if>
                     <c:if test="${sessionScope.user.role eq 'ADMIN'}">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ServletAdminPage">admin
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ServletAdminPage">Admin
                             side</a>
                     </c:if>
                     <c:if test="${sessionScope.user == null }">
@@ -51,7 +51,7 @@
                             bruger</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log ud</a>
                     </c:if>
                 </div>
             </div>

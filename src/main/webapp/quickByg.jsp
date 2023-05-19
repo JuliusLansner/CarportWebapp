@@ -23,7 +23,7 @@
 
                 <p>Carport bredde</p>
                 <form name="wlr" action="ServletQuickbyg" method="post" id="widthlengthroof">
-                    <select name="width">
+                    <select class="quickbyg-select" name="width">
                         <option value="240">240cm</option>
                         <option value="270">270cm</option>
                     </select>
@@ -32,7 +32,7 @@
 
                 <p>Carport længde</p>
 
-                    <select name="length">
+                    <select class="quickbyg-select" name="length">
                         <option value="240">240cm</option>
                         <option value="270">270cm</option>
                     </select>
@@ -41,7 +41,7 @@
 
                 <p>Carport trapeztag</p>
 
-                    <select name="roof">
+                    <select class="quickbyg-select" name="roof">
                         <option value="uden tagplader">uden tragplader</option>
                         <option value="plast trapez">plast trapez</option>
                     </select>
