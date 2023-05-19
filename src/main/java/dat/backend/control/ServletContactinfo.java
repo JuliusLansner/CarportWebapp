@@ -56,12 +56,13 @@ public class ServletContactinfo extends HttpServlet {
         String address = request.getParameter("adress");
         String zipcode = request.getParameter("zipcode");
         String phoneNumber = request.getParameter("phoneNumber");
+        User user = null;
 
         //checks if user exists in the system, if so log in and use the user for the order. If not, create user.
         try {
-            User userFind = UserFacade.findUserByEmail(email, connectionPool);
-            if (userFind != null && !address.isEmpty() && zipcode.isEmpty() && phoneNumber.isEmpty() && !name.isEmpty()) {
-                User user = UserFacade.login(email, password, connectionPool);
+             user = UserFacade.findUserByEmail(email, connectionPool);
+            if (user != null && !address.isEmpty() && zipcode.isEmpty() && phoneNumber.isEmpty() && !name.isEmpty()) {
+                 user = UserFacade.login(email, password, connectionPool);
                 session = request.getSession();
                 session.setAttribute("user", user);
                 request.getRequestDispatcher("valgtBestilling.jsp").forward(request, response);
@@ -79,7 +80,7 @@ public class ServletContactinfo extends HttpServlet {
                         //tests if the zipcode and phonenumber string are numbers, if not throw an error.
                         int zipInt = Integer.parseInt(zipcode);
                         int phoneInt = Integer.parseInt(phoneNumber);
-                        UserFacade.createUser(email, password, address, zipInt, phoneInt, connectionPool);
+                        user = UserFacade.createUser(email, password, address, zipInt, phoneInt, connectionPool);
 
                     } catch (NumberFormatException e) {
                         request.setAttribute("Fejl", "Postnummer og telefonnummer skal være tal. ");
