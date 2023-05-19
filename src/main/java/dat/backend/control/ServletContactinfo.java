@@ -67,7 +67,7 @@ public class ServletContactinfo extends HttpServlet {
             } else {
                 //tests the password against our password rules.
                 if (!PasswordSecurityCheck.securityCheck(password)) {
-                    request.setAttribute("Fejl", "Adgangskoden skal skal have mindst 1 stort bokstav, 1 lille boktaver, 3 tal og mindst 6 karaktere");
+                    request.setAttribute("Fejl", "Adgangskoden skal skal have mindst 1 stort bokstav, 1 lille bokstaver, 3 tal og mindst 6 karaktere");
                     request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
                 }
 
