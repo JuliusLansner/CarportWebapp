@@ -26,16 +26,7 @@
                     <select class="quickbyg-select" name="width">
                         <option value="240">240cm</option>
                         <option value="270">270cm</option>
-                        <option value="300">300cm</option>
-                        <option value="330">330cm</option>
-                        <option value="360">360cm</option>
-                        <option value="390">390cm</option>
                         <option value="420">420cm</option>
-                        <option value="450">450cm</option>
-                        <option value="480">480cm</option>
-                        <option value="510">510cm</option>
-                        <option value="540">540cm</option>
-                        <option value="570">570cm</option>
                         <option value="600">600cm</option>
                     </select>
                     <br><br>
@@ -46,16 +37,7 @@
                     <select class="quickbyg-select" name="length">
                         <option value="240">240cm</option>
                         <option value="270">270cm</option>
-                        <option value="300">300cm</option>
-                        <option value="330">330cm</option>
-                        <option value="360">360cm</option>
-                        <option value="390">390cm</option>
-                        <option value="420">420cm</option>
-                        <option value="450">450cm</option>
-                        <option value="480">480cm</option>
-                        <option value="510">510cm</option>
-                        <option value="540">540cm</option>
-                        <option value="570">570cm</option>
+                        <option value="400">400cm</option>
                         <option value="600">600cm</option>
                     </select>
                     <br><br>
