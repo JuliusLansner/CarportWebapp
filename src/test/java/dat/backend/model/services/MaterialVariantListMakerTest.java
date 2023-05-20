@@ -20,8 +20,8 @@ class MaterialVariantListMakerTest {
     }
 
     @Test
-    void carportMaterialList() throws SQLException, DatabaseException {
-        MaterialVariantListMaker.carportMaterialList(600, 1500, 3, connectionPool);
+    void carportMaterialList600x600() throws SQLException, DatabaseException {
+        MaterialVariantListMaker.carportMaterialList(240,240, 3, connectionPool);
     }
 
 
@@ -55,5 +55,9 @@ class MaterialVariantListMakerTest {
 
     @Test
     void testCarportMaterialList() {
+    }
+
+    @Test
+    void testCarportMaterialList1() {
     }
 }

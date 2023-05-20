@@ -27,7 +27,7 @@ class MaterialVariantMapperTest {
 
     @BeforeAll
     public static void setUpClass() {
-        connectionPool = new ConnectionPool();
+        connectionPool = new ConnectionPool(USER,PASSWORD,URL);
 
         try (Connection testConnection = connectionPool.getConnection()) {
             try (Statement stmt = testConnection.createStatement()) {
@@ -51,8 +51,11 @@ class MaterialVariantMapperTest {
 
     @Test
     void getMaterialVariantByID() throws DatabaseException {
-        MaterialVariant materialVariant = MaterialVariantMapper.getMaterialVariantByID(4, connectionPool);
-        assertEquals(4, materialVariant.getMaterialeVariantID());
+         int materialVariantId = MaterialVariantMapper.createMaterialVariant(4,1,75,"tester",1,connectionPool);
+         MaterialVariant mv = MaterialVariantMapper.getMaterialVariantByID(materialVariantId,connectionPool);
+        System.out.println(mv.getMaterialeVariantID());
+        System.out.println(materialVariantId);
+        assertEquals(mv.getMaterialeVariantID(),materialVariantId);
     }
 
     @Test
