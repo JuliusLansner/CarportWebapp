@@ -49,7 +49,7 @@
                         Hvis du har en konto, bliver det brugt til at behandle ordren via din konto.
                     </p>
                     <br/>
-                    <label for="email">Brugernavn: </label>
+                    <label for="email">Email: </label>
                     <input type="text" id="email" name="email"/>
                 </div>
                 <div class="kontaktinfo-input">
