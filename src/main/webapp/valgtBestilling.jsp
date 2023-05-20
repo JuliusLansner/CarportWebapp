@@ -24,10 +24,9 @@ however this will be a demonstration -->
                 ${sessionScope.width}<br><br>
                 Længde:
                 ${sessionScope.length}<br><br>
-                Tag:
-                ${sessionScope.roof}<br><br>
-            <p>Din bestilling skal godkendes af os. Når den er blevet godkendt, så vil du få et tilbud tilbage, som du kan godkende eller afvise.</p><br><br>
-            <p>Dette kan du se på din bruger side. Den finder du oppe i navigationsbaren, hvor du blot skal logge ind og derefter skal du clicke på dit brugernavn.</p>
+
+            <p>Din bestilling skal godkendes af os. Når den er blevet godkendt, kan du se det på din bruger side.</p><br><br>
+            <p>Din bruger side finder du oppe i navigationsbaren, hvor du blot skal logge ind og derefter skal du clicke på "Bruger side".</p>
 
         </div>
 

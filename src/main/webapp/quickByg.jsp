@@ -13,7 +13,7 @@
         <div class="quickbyg-top">
             <h1>Bestil Quick-Byg tilbud på en carport med fladt tag</h1>
             <p>Her kan du bestille en carport efter egne mål.
-                Når du har bestilt en carport, modtager du hurtigst muligt et tilbud samt en skitsetegning.
+                Når du har bestilt en carport, modtager du hurtigst muligt et tilbud samt en stykliste.
             </p>
         </div>
 
