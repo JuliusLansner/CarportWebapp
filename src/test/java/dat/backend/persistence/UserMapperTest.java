@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,19 +32,6 @@ class UserMapperTest {
             try (Statement stmt = testConnection.createStatement()) {
                 stmt.execute("CREATE DATABASE  IF NOT EXISTS carport_test;");
                 stmt.execute("CREATE TABLE IF NOT EXISTS carport_test.bruger LIKE carport.bruger;");
-            }
-        } catch (SQLException throwables) {
-            System.out.println(throwables.getMessage());
-            fail("Database connection failed");
-        }
-    }
-
-    @BeforeEach
-    void setUp() {
-        try (Connection testConnection = connectionPool.getConnection()) {
-            try (Statement stmt = testConnection.createStatement()) {
-                stmt.execute("delete from bruger");
-                stmt.execute("insert into bruger (email, password, adresse, postnr_idpostnr, telefon, rolle) " + "values ('user@gmail.com','1234','userroad', 1234, 12345678, 'user'),('admin@gmail.com','1234','adminroad', 1234, 11111111, 'admin')");
             }
         } catch (SQLException throwables) {
             System.out.println(throwables.getMessage());
@@ -94,5 +82,12 @@ class UserMapperTest {
     @Test
     void deleteMyAccount() throws SQLException {
         UserFacade.deleteMyAccount("Test@gmail.com","123",connectionPool);
+    }
+
+    @Test
+    void allUsers() throws DatabaseException {
+        List<User> userList = UserFacade.allUsers(connectionPool);
+        List<User> allUsers = UserFacade.allUsers(connectionPool);
+        assertEquals(userList,allUsers);
     }
 }

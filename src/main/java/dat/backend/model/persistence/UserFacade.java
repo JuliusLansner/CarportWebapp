@@ -4,6 +4,7 @@ import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserFacade {
     public static User login(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
@@ -24,5 +25,9 @@ public class UserFacade {
 
     public static void deleteMyAccount(String email, String password, ConnectionPool connectionPool) throws SQLException {
         UserMapper.deleteMyAccount(email,password,connectionPool);
+    }
+
+    public static List<User> allUsers(ConnectionPool connectionPool) throws DatabaseException {
+        return UserMapper.allUsers(connectionPool);
     }
 }

@@ -57,7 +57,7 @@
             <c:forEach var="item" items="${sessionScope.userOrders}">
                 <tr>
                     <td class="ordre-id-data">
-                        <a href="orderDetails.jsp?orderId=${item.orderId}&length=${item.lenght}&width=${item.width}&totalPrice=${item.totalPrice}&status=${item.status}&date=${item.date}">
+                        <a href="orderDetails.jsp?orderId=${item.orderId}&length=${item.lenght}&width=${item.width}&totalPrice=${item.totalPrice}&status=${item.status}&date=${item.date}&orderUserId=${item.userId}">
                                 ${item.orderId}
                         </a>
                     </td>
