@@ -124,4 +124,30 @@ public class MaterialVariantMapper {
         }
     }
 
+    public static ArrayList<MaterialVariant> getMaterialVariantListByID(int IDMaterialVariant, ConnectionPool connectionPool) throws DatabaseException, SQLException {
+        ArrayList<MaterialVariant> materialVariants = new ArrayList<>();
+
+        String sql = "SELECT * FROM m_variant WHERE stykliste_idstykliste = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, IDMaterialVariant);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int materialeID = rs.getInt("materiale_id");
+                int length = rs.getInt("længde");
+                int partslistID = rs.getInt("stykliste_idstykliste");
+                String description = rs.getString("beskrivelse");
+                int price = rs.getInt("pris");
+                MaterialVariant materialVariant = new MaterialVariant(IDMaterialVariant, materialeID, length, partslistID, description, price);
+                materialVariants.add(materialVariant);
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Error fetching materialeVariant with ID = " + IDMaterialVariant);
+        }
+
+        return materialVariants;
+    }
+
+
 }

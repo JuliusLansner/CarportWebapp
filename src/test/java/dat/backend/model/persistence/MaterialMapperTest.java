@@ -18,24 +18,29 @@ class MaterialMapperTest {
     private final static String PASSWORD = "3r!DE32*/fDe";
     private final static String URL = "jdbc:mysql://64.226.126.239:3306/carport_test";
 
-     ConnectionPool connectionPool;
-
-
-
-
-
-
-   /* void materialList() throws DatabaseException {
-        Material expectedMaterial = new Material(1,"træ","m",100);
-        ArrayList<Material> actualMaterial = MaterialFacade.materialList();
-        assertEquals(expectedMaterial,actualMaterial);
-    }*/
+    ConnectionPool connectionPool = new ConnectionPool(USER, PASSWORD, URL);
 
 
     @Test
     void getMaterialById() {
         ConnectionPool connectionPool = new ConnectionPool();
-        Material material = MaterialMapper.getMaterialById(2,connectionPool);
+        Material material = MaterialMapper.getMaterialById(4, connectionPool);
         System.out.println(material.getPricePerUnit());
+    }
+
+    @Test
+    void materialList() throws DatabaseException {
+        ArrayList<Material>materials = MaterialMapper.materialList(connectionPool);
+        assertFalse(materials.isEmpty());
+    }
+
+    @Test
+    void updateMaterialPricePrUnit() throws DatabaseException {
+
+        MaterialMapper.updateMaterialPricePrUnit(100,4,connectionPool);
+
+        Material material = MaterialMapper.getMaterialById(4,connectionPool);
+        System.out.println(material.getPricePerUnit());
+        assertEquals(100,material.getPricePerUnit());
     }
 }
