@@ -31,10 +31,16 @@
         <tbody>
         <c:forEach var="item" items="${sessionScope.bomList}">
             <c:forEach var="materialVariant" items="${sessionScope.materialVariantList}">
-                <c:forEach var="material" items="${sessionScope.material}">
-                    <c:if test="${materialVariant.partslistID eq item.id.toString()}">
+                    <c:if test="${materialVariant.partslistID eq item.id}">
                         <tr>
-                            <td>${material.description}</td>
+                            <td>
+                                <c:if test="${materialVariant.materialeID eq 1}">
+                                    45x195 mm. spærtræ ubh.
+                                </c:if>
+                                <c:if test="${materialVariant.materialeID eq 2}">
+                                    97x97 mm. trykimp Stolpe
+                                </c:if>
+                            </td>
                             <td>${materialVariant.length}</td>
                             <td>cm</td>
                             <td>${materialVariant.description}</td>
@@ -42,7 +48,6 @@
                     </c:if>
                 </c:forEach>
             </c:forEach>
-        </c:forEach>
         </tbody>
     </table>
     <br>
