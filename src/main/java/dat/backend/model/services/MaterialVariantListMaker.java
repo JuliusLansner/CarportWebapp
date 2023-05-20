@@ -80,16 +80,12 @@ public class MaterialVariantListMaker {
      */
     public static ArrayList<MaterialVariant> stolpVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> stolps = new ArrayList<>();
-        //sets measurement for stolp
-        double maxDistStolpsInCm = 310;
-        double widthOfStolp = 97;
         int heigtOfStolp = 300;
 
         //calculates the amount of stolps needed on the length of the carport
-        double amountOfStolpsLength = Math.ceil((lengthInCm / (maxDistStolpsInCm + 97)))*2;
-
+        int amountOfStolpsLength = amountOfstolpsLength(lengthInCm);
         //calculates the amount of stolps needed on the width of the carport
-        double amountOfStolpsWidth = Math.ceil((widthInCm / (maxDistStolpsInCm + 97)))*2-4;
+        int amountOfStolpsWidth = amountOfstolpsWidth(widthInCm);
 
 
         //creates the amount of stolps needed for length and adds to the list
@@ -168,5 +164,44 @@ public class MaterialVariantListMaker {
         return lengthInM * pricePerUnit;
     }
 
+    public static int amountOfstolpsLength(int length){
+        int amountOfStolps = 0;
+
+        switch(length){
+            case 240:
+                amountOfStolps = 4;
+                break;
+            case 270:
+                amountOfStolps = 4;
+                break;
+            case 400:
+                amountOfStolps = 4;
+                break;
+            case 600:
+                amountOfStolps = 4;
+                break;
+        }
+        return amountOfStolps;
+    }
+
+    public static int amountOfstolpsWidth(int width){
+        int amountOfStolps = 0;
+
+        switch(width){
+            case 240:
+                amountOfStolps = 0;
+                break;
+            case 270:
+                amountOfStolps = 0;
+                break;
+            case 400:
+                amountOfStolps = 1;
+                break;
+            case 600:
+                amountOfStolps = 1;
+                break;
+        }
+        return amountOfStolps;
+    }
 
 }
