@@ -37,12 +37,7 @@ class OrderMapperTest {
     void orderList() throws DatabaseException {
         ArrayList<Order> orderlist = OrderMapper.orderList(connectionPool);
 
-        boolean notEmpty = false;
-
-        if (orderlist.size() > 0) {
-            notEmpty = true;
-        }
-        assertTrue(notEmpty);
+       assertFalse(orderlist.isEmpty());
     }
 
     @Test
