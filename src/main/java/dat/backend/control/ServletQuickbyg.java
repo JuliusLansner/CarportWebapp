@@ -2,6 +2,7 @@ package dat.backend.control;
 
 import dat.backend.model.entities.Bom;
 import dat.backend.model.entities.Material;
+import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
@@ -14,6 +15,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "ServletQuickbyg", value = "/ServletQuickbyg")
 public class ServletQuickbyg extends HttpServlet {
@@ -58,6 +60,19 @@ public class ServletQuickbyg extends HttpServlet {
             }
         } else {
             request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
+        }
+        try {
+            List<Order> orderlist = (List<Order>) session.getAttribute("orderlist");
+
+            List<Order> updatedOrderList = OrderFacade.orderList(connectionPool);
+
+            if (!updatedOrderList.isEmpty()) {
+                orderlist.clear();
+            }
+            session.setAttribute("orderlist",updatedOrderList);
+            request.getRequestDispatcher("userPage.jsp").forward(request, response);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
         }
 
     }
