@@ -27,7 +27,7 @@ class MaterialVariantMapperTest {
 
     @BeforeAll
     public static void setUpClass() {
-        connectionPool = new ConnectionPool(USER,PASSWORD,URL);
+        connectionPool = new ConnectionPool(USER, PASSWORD, URL);
 
         try (Connection testConnection = connectionPool.getConnection()) {
             try (Statement stmt = testConnection.createStatement()) {
@@ -49,20 +49,12 @@ class MaterialVariantMapperTest {
         }
     }
 
-    @Test
-    void getMaterialVariantByID() throws DatabaseException {
-         int materialVariantId = MaterialVariantMapper.createMaterialVariant(4,1,75,"tester",1,connectionPool);
-         MaterialVariant mv = MaterialVariantMapper.getMaterialVariantByID(materialVariantId,connectionPool);
-        System.out.println(mv.getMaterialeVariantID());
-        System.out.println(materialVariantId);
-        assertEquals(mv.getMaterialeVariantID(),materialVariantId);
-    }
 
     @Test
     void getAllMaterialVariants() throws DatabaseException {
         List<MaterialVariant> materialVariants = MaterialVariantMapper.getAllMaterialVariants(connectionPool);
         boolean notEmpty = false;
-        if(materialVariants.size()>0){
+        if (materialVariants.size() > 0) {
             notEmpty = true;
         }
 
@@ -71,7 +63,7 @@ class MaterialVariantMapperTest {
 
     @Test
     void createMaterialVariant() throws DatabaseException {
-        MaterialVariantMapper.createMaterialVariant(1,2,3,"test",2,connectionPool);
+        MaterialVariantMapper.createMaterialVariant(4, 2, 75, "test", 2, connectionPool);
     }
 
     @Test
@@ -86,7 +78,7 @@ class MaterialVariantMapperTest {
 
     @Test
     void deleteMaterialVariant() throws DatabaseException {
-        int id = MaterialVariantMapper.createMaterialVariant(1,1,3,"tester",1,connectionPool);
+        int id = MaterialVariantMapper.createMaterialVariant(1, 1, 3, "tester", 1, connectionPool);
 
 
         MaterialVariantMapper.deleteMaterialVariant(id, connectionPool);

@@ -41,22 +41,30 @@ public class UserMapper {
 
     public static User createUser(String email, String password, String address, int zip, int phone, ConnectionPool connectionPool) throws SQLException, DatabaseException {
         String sql = "INSERT INTO bruger (email, password, adresse, postnr_idpostnr, telefon) VALUES (?, ?, ?, ?, ?)";
-        try (Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, email);
             statement.setString(2, password);
             statement.setString(3, address);
             statement.setInt(4, zip);
             statement.setInt(5, phone);
+
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected != 1) {
                 throw new DatabaseException("Failed to insert user with email " + email + " into the database");
             }
 
-            User user = new User(email, password, address, zip, phone);
-
-            return user;
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int generatedId = generatedKeys.getInt(1);
+                User user = new User(generatedId, email, password, address, zip, phone);
+                return user;
+            } else {
+                throw new DatabaseException("Failed to retrieve generated ID for user with email " + email);
+            }
         }
     }
+
 
     public static void deleteUser(String email, ConnectionPool connectionPool) throws DatabaseException {
 
