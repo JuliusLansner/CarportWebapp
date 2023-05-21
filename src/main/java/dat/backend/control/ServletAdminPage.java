@@ -12,6 +12,11 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ *
+ * The ServletAdminPage class handles administrative functions that only an admin can and should access
+ * It offers the functionality to update a materials unit price and change the status of an order
+ */
 @WebServlet(name = "ServletAdminPage", value = "/ServletAdminPage")
 public class ServletAdminPage extends HttpServlet {
 
@@ -26,7 +31,14 @@ public class ServletAdminPage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 
-
+    /**
+     *
+     * Handles the POST request sent to this servlet, and offers the admin the ability to perform administrative tasks.
+     * @param request comes from the adminPage.jsp
+     * @param response sends the user back to adminPage.jsp
+     * @throws ServletException if servlet errors occurs
+     * @throws IOException if an I/O error happens during the request
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -44,8 +56,6 @@ public class ServletAdminPage extends HttpServlet {
         }
 
         try {
-
-            // updates the price in the database
             MaterialFacade.updateMaterialPricePrUnit(updatedPricePrUnit, materialId, connectionPool);
 
             // updates the price in the session scope
@@ -62,8 +72,7 @@ public class ServletAdminPage extends HttpServlet {
             e.printStackTrace();
         }
 
-
-        //   --- changes the status of an order via. the approval and decline buttons ---
+        // changes the status of an order via. the approval and decline buttons
         String statusParameter = request.getParameter("status");
         String orderIdParameter = request.getParameter("orderId");
         String action = request.getParameter("action");
@@ -74,11 +83,9 @@ public class ServletAdminPage extends HttpServlet {
         if ( statusParameter != null && !statusParameter.isEmpty()) {
             status = Integer.parseInt(statusParameter);
         }
-
         if (orderIdParameter != null && !orderIdParameter.isEmpty()) {
             orderId = Integer.parseInt(orderIdParameter);
         }
-
         if ("afvis".equals(action)) {
             status = 1;
         }
@@ -95,7 +102,6 @@ public class ServletAdminPage extends HttpServlet {
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
-
         request.getRequestDispatcher("adminPage.jsp").forward(request, response);
     }
 }
