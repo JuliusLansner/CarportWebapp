@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderMapper {
-     static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
+    static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM ordre";
         ArrayList<Order> orderList = new ArrayList<>();
 
@@ -95,7 +95,7 @@ public class OrderMapper {
                 int status = rs.getInt(5);
                 Timestamp date = rs.getTimestamp(6);
 
-                order = new Order(orderId,length,width,totalPrice,status,date,userId);
+                order = new Order(orderId, length, width, totalPrice, status, date, userId);
             }
         }
 
@@ -118,32 +118,32 @@ public class OrderMapper {
                 Timestamp date = rs.getTimestamp(6);
                 int userId = rs.getInt(7);
 
-                order = new Order(orderId,length,width,totalPrice,status,date,userId);
+                order = new Order(orderId, length, width, totalPrice, status, date, userId);
             }
         }
 
         return order;
     }
 
-    public static void updateOrderStatus(int status, int orderId, ConnectionPool connectionPool) throws DatabaseException{
+    public static void updateOrderStatus(int status, int orderId, ConnectionPool connectionPool) throws DatabaseException {
 
-            String sql = "UPDATE carport.ordre SET status = ? WHERE idordre = ?";
+        String sql = "UPDATE carport.ordre SET status = ? WHERE idordre = ?";
 
-            try (Connection connection = connectionPool.getConnection();
-                 PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
-                ps.setInt(1, status);
-                ps.setInt(2, orderId);
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected != 1) {
-                    throw new DatabaseException("Error updating status for order: " + orderId);
-                }
-            } catch (SQLException ex) {
-                throw new DatabaseException(ex, "Error updating status for order: " + orderId);
+            ps.setInt(1, status);
+            ps.setInt(2, orderId);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Error updating status for order: " + orderId);
             }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Error updating status for order: " + orderId);
+        }
     }
 
-    public static void updateOrderPrice(int price, int orderId, ConnectionPool connectionPool) throws DatabaseException{
+    public static void updateOrderPrice(int price, int orderId, ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "UPDATE carport.ordre SET samlet_pris = ? WHERE idordre = ?";
 
@@ -160,4 +160,16 @@ public class OrderMapper {
             throw new DatabaseException(ex, "Error updating status for order: " + orderId);
         }
     }
+
+    public static void deleteOrder(int id, ConnectionPool connectionPool) throws SQLException {
+        String sql = "DELETE FROM ordre WHERE idordre = ?";
+
+        try (Connection connection = connectionPool.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        }
+    }
+
+
+
 }

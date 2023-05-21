@@ -1,8 +1,10 @@
 package dat.backend.model.services;
 
+import dat.backend.model.entities.Bom;
 import dat.backend.model.entities.MaterialVariant;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.persistence.MaterialVariantMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,40 +22,99 @@ class MaterialVariantListMakerTest {
     }
 
     @Test
-    void carportMaterialList() throws SQLException, DatabaseException {
-        MaterialVariantListMaker.carportMaterialList(600, 1500, 3, connectionPool);
-    }
+    void carportMaterialList240x240() throws SQLException, DatabaseException {
+        Bom bom = MaterialVariantListMaker.carportMaterialList(240, 240, 3, connectionPool);
 
+        ArrayList<MaterialVariant> variantList = MaterialVariantMapper.getMaterialVariantListByID(bom.getId(), connectionPool);
 
-    @Test
-    void stolpVariantMaker() {
-        ArrayList<MaterialVariant> variants = MaterialVariantListMaker.stolpVariantMaker(600, 100, connectionPool);
+        int stolpsLength = 0;
+        int stolpsWidth = 0;
+        int rems = 0;
+        int spær = 0;
 
-        System.out.println(variants);
+        for (MaterialVariant mv : variantList) {
+            String description = mv.getDescription();
 
-    }
-
-    @Test
-    void spærVariantMaker() {
-        ArrayList<MaterialVariant> variants = MaterialVariantListMaker.spærVariantMaker(600,100,connectionPool);
-        for(MaterialVariant mv: variants){
-            System.out.println(mv.getPrice());
-            System.out.println(mv.getMaterialeID());
-            System.out.println(mv.getLength());
+            if (description.equals("Stolper til længde")) {
+                stolpsLength += 1;
+            } else if (description.equals("Stolper til brede")) {
+                stolpsWidth += 1;
+            } else if (description.equals("Spær til taget")) {
+                spær += 1;
+            } else if (description.equals("Rem til oven på stolper")) {
+                rems += 1;
+            }
         }
+
+        assertEquals(4, stolpsLength);
+        assertEquals(0, stolpsWidth);
+        assertEquals(3, spær);
+        assertEquals(4, rems);
+
     }
 
     @Test
-    void remVariantMaker() {
-        ArrayList<MaterialVariant> variants = MaterialVariantListMaker.remVariantMaker(600,100,connectionPool);
-        for(MaterialVariant mv: variants){
-            System.out.println(mv.getPrice());
-            System.out.println(mv.getMaterialeID());
-            System.out.println(mv.getLength());
+    void carportMaterialList600x600() throws SQLException, DatabaseException {
+        Bom bom = MaterialVariantListMaker.carportMaterialList(600, 600, 3, connectionPool);
+
+        ArrayList<MaterialVariant> variantList = MaterialVariantMapper.getMaterialVariantListByID(bom.getId(), connectionPool);
+
+        int stolpsLength = 0;
+        int stolpsWidth = 0;
+        int rems = 0;
+        int spær = 0;
+
+        for (MaterialVariant mv : variantList) {
+            String description = mv.getDescription();
+
+            if (description.equals("Stolper til længde")) {
+                stolpsLength += 1;
+            } else if (description.equals("Stolper til brede")) {
+                stolpsWidth += 1;
+            } else if (description.equals("Spær til taget")) {
+                spær += 1;
+            } else if (description.equals("Rem til oven på stolper")) {
+                rems += 1;
+            }
         }
+
+        assertEquals(6, stolpsLength);
+        assertEquals(1, stolpsWidth);
+        assertEquals(6, spær);
+        assertEquals(4, rems);
+
     }
 
     @Test
-    void testCarportMaterialList() {
+    void carportMaterialListr400x400() throws SQLException, DatabaseException {
+        Bom bom = MaterialVariantListMaker.carportMaterialList(400, 400, 3, connectionPool);
+
+        ArrayList<MaterialVariant> variantList = MaterialVariantMapper.getMaterialVariantListByID(bom.getId(), connectionPool);
+
+        int stolpsLength = 0;
+        int stolpsWidth = 0;
+        int rems = 0;
+        int spær = 0;
+
+        for (MaterialVariant mv : variantList) {
+            String description = mv.getDescription();
+
+            if (description.equals("Stolper til længde")) {
+                stolpsLength += 1;
+            } else if (description.equals("Stolper til brede")) {
+                stolpsWidth += 1;
+            } else if (description.equals("Spær til taget")) {
+                spær += 1;
+            } else if (description.equals("Rem til oven på stolper")) {
+                rems += 1;
+            }
+        }
+
+        assertEquals(6, stolpsLength);
+        assertEquals(1, stolpsWidth);
+        assertEquals(4, spær);
+        assertEquals(4, rems);
+
     }
+
 }

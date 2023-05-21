@@ -12,32 +12,43 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BomMapperTest {
-ConnectionPool connectionPool;
+    ConnectionPool connectionPool;
     private final static String USER = "dev";
     private final static String PASSWORD = "3r!DE32*/fDe";
     private final static String URL = "jdbc:mysql://64.226.126.239:3306/carport_test";
 
     @BeforeEach
     void setUp() {
-        connectionPool = new ConnectionPool();
+        connectionPool = new ConnectionPool(USER,PASSWORD,URL);
     }
 
     @Test
     void getBoms() throws SQLException, DatabaseException {
-     ArrayList<Bom> bomlist = BomMapper.getBoms(connectionPool);
+        ArrayList<Bom> bomlist = BomMapper.getBoms(connectionPool);
 
         boolean notEmpty = false;
 
-     if(bomlist.size()>0){
-         notEmpty = true;
-     }
+        if (bomlist.size() > 0) {
+            notEmpty = true;
+        }
 
-     assertTrue(notEmpty);
+        assertTrue(notEmpty);
     }
 
     @Test
     void makeBom() throws SQLException, DatabaseException {
-        Bom bom = BomMapper.makeBom(200,2,connectionPool);
-        System.out.println(bom.getId());
+        ArrayList<Bom> bomlist = BomMapper.getBoms(connectionPool);
+        System.out.println(bomlist);
+        Bom bom = BomMapper.makeBom(200, 27, connectionPool);
+
+        ArrayList<Bom> newBomlist = BomMapper.getBoms(connectionPool);
+        System.out.println(newBomlist);
+        boolean bomAdded = false;
+
+        if (newBomlist.size() > bomlist.size()) {
+            bomAdded = true;
+        }
+
+        assertTrue(bomAdded);
     }
 }

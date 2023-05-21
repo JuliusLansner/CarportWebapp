@@ -54,7 +54,7 @@ public class MaterialVariantListMaker {
 
         //adds all the rem variants to the DB
         for (MaterialVariant mv:rems){
-            String description = "rem til oven på stolper";
+            String description = "Rem til oven på stolper";
             MaterialVariantFacade.createMaterialVariant(mv.getMaterialeID(), mv.getLength(), bom.getId(), description, mv.getPrice(), connectionPool);
         }
 
@@ -78,7 +78,7 @@ public class MaterialVariantListMaker {
      * @param connectionPool
      * @return returns a list of created stolp variants that are based on the carport length and width
      */
-    public static ArrayList<MaterialVariant> stolpVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
+    private static ArrayList<MaterialVariant> stolpVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> stolps = new ArrayList<>();
         int heigtOfStolp = 300;
 
@@ -100,7 +100,7 @@ public class MaterialVariantListMaker {
         if(amountOfStolpsWidth>0){
             for (int i = 0; i < amountOfStolpsWidth; i++) {
                 int price = variantPriceCalculater(heigtOfStolp, 2, connectionPool);
-                String description = "stolper til brede";
+                String description = "Stolper til brede";
                 MaterialVariant stolpVariant = new MaterialVariant(2, heigtOfStolp, price, description);
                 stolps.add(stolpVariant);
             }
@@ -110,7 +110,7 @@ public class MaterialVariantListMaker {
         return stolps;
     }
 
-    public static ArrayList<MaterialVariant> remVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
+    private static ArrayList<MaterialVariant> remVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> rems = new ArrayList<>();
 
         for (int i = 0; i < 2; i++) {
@@ -136,7 +136,7 @@ public class MaterialVariantListMaker {
      * @param connectionPool
      * @return returns a list of created spær variants based on carport length and width
      */
-    public static ArrayList<MaterialVariant> spærVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
+    private static ArrayList<MaterialVariant> spærVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> spær = new ArrayList<>();
 
         double maxDistSpærInCm = 60;
@@ -164,7 +164,7 @@ public class MaterialVariantListMaker {
         return lengthInM * pricePerUnit;
     }
 
-    public static int amountOfstolpsLength(int length){
+    private static int amountOfstolpsLength(int length){
         int amountOfStolps = 0;
 
         switch(length){
@@ -178,13 +178,13 @@ public class MaterialVariantListMaker {
                 amountOfStolps = 4;
                 break;
             case 600:
-                amountOfStolps = 4;
+                amountOfStolps = 6;
                 break;
         }
         return amountOfStolps;
     }
 
-    public static int amountOfstolpsWidth(int width){
+    private static int amountOfstolpsWidth(int width){
         int amountOfStolps = 0;
 
         switch(width){

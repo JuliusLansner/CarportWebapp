@@ -83,5 +83,7 @@ public class MaterialMapper {
             throw new DatabaseException(ex, "Error updating material price");
         }
     }
+
+
 }
 
