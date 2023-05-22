@@ -6,7 +6,7 @@ start
 |Hjemmeside|
 
 fork
-:opret bruger; 
+:opret bruger;
 :log ind;
 fork again
 :log ind;
@@ -15,9 +15,10 @@ fork
 |Bruger|
 :kundeside;
 fork
-:Se ordrer;
+:Se ordre;
 fork again
 :betal for ordre;
+:se stykliste;
 end fork
 stop
 fork again
