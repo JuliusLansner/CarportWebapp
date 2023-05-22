@@ -33,19 +33,17 @@ public class ServletSignup extends HttpServlet {
             //password is not secure and user goes back to signup.jsp
             request.setAttribute("error","Kodeord er for svagt");
             request.getRequestDispatcher("signUp.jsp").forward(request,response);
-        }
-
-        if (password != passwordCheck) {
-            request.setAttribute("error","your passwords dont match");
+        } else if (!password.equals(passwordCheck)) {
+            request.setAttribute("error","Passwords must match");
             request.getRequestDispatcher("signUp.jsp").forward(request,response);
-        }
-
-        try {
+        } else try {
 
             UserFacade.createUser(email,password,address,zipcode,phoneNumber,connectionPool);
 
         } catch (DatabaseException e) {
             e.printStackTrace();
+
+
 
         } catch (SQLException e) {
             e.printStackTrace();
