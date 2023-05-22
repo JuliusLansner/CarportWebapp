@@ -21,8 +21,8 @@
           <label for="password">Kodeord: </label>
           <input type="password" id="password" name="password"/>
 
-          <label for="password">Kodeord igen: </label>
-          <input type="password" id="password2" name="password"/>
+          <label for="passwordCheck">Kodeord igen: </label>
+          <input type="password" id="passwordCheck" name="passwordCheck"/>
 
           <label for="adress">Adresse: </label>
           <input type="text" id="adress" name="adress"/>

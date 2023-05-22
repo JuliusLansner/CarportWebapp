@@ -1,0 +1,48 @@
+@startuml
+!pragma layout smetana
+
+title Carport Quickbyg Projekt
+state index.jsp
+state error.jsp
+state login.jsp
+state signUp.jsp
+state welcome.jsp
+state contactInfo.jsp
+state orderDetails.jsp
+state quickByg.jsp
+state userPayBOMList.jsp
+state valgtBestilling.jsp
+state userPage.jsp
+state adminPage.jsp
+
+[*] --> index.jsp
+navbar:Available throughout website
+navbar-->index.jsp
+navbar-->login.jsp
+navbar-->signUp.jsp
+
+navbar-->adminPage.jsp
+adminpage.jsp-->orderDetails.jsp
+navbar-->userPage.jsp
+userPage.jsp-->orderDetails.jsp
+userPage.jsp-->userPayBOMList.jsp
+
+login.jsp --> welcome.jsp: godkendt login
+login.jsp --> error.jsp: forkert login
+error.jsp --> index.jsp
+error.jsp --> login.jsp
+
+signUp.jsp-->login.jsp
+welcome.jsp --> index.jsp
+
+index.jsp-->quickByg.jsp
+quickByg.jsp-->contactInfo.jsp
+contactInfo.jsp--> valgtBestilling.jsp
+
+
+
+
+
+
+@enduml
+
