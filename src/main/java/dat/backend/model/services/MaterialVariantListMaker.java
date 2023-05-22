@@ -175,7 +175,7 @@ public class MaterialVariantListMaker {
                 amountOfStolps = 4;
                 break;
             case 400:
-                amountOfStolps = 4;
+                amountOfStolps = 6;
                 break;
             case 600:
                 amountOfStolps = 6;
@@ -195,10 +195,10 @@ public class MaterialVariantListMaker {
                 amountOfStolps = 0;
                 break;
             case 400:
-                amountOfStolps = 1;
+                amountOfStolps = 4;
                 break;
             case 600:
-                amountOfStolps = 1;
+                amountOfStolps = 4;
                 break;
         }
         return amountOfStolps;
