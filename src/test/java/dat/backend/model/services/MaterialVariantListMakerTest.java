@@ -23,7 +23,7 @@ class MaterialVariantListMakerTest {
 
     @Test
     void carportMaterialList240x240() throws SQLException, DatabaseException {
-        Bom bom = MaterialVariantListMaker.carportMaterialList(240, 240, 3, connectionPool);
+        Bom bom = MaterialVariantListMaker.carportMaterialList(240, 240, 60, connectionPool);
 
         ArrayList<MaterialVariant> variantList = MaterialVariantMapper.getMaterialVariantListByID(bom.getId(), connectionPool);
 
@@ -55,7 +55,7 @@ class MaterialVariantListMakerTest {
 
     @Test
     void carportMaterialList600x600() throws SQLException, DatabaseException {
-        Bom bom = MaterialVariantListMaker.carportMaterialList(600, 600, 3, connectionPool);
+        Bom bom = MaterialVariantListMaker.carportMaterialList(600, 600, 60, connectionPool);
 
         ArrayList<MaterialVariant> variantList = MaterialVariantMapper.getMaterialVariantListByID(bom.getId(), connectionPool);
 
@@ -87,7 +87,7 @@ class MaterialVariantListMakerTest {
 
     @Test
     void carportMaterialListr400x400() throws SQLException, DatabaseException {
-        Bom bom = MaterialVariantListMaker.carportMaterialList(400, 400, 3, connectionPool);
+        Bom bom = MaterialVariantListMaker.carportMaterialList(400, 400, 60, connectionPool);
 
         ArrayList<MaterialVariant> variantList = MaterialVariantMapper.getMaterialVariantListByID(bom.getId(), connectionPool);
 
