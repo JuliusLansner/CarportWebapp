@@ -4,7 +4,6 @@ Title Carport Quickbyg Projekt
 start
 :gå til hjemmeside;
 |Hjemmeside|
-
 fork
 :opret bruger;
 :log ind;
@@ -22,6 +21,7 @@ fork again
 end fork
 stop
 fork again
+
 |Admin|
 :admin side;
 fork
@@ -31,7 +31,6 @@ fork again
 end fork
 stop
 |Hjemmeside|
-:bestil carport;
 :quickbyg;
 fork
 :logget ind(true);

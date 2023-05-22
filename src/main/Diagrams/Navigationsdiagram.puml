@@ -15,14 +15,19 @@ state valgtBestilling.jsp
 state userPage.jsp
 state adminPage.jsp
 
-[*] --> index.jsp
 navbar:Available throughout website
+adminPage.jsp:Hvis admin bruger rolle
+userPage.jsp: Hvis user bruger rolle
+
+
+[*] --> index.jsp
+
 navbar-->index.jsp
 navbar-->login.jsp
 navbar-->signUp.jsp
 
 navbar-->adminPage.jsp
-adminpage.jsp-->orderDetails.jsp
+adminPage.jsp-->orderDetails.jsp
 navbar-->userPage.jsp
 userPage.jsp-->orderDetails.jsp
 userPage.jsp-->userPayBOMList.jsp
