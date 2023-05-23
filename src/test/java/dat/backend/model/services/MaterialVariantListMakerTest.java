@@ -31,7 +31,7 @@ class MaterialVariantListMakerTest {
 
     @BeforeEach
     void setUp() throws SQLException, DatabaseException {
-        connectionPool = new ConnectionPool();
+        connectionPool = new ConnectionPool(USER, PASSWORD, URL);
         try (Connection connection = connectionPool.getConnection(); Statement statement = connection.createStatement()) {
             statement.execute("DELETE FROM m_variant");
             statement.execute("DELETE FROM stykliste");
