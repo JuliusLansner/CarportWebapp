@@ -24,7 +24,7 @@ class MaterialMapperTest {
     @Test
     void getMaterialById() {
         ConnectionPool connectionPool = new ConnectionPool();
-        Material material = MaterialMapper.getMaterialById(4, connectionPool);
+        Material material = MaterialMapper.getMaterialById(1, connectionPool);
         System.out.println(material.getPricePerUnit());
     }
 
