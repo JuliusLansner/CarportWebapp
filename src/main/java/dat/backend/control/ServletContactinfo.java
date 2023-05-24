@@ -99,8 +99,8 @@ public class ServletContactinfo extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //tests if the zipcode and phonenumber string are numbers, if not throw an error.
-      
+        
+
        
         //width, length and user for creating order and bom
         int width = (int) session.getAttribute("width");
