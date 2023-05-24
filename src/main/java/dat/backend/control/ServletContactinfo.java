@@ -100,17 +100,7 @@ public class ServletContactinfo extends HttpServlet {
             throw new RuntimeException(e);
         }
         //tests if the zipcode and phonenumber string are numbers, if not throw an error.
-        try {
-            int zipInt = Integer.parseInt(zipcode);
-            int phoneInt = Integer.parseInt(phoneNumber);
-            session.setAttribute("currentName", name);
-            session.setAttribute("currentEmail", email);
-            session.setAttribute("currentAddress", address);
-            session.setAttribute("currentZip", zipInt);
-            session.setAttribute("currentPhone", phoneInt);
-        } catch (NumberFormatException e) {
-            throw new RuntimeException(e);
-        }
+      
        
         //width, length and user for creating order and bom
         int width = (int) session.getAttribute("width");
