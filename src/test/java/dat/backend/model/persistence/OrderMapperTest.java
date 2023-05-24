@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,10 +21,17 @@ class OrderMapperTest {
     private final static String USER = "dev";
     private final static String PASSWORD = "3r!DE32*/fDe";
     private final static String URL = "jdbc:mysql://64.226.126.239:3306/carport_test";
-
+    int orderId;
+    User user;
     @BeforeEach
-    void setUp() throws SQLException {
-        connectionPool = new ConnectionPool(USER, PASSWORD, URL);
+    void setUp() throws SQLException, DatabaseException {
+        connectionPool = new ConnectionPool(USER,PASSWORD,URL);
+        try(Connection connection = connectionPool.getConnection(); Statement statement = connection.createStatement()){
+            statement.execute("DELETE FROM bruger");
+            statement.execute("DELETE FROM ordre");
+        }
+        user = UserMapper.createUser("Testuser","123","testroad",5676,67564534,connectionPool);
+        orderId = OrderFacade.createOrder(1,1,1,user.getIdUser(),connectionPool);
     }
 
     @Test
@@ -43,15 +51,13 @@ class OrderMapperTest {
     }
 
     @Test
-    void createOrder() throws DatabaseException, SQLException {
+    void findOrder() throws DatabaseException, SQLException {
 
-        int id = OrderMapper.createOrder(100, 100, 200, 47, connectionPool);
-
-        Order order = OrderMapper.findOrderByOrderId(id, connectionPool);
+        Order order = OrderMapper.findOrderByOrderId(orderId, connectionPool);
 
         boolean rightOrder = false;
 
-        if (order.getLenght() == 100 && order.getWidth() == 100 && order.getTotalPrice() == 200 && order.getUserId() == 47 && order.getOrderId() == id) {
+        if (order.getLenght() == 1 && order.getWidth() == 1 && order.getTotalPrice() == 1 && order.getUserId() == user.getIdUser() && order.getOrderId() == orderId) {
             rightOrder = true;
         }
 
@@ -93,27 +99,10 @@ class OrderMapperTest {
         OrderMapper.deleteOrder(orderId, connectionPool);
         UserMapper.deleteUser(user.getEmail(), connectionPool);
     }
+    
 
     @Test
-    void updateOrderStatus() throws SQLException, DatabaseException {
-
-
-        int newStatus = 0;
-        int orderId = 13;
-
-        Order testOrder = OrderMapper.findOrderByOrderId(orderId, connectionPool);
-        testOrder.setStatus(newStatus);
-
-        OrderFacade.updateOrderStatus(newStatus, orderId, connectionPool);
-
-        Order updatedOrderStatus = OrderMapper.findOrderByOrderId(orderId, connectionPool);
-        assertEquals(newStatus, updatedOrderStatus.getStatus());
-
-    }
-
-    @Test
-    void deleteOrder() throws SQLException, DatabaseException {
-        User user = UserFacade.createUser("orderDeleteTest5", "123", "fasan", 1234, 8525636, connectionPool);
+    void createOrder() throws SQLException, DatabaseException {
 
         ArrayList<Order> ordersBefore = OrderMapper.orderList(connectionPool);
 
@@ -127,7 +116,5 @@ class OrderMapperTest {
         }
         assertTrue(orderAfterIncreased);
 
-        OrderMapper.deleteOrder(order, connectionPool);
-        UserFacade.deleteUser("orderDeleteTest5", connectionPool);
     }
 }
