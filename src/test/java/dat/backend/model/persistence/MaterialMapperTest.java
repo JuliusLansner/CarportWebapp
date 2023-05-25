@@ -19,7 +19,6 @@ class MaterialMapperTest {
     private final static String PASSWORD = "3r!DE32*/fDe";
     private final static String URL = "jdbc:mysql://64.226.126.239:3306/carport_test";
     ConnectionPool connectionPool;
-    int orderId;
 
 
     @BeforeEach
