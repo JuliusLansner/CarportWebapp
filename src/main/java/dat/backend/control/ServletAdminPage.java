@@ -100,7 +100,8 @@ public class ServletAdminPage extends HttpServlet {
                 }
             }
         } catch (DatabaseException e) {
-            e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         request.getRequestDispatcher("adminPage.jsp").forward(request, response);
     }

@@ -87,13 +87,16 @@ public class ServletContactinfo extends HttpServlet {
                         request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
                     }
                 } catch (DatabaseException e) {
-                    e.printStackTrace();
+                    request.setAttribute("errormessage", e.getMessage());
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
 
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    request.setAttribute("errormessage", e.getMessage());
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             }
         } catch (DatabaseException e) {
+            e.printStackTrace();
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         } catch (SQLException e) {

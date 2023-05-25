@@ -26,7 +26,7 @@
                     <select class="quickbyg-select" name="width">
                         <option value="240">240cm</option>
                         <option value="270">270cm</option>
-                        <option value="420">420cm</option>
+                        <option value="400">400cm</option>
                         <option value="600">600cm</option>
                     </select>
                     <br><br>

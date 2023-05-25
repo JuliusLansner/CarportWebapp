@@ -54,7 +54,8 @@ public class ServletUserPage extends HttpServlet {
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    response.sendRedirect("error.jsp");
+                    request.setAttribute("errormessage", e.getMessage());
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             }
         }

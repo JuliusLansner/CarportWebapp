@@ -42,11 +42,15 @@ public class ServletSignup extends HttpServlet {
 
         } catch (DatabaseException e) {
             e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
 
 
 
         } catch (SQLException e) {
             e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
 
        request.getRequestDispatcher("login.jsp").forward(request,response);
