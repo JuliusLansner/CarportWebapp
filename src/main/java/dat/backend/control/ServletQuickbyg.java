@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Purpose of this servlet is to set an order for the customer that is logged in, and redirect customers that aren't logged in to the contact info page.
+ */
 @WebServlet(name = "ServletQuickbyg", value = "/ServletQuickbyg")
 public class ServletQuickbyg extends HttpServlet {
 
@@ -28,7 +31,6 @@ public class ServletQuickbyg extends HttpServlet {
     /**
      *If logged in it creates an order and makes a bill of materials which gets set as a session attribute and directs to valgtbestilling.jsp, else it directs to the
      * page contactinfo.jsp.
-     *
      * @throws ServletException
      * @throws IOException
      */

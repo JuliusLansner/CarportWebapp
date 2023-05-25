@@ -13,9 +13,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Purpose of this servlet is to be a kind of setup and data loader, that gets run before anything else.
+ */
 @WebServlet(name = "Index", value = "/index")
 public class Index extends HttpServlet {
-
     /**
      *Loads some data from orders, users and materials from the database into lists and sets them as attributes in the session scope
      * Also sets a boolean to tell if logged in.
