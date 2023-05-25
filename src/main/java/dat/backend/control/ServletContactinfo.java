@@ -24,7 +24,7 @@ public class ServletContactinfo extends HttpServlet {
      * that can be used to add the order to the account.
      * name, email, address,zipcode and phonenumber stored in session for further use.
      *
-     * Sends user to valgtBestilling.jsp. En exception sends user to error.jsp. An error in passwordCheck sends user
+     * Sends user to valgtBestilling.jsp. an exception sends user to error.jsp. An error in passwordCheck sends user
      * to contactInfo.jsp. An error in number/zipcode not being an int, sends user to contactinfo.jsp with an error message.
      *
      * @param userFind - finds user by email, has access to and uses the database.

@@ -15,6 +15,13 @@ import java.util.ArrayList;
 
 @WebServlet(name = "Index", value = "/index")
 public class Index extends HttpServlet {
+
+    /**
+     *Loads some data from orders, users and materials from the database into lists and sets them as attributes in the session scope
+     * Also sets a boolean to tell if logged in.
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();

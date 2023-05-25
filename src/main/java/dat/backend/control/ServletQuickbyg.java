@@ -19,11 +19,19 @@ import java.util.List;
 
 @WebServlet(name = "ServletQuickbyg", value = "/ServletQuickbyg")
 public class ServletQuickbyg extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+    /**
+     *If logged in it creates an order and makes a bill of materials which gets set as a session attribute and directs to valgtbestilling.jsp, else it directs to the
+     * page contactinfo.jsp.
+     *
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -46,7 +54,7 @@ public class ServletQuickbyg extends HttpServlet {
                 int orderId = OrderFacade.createOrder(length,width,0,user.getIdUser(),connectionPool);
 
 
-                //creates materialvariants based on length and width of the carport and creates a bom which is put into a objekt.
+                //creates materialvariants based on length and width of the carport and creates a bom which is put into an object.
                 Bom bom = MaterialVariantListMaker.carportMaterialList(length,width,orderId,connectionPool);
 
                 //updates the price of the order.
@@ -61,6 +69,8 @@ public class ServletQuickbyg extends HttpServlet {
         } else {
             request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
         }
+
+        //is this used?
         try {
             List<Order> orderlist = (List<Order>) session.getAttribute("orderlist");
 
