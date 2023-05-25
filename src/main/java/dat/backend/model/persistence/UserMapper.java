@@ -119,7 +119,7 @@ public class UserMapper {
 
         List<User> userList = new ArrayList<>();
 
-        String sql = "SELECT * FROM carport.bruger";
+        String sql = "SELECT * FROM bruger";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {

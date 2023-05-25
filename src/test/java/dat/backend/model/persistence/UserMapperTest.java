@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,10 +19,16 @@ class UserMapperTest {
     private final static String USER = "dev";
     private final static String PASSWORD = "3r!DE32*/fDe";
     private final static String URL = "jdbc:mysql://64.226.126.239:3306/carport_test";
+    User user;
 
     @BeforeEach
-    void setUp() throws SQLException {
+    void setUp() throws SQLException, DatabaseException {
         connectionPool = new ConnectionPool(USER, PASSWORD, URL);
+        try (Connection connection = connectionPool.getConnection(); Statement statement = connection.createStatement()) {
+            statement.execute("DELETE FROM bruger");
+        }
+
+        user = UserFacade.createUser("testingdude", "123", "Homeway", 4555, 65764354, connectionPool);
     }
 
     @Test
@@ -31,15 +40,11 @@ class UserMapperTest {
         }
     }
 
+
     @Test
     void login() throws SQLException, DatabaseException {
-    User testUser = UserMapper.createUser("Tester1","123","Tester1",1,1765457,connectionPool);
-    User user = UserMapper.login("Tester1","123",connectionPool);
-        System.out.println(user.getEmail());
-        System.out.println(testUser.getEmail());
-    assertEquals(user.getEmail(),testUser.getEmail());
-
-    UserMapper.deleteMyAccount("Tester1","123",connectionPool);
+    User testuser = UserMapper.login(user.getEmail(), user.getPassword(), connectionPool);
+    assertEquals(user,testuser);
     }
 
     @Test
@@ -48,23 +53,27 @@ class UserMapperTest {
         User user2 = UserMapper.findUserByEmail("maldefm@gmail.com",connectionPool);
 
         assertEquals(user1.getEmail(),user2.getEmail());
-
-       UserMapper.deleteMyAccount("maldefm@gmail.com","123",connectionPool);
     }
 
     @Test
     void findUserByEmail() throws SQLException, DatabaseException {
-        User testUser = UserMapper.createUser("Test@gmail.com","123","Testervej",1,1111111,connectionPool);
-        User user = UserMapper.findUserByEmail("Test@gmail.com",connectionPool);
-        System.out.println(user.getEmail());
 
-        assertEquals(testUser.getEmail(),user.getEmail());
+        User testuser = UserMapper.findUserByEmail(user.getEmail(),connectionPool);
 
-        UserMapper.deleteMyAccount("Test@gmail.com","123",connectionPool);
+        assertEquals(user.getEmail(),testuser.getEmail());
     }
 
     @Test
-    void deleteMyAccount() throws SQLException {
-        UserMapper.deleteMyAccount("Test@gmail.com","123",connectionPool);
+    void deleteMyAccount() throws SQLException, DatabaseException {
+        List<User>users = UserMapper.allUsers(connectionPool);
+        UserMapper.deleteUser(user.getEmail(),connectionPool);
+        List<User> usersAfter = UserMapper.allUsers(connectionPool);
+
+        boolean addedUser = false;
+
+        if(users.size()-1 == usersAfter.size()){
+            addedUser = true;
+        }
+        assertTrue(addedUser);
     }
 }
