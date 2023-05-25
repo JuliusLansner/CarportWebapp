@@ -48,6 +48,13 @@ class UserMapperTest {
     }
 
     @Test
+    void loginNonExistingUser() throws SQLException, DatabaseException {
+        assertThrows(DatabaseException.class, () -> {
+            UserMapper.login("test", "123", connectionPool);
+        });
+    }
+
+    @Test
     void createUser() throws SQLException, DatabaseException {
         User user1 = UserMapper.createUser("maldefm@gmail.com","123","klostervej",1,27704845,connectionPool);
         User user2 = UserMapper.findUserByEmail("maldefm@gmail.com",connectionPool);
