@@ -43,7 +43,8 @@ public class Index extends HttpServlet {
             session.setAttribute("allUsersList", allUsersList);
 
         } catch (DatabaseException e) {
-            e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
 
         request.getRequestDispatcher("index.jsp").forward(request,response);

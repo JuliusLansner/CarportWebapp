@@ -73,6 +73,8 @@ public class ServletQuickbyg extends HttpServlet {
             request.getRequestDispatcher("userPage.jsp").forward(request, response);
         } catch (DatabaseException e) {
             e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
 
     }

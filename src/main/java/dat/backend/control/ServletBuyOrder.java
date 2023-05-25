@@ -70,8 +70,10 @@ public class ServletBuyOrder extends HttpServlet {
             List<Material> materialList = MaterialFacade.materialList(connectionPool);
             session.setAttribute("material", materialList);
 
-        } catch (Exception e) {
+        } catch (DatabaseException | SQLException e) {
             e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         request.getRequestDispatcher("userPayBOMList.jsp").forward(request, response);
     }
