@@ -15,32 +15,36 @@ import java.util.ArrayList;
 public class MaterialVariantListMaker {
 
     /**
-     * @param lengthInCm     length of the carport
-     * @param widthInCm      width of the carport
-     * @param orderId
-     * @param connectionPool
-     * @return returns a bill og materials
+     * Calculates all the materials variants needed for a carport, and the total price of them all, also creates a Bom(bill of materials) and puts all the variants up on the database.
+     * @param lengthInCm of the carport
+     * @param widthInCm width of the carport
+     * @param orderId of the order
+     * @param connectionPool pool of connections for database.
+     * @return returns a bill of materials
      * @throws SQLException
      * @throws DatabaseException
      */
     public static Bom carportMaterialList(int lengthInCm, int widthInCm, int orderId, ConnectionPool connectionPool) throws SQLException, DatabaseException {
 
-        //makes material variants of stolps based on carport height and width and puts into list named stolps.
+        //makes material variants of stolps based on carport height and width, and puts into list named stolps.
         ArrayList<MaterialVariant> stolps = stolpVariantMaker(lengthInCm, widthInCm, connectionPool);
-        //calculates price of all the stolps
+        //calculates price of all the stolps and stores it in an integer.
         int priceOfStolps = calculatePriceOfVariantList(stolps);
-
+        //makes material variants of spær based on carport height and width, and puts into list named spær.
         ArrayList<MaterialVariant> spær = spærVariantMaker(lengthInCm, widthInCm, connectionPool);
+        //calculates total price of all the spær and stores it in an integer.
         int priceOfSpær = calculatePriceOfVariantList(spær);
-
+        //makes material variants of rems based on carport height and width, and puts into list named rems.
         ArrayList<MaterialVariant> rems = remVariantMaker(lengthInCm, widthInCm, connectionPool);
+        //calculates price of all the rems and stores it in an integer.
         int priceOfRems = calculatePriceOfVariantList(rems);
 
-        //calculates total price of all material variants
+        //calculates total price of all the material variants.
         int totalPrice = priceOfSpær + priceOfStolps + priceOfRems;
 
-        //adds a list to the DB for material variants and puts it into an objeckt named bom of type Bom
+        //adds a list to the DB for material variants and puts it into an object named bom of type Bom.
         Bom bom = BomFacade.makeBom(totalPrice, orderId, connectionPool);
+
         //adds all the stolp variants to the DB
         for (MaterialVariant mv : stolps) {
             MaterialVariantFacade.createMaterialVariant(mv.getMaterialeID(), mv.getLength(), bom.getId(), mv.getDescription(), mv.getPrice(), connectionPool);
@@ -53,15 +57,20 @@ public class MaterialVariantListMaker {
         }
 
         //adds all the rem variants to the DB
-        for (MaterialVariant mv:rems){
+        for (MaterialVariant mv : rems) {
             String description = "Rem til oven på stolper";
             MaterialVariantFacade.createMaterialVariant(mv.getMaterialeID(), mv.getLength(), bom.getId(), description, mv.getPrice(), connectionPool);
         }
-
+        //returns the bill of materials created.
         return bom;
     }
 
-
+    /**
+     * Calculates total price of a list of variants.
+     *
+     * @param variants list of variants.
+     * @return total price.
+     */
     private static int calculatePriceOfVariantList(ArrayList<MaterialVariant> variants) {
         int totalPrice = 0;
 
@@ -73,10 +82,12 @@ public class MaterialVariantListMaker {
 
 
     /**
-     * @param lengthInCm     length of the carport
-     * @param widthInCm      width of the carport
-     * @param connectionPool
-     * @return returns a list of created stolp variants that are based on the carport length and width
+     * Calculates amount of stolps needed for carport, and also calculates price of each variant.
+     *
+     * @param lengthInCm     of the carport
+     * @param widthInCm      of the carport
+     * @param connectionPool pool of connections for database.
+     * @return list of created stolp variants that are based on the carport length and width
      */
     private static ArrayList<MaterialVariant> stolpVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> stolps = new ArrayList<>();
@@ -97,7 +108,7 @@ public class MaterialVariantListMaker {
         }
 
         //creates the amount of stolps needed for width and adds to the list
-        if(amountOfStolpsWidth>0){
+        if (amountOfStolpsWidth > 0) {
             for (int i = 0; i < amountOfStolpsWidth; i++) {
                 int price = variantPriceCalculater(heigtOfStolp, 2, connectionPool);
                 String description = "Stolper til brede";
@@ -110,6 +121,14 @@ public class MaterialVariantListMaker {
         return stolps;
     }
 
+    /**
+     * Calculates measurements and amount of rems needed for carport, and also calculates the price of each variant.
+     *
+     * @param lengthInCm     of the carport.
+     * @param widthInCm      of the carport.
+     * @param connectionPool pool of connections for database.
+     * @return list of rem variants needed for carport.
+     */
     private static ArrayList<MaterialVariant> remVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> rems = new ArrayList<>();
 
@@ -129,12 +148,13 @@ public class MaterialVariantListMaker {
     }
 
 
-
     /**
-     * @param lengthInCm     length of the carport
-     * @param widthInCm      width of the carport
-     * @param connectionPool
-     * @return returns a list of created spær variants based on carport length and width
+     * Calculates measurements and amount of spær needed for carport, and also calculates price of each variant.
+     *
+     * @param lengthInCm     of the carport.
+     * @param widthInCm      of the carport.
+     * @param connectionPool pool of connections for database.
+     * @return list of spær variants based on carport length and width.
      */
     private static ArrayList<MaterialVariant> spærVariantMaker(int lengthInCm, int widthInCm, ConnectionPool connectionPool) {
         ArrayList<MaterialVariant> spær = new ArrayList<>();
@@ -153,7 +173,14 @@ public class MaterialVariantListMaker {
         return spær;
     }
 
-
+    /**
+     * Calculates the price for a materialvariant.
+     *
+     * @param lengthInCm     of the materialvariant.
+     * @param materialId     of the material the variant is made of.
+     * @param connectionPool pool of connections to the database.
+     * @return price of the materialvariant.
+     */
     private static int variantPriceCalculater(int lengthInCm, int materialId, ConnectionPool connectionPool) {
         int lengthInM = lengthInCm / 100;
         //finds the material with the id
@@ -164,10 +191,16 @@ public class MaterialVariantListMaker {
         return lengthInM * pricePerUnit;
     }
 
-    private static int amountOfstolpsLength(int length){
+    /**
+     * Calculates the amount of stolps needed for the length of the carport.
+     *
+     * @param length of the carport.
+     * @return the amount of stolps for the length.
+     */
+    private static int amountOfstolpsLength(int length) {
         int amountOfStolps = 0;
 
-        switch(length){
+        switch (length) {
             case 240:
                 amountOfStolps = 4;
                 break;
@@ -184,10 +217,16 @@ public class MaterialVariantListMaker {
         return amountOfStolps;
     }
 
-    private static int amountOfstolpsWidth(int width){
+    /**
+     * Calculates amount of stolps needed for the width of a carport
+     *
+     * @param width of the carport
+     * @return amount of stolps needed for width.
+     */
+    private static int amountOfstolpsWidth(int width) {
         int amountOfStolps = 0;
 
-        switch(width){
+        switch (width) {
             case 240:
                 amountOfStolps = 0;
                 break;

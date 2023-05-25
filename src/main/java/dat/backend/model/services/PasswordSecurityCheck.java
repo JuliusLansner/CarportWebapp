@@ -2,6 +2,11 @@ package dat.backend.model.services;
 
 public class PasswordSecurityCheck {
 
+    /**
+     * performs a security check on the password inserted
+     * @param password that needs to be checked
+     * @return true if the password is valid, otherwise false.
+     */
     public static boolean securityCheck(String password) {
         if (password.length() < 6) {
             return false;
@@ -18,6 +23,11 @@ public class PasswordSecurityCheck {
         return true;
     }
 
+    /**
+     * Checks if right amount of letters and digits
+     * @param password that needs to be checked
+     * @return true if the right amount of letters and digits is there, otherwise false.
+     */
     private static boolean letterAndDigitCheck(String password) {
         char c;
         int countLetters = 0;
@@ -46,6 +56,11 @@ public class PasswordSecurityCheck {
         return true;
     }
 
+    /**
+     * Checks if the right amount of uppercase and lowercase letters is there
+     * @param password that needs to be checked
+     * @return true if the right amount of lower and upper case letters is there, otherwise false.
+     */
     private static boolean uppercaseAndLowercaseCheck(String password) {
         char c;
         int uppercaseCount = 0;
