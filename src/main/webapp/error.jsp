@@ -6,7 +6,7 @@
 
 <t:website>
     <jsp:attribute name="header">
-             Error page
+              <h1 class="login-header">Error page</h1>
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -15,8 +15,8 @@
 
     <jsp:body>
 
-        <p>An error has occured. This is the best message we can come up
-            with right now: </p>
+        <h3 class="login-text">An error has occured. This is the best message we can come up
+            with right now: </h3>
 
         <c:if test="${pageContext.errorData.statusCode == 404 }">
             <p><b>Error code:</b> ${pageContext.errorData.statusCode}</p>
