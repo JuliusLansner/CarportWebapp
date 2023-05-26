@@ -31,16 +31,12 @@ public class Index extends HttpServlet {
         ConnectionPool connectionPool = new ConnectionPool();
         Boolean loggedIn = false;
         session.setAttribute("loggedin",loggedIn);
-        try {
-            connectionPool.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
 
         try {
 
-            ArrayList<Order>orderList = OrderFacade.orderList(connectionPool);
-            session.setAttribute("orderlist",orderList);
+            /*ArrayList<Order>orderList = OrderFacade.orderList(connectionPool);
+            session.setAttribute("orderlist",orderList);*/
 
             ArrayList<Order> userOrders = OrderFacade.orderList(connectionPool);
             session.setAttribute("userOrders", userOrders);

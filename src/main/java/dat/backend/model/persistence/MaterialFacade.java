@@ -8,11 +8,6 @@ import java.util.ArrayList;
 
 public class MaterialFacade {
     public static ArrayList<Material> materialList(ConnectionPool connectionPool) throws DatabaseException {
-        try {
-            connectionPool.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         return MaterialMapper.materialList(connectionPool);
     }
 

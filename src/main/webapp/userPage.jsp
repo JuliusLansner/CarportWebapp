@@ -39,7 +39,7 @@
 
         <div class="userOrderTable">
             <table class="table" style="width: 100%">
-                <c:forEach var="item" items="${sessionScope.orderlist}">
+                <c:forEach var="item" items="${sessionScope.userOrders}">
                     <c:if test="${item.userId eq sessionScope.user.idUser && item.status eq 0}">
                         <tr>
                             <td class="td">
@@ -85,7 +85,7 @@
 
         <div class="userOrderTable">
             <table class="table" style="width: 100%">
-                <c:forEach var="item" items="${sessionScope.orderlist}">
+                <c:forEach var="item" items="${sessionScope.userOrders}">
                     <c:if test="${item.userId eq sessionScope.user.idUser && item.status eq 1||item.userId eq sessionScope.user.idUser && item.status eq 2 }">
                         <tr>
                             <td class="td">
