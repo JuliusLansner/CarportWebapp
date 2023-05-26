@@ -1,20 +1,16 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.Material;
 import dat.backend.model.entities.User;
-import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
-import dat.backend.model.persistence.MaterialFacade;
 import dat.backend.model.persistence.UserFacade;
-import dat.backend.model.persistence.UserMapper;
+
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Objects;
 
 @WebServlet(name = "ServletUserPage", value = "/ServletUserPage")

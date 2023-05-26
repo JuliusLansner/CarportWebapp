@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mikkel
-  Date: 10/05/2023
-  Time: 17.12
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -23,21 +17,7 @@
     <h2>Her kan du administrere ordrer</h2>
     <br>
     <br>
-    <!--<div class="overviewOfAllOrders">
-        <table class="overviewOfAllOrdersTable">
-            <thead>
-            <tr>
-                <th>Ordre-id</th>
-                <th>Status</th>
-                <th>Pris</th>
-                <th>Butik</th>
-                <th>Dato</th>
-                <th>Godkend</th>
-                <th>Afvis</th>
-            </tr>
-            </thead>
-        </table>
-    </div>-->
+
     <div class="allOrders-div">
         <table class="order-table">
 

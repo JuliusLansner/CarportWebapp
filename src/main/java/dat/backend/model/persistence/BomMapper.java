@@ -3,7 +3,6 @@ package dat.backend.model.persistence;
 import dat.backend.model.entities.Bom;
 import dat.backend.model.exceptions.DatabaseException;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 
