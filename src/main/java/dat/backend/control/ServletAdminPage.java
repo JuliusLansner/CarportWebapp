@@ -13,9 +13,11 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- *
- * The ServletAdminPage class handles administrative functions that only an admin can and should access
- * It offers the functionality to update a materials unit price and change the status of an order
+ * The ServletAdminPage class handles administrative functions that only an admin can and should access.
+ * It offers the functionality to update a materials unit price and change the status of an order.
+ * This class is used by users with the role of admin.
+ * adminPage.jsp sends request to this servlet in the doPost method.
+ * This servlet forwards to WEB-INF/adminPage.jsp and error.jsp
  */
 @WebServlet(name = "ServletAdminPage", value = "/ServletAdminPage")
 public class ServletAdminPage extends HttpServlet {
@@ -32,33 +34,47 @@ public class ServletAdminPage extends HttpServlet {
     }
 
     /**
-     *
      * Handles the POST request sent to this servlet, and offers the admin the ability to perform administrative tasks.
-     * @param request comes from the adminPage.jsp
-     * @param response sends the user back to adminPage.jsp
+     *
+     * @param request  comes from the client
+     * @param response is sent back to the client
      * @throws ServletException if servlet errors occurs
-     * @throws IOException if an I/O error happens during the request
+     * @throws IOException      if an I/O error happens during the request
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
 
+        if ("newPrice".equals(action)) {
+            newPrice(request, response);
+        } else if ("changeStatus".equals(action)) {
+            changeStatus(request, response);
+        } else {
+            request.removeAttribute("error.jsp");
+        }
+    }
+
+    /**
+     * This method allows the admin to update the unit price of a material
+     * @param request comes from the client
+     * @param response is sent back to the client
+     * @throws ServletException if servlet errors occurs
+     * @throws IOException if an I/O error happens during the request
+     */
+    private void newPrice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String materialIdFromParameter = request.getParameter("materialId");
         String updatedPricePrUnitFromParameter = request.getParameter("updatedPricePrUnit");
 
         int materialId = 0;
         int updatedPricePrUnit = 0;
-
         if (materialIdFromParameter != null && !materialIdFromParameter.isEmpty()) {
             materialId = Integer.parseInt(materialIdFromParameter);
         }
         if (updatedPricePrUnitFromParameter != null && !updatedPricePrUnitFromParameter.isEmpty()) {
             updatedPricePrUnit = Integer.parseInt(updatedPricePrUnitFromParameter);
         }
-
         try {
             MaterialFacade.updateMaterialPricePrUnit(updatedPricePrUnit, materialId, connectionPool);
-
-            // updates the price in the session scope
             HttpSession session = request.getSession();
             List<Material> updatedMaterialList = (List<Material>) session.getAttribute("materialList");
             for (Material material : updatedMaterialList) {
@@ -67,26 +83,35 @@ public class ServletAdminPage extends HttpServlet {
                     break;
                 }
             }
-            session.setAttribute("materialList",updatedMaterialList);
+            session.setAttribute("materialList", updatedMaterialList);
         } catch (DatabaseException e) {
-            e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
+        request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request,response);
+    }
 
-        // changes the status of an order via. the approval and decline buttons
+    /**
+     * This method allows the admin to change the status of an ordre
+     * @param request comes from the client
+     * @param response is sent back to the client
+     * @throws ServletException if servlet errors occurs
+     * @throws IOException if an I/O error happens during the request
+     */
+    private void changeStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String statusParameter = request.getParameter("status");
         String orderIdParameter = request.getParameter("orderId");
-        String action = request.getParameter("action");
 
         int status = 0;
         int orderId = 0;
 
-        if ( statusParameter != null && !statusParameter.isEmpty()) {
+        if (statusParameter != null && !statusParameter.isEmpty()) {
             status = Integer.parseInt(statusParameter);
         }
         if (orderIdParameter != null && !orderIdParameter.isEmpty()) {
             orderId = Integer.parseInt(orderIdParameter);
         }
-        if ("afvis".equals(action)) {
+        if (request.getParameter("action").equals("changeStatus") && status != 2) {
             status = 1;
         }
         try {
@@ -101,7 +126,8 @@ public class ServletAdminPage extends HttpServlet {
             }
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("adminPage.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);
     }
 }

@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,10 +16,8 @@
     <h2>Her kan du administrere ordrer</h2>
     <br>
     <br>
-
     <div class="allOrders-div">
         <table class="order-table">
-
             <thead>
             <tr>
                 <th>Ordre-id</th>
@@ -37,7 +34,7 @@
             <c:forEach var="item" items="${sessionScope.userOrders}">
                 <tr>
                     <td class="ordre-id-data">
-                        <a href="../orderDetails.jsp?orderId=${item.orderId}&length=${item.lenght}&width=${item.width}&totalPrice=${item.totalPrice}&status=${item.status}&date=${item.date}&orderUserId=${item.userId}">
+                        <a href="${pageContext.request.contextPath}/orderDetails.jsp?orderId=${item.orderId}&length=${item.lenght}&width=${item.width}&totalPrice=${item.totalPrice}&status=${item.status}&date=${item.date}&orderUserId=${item.userId}">
                                 ${item.orderId}
                         </a>
                     </td>
@@ -60,7 +57,7 @@
                         <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
                             <input type="hidden" name="orderId" value="${item.orderId}">
                             <input type="hidden" name="status" value="2">
-                            <button type="submit" name="action" value="godkend" class="approve-button">Godkend
+                            <button type="submit" name="action" value="changeStatus" class="approve-button">Godkend
                             </button>
                         </form>
                     </td>
@@ -68,7 +65,7 @@
                         <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
                             <input type="hidden" name="orderId" value="${item.orderId}">
                             <input type="hidden" name="status" value="1">
-                            <button type="submit" name="action" value="afvis" class="declined-button">Afvis</button>
+                            <button type="submit" name="action" value="changeStatus" class="declined-button">Afvis</button>
                         </form>
                     </td>
                 </tr>
@@ -102,7 +99,7 @@
                         <form method="post" action="${pageContext.request.contextPath}/ServletAdminPage">
                             <input type="hidden" name="materialId" value="${material.idMaterial}">
                             <input class="price-per-unit-input" type="number" name="updatedPricePrUnit" style="width: 80px">
-                            <button type="submit" class="priceApprove-button">Godkend</button>
+                            <button type="submit" name="action" value="newPrice" class="priceApprove-button">Godkend</button>
                         </form>
                     </td>
                     <td>Værebro fog</td>

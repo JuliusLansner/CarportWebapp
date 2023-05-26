@@ -2,52 +2,65 @@
 !pragma layout smetana
 
 title Carport Quickbyg Projekt
-state index.jsp
-state error.jsp
-state login.jsp
-state signUp.jsp
-state welcome.jsp
-state contactInfo.jsp
-state orderDetails.jsp
-state quickByg.jsp
-state userPayBOMList.jsp
-state valgtBestilling.jsp
-state userPage.jsp
-state adminPage.jsp
+state "index.jsp" as indexJSP
+state "login.jsp" as loginJSP
+state "error.jsp" as errorJSP
+state "signUp.jsp" as signUpJSP
+state "contactInfo.jsp" as contactInfoJSP
+state "quickByg.jsp" as quickBygJSP
+state "valgtBestilling.jsp" as valgtBestillingJSP
+state "welcome.jsp" as welcomeJSP
+state navbar#Strategy: altid tilgængelig
+state "navbar" as navbar1 #Strategy
+state "navbar" as navbar2 #Strategy
+state "logget på som admin" as admin
+state "logget på som bruger" as bruger
 
-navbar:Available throughout website
-adminPage.jsp:Hvis admin bruger rolle
-userPage.jsp: Hvis user bruger rolle
+note left of loginJSP
+brugernavn & rolle gemmes i session
+end note
 
-
-[*] --> index.jsp
-
-navbar-->index.jsp
-navbar-->login.jsp
-navbar-->signUp.jsp
-
-navbar-->adminPage.jsp
-adminPage.jsp-->orderDetails.jsp
-navbar-->userPage.jsp
-userPage.jsp-->orderDetails.jsp
-userPage.jsp-->userPayBOMList.jsp
-
-login.jsp --> welcome.jsp: godkendt login
-login.jsp --> error.jsp: forkert login
-error.jsp --> index.jsp
-error.jsp --> login.jsp
-
-signUp.jsp-->login.jsp
-welcome.jsp --> index.jsp
-
-index.jsp-->quickByg.jsp
-quickByg.jsp-->contactInfo.jsp
-contactInfo.jsp--> valgtBestilling.jsp
-
-
-
-
-
-
+[*] --> indexJSP
+indexJSP --> navbar1
+indexJSP --> quickBygJSP
+navbar1 --> loginJSP
+navbar1 --> signUpJSP
+navbar1 --> indexJSP
+loginJSP --> welcomeJSP:log ind [ok]
+loginJSP --> errorJSP:log ind [fejl]
+signUpJSP --> loginJSP
+errorJSP --> loginJSP
+errorJSP --> indexJSP
+welcomeJSP --> navbar2
+navbar2 --> admin
+state admin #LightSkyBlue{
+state "navbar" as navbar3 #Strategy
+state "adminPage.jsp" as adminPageJSP #LightSkyBlue
+state "orderDetails.jsp" as orderDetailsJSP1 #LightSkyBlue
+[*] --> navbar3
+navbar3 --> adminPageJSP
+adminPageJSP --> orderDetailsJSP1
+orderDetailsJSP1 --> adminPageJSP
+orderDetailsJSP1 --> navbar3
+adminPageJSP --> navbar3
+}
+navbar2 --> bruger
+state bruger #CCCCEE{
+state "userPayBOMList.jsp" as userPayBOMListJSP #CCCCEE
+state "orderDetails.jsp" as orderDetailsJSP #CCCCEE
+state "userPage.jsp" as userPageJSP #CCCCEE
+state "navbar" as navbar4 #Strategy
+[*] --> navbar4
+navbar4 --> userPageJSP
+userPageJSP --> navbar4
+userPageJSP --> orderDetailsJSP
+orderDetailsJSP --> userPageJSP
+orderDetailsJSP --> navbar4
+userPageJSP --> userPayBOMListJSP
+userPayBOMListJSP --> userPageJSP
+userPayBOMListJSP --> navbar4
+}
+quickBygJSP --> contactInfoJSP
+contactInfoJSP --> valgtBestillingJSP
+valgtBestillingJSP --> navbar1
 @enduml
-
