@@ -3,7 +3,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
-<%@page errorPage="error.jsp" isErrorPage="false" %>
+<%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:website>
     <html>
@@ -37,7 +37,7 @@
             <c:forEach var="item" items="${sessionScope.userOrders}">
                 <tr>
                     <td class="ordre-id-data">
-                        <a href="orderDetails.jsp?orderId=${item.orderId}&length=${item.lenght}&width=${item.width}&totalPrice=${item.totalPrice}&status=${item.status}&date=${item.date}&orderUserId=${item.userId}">
+                        <a href="../orderDetails.jsp?orderId=${item.orderId}&length=${item.lenght}&width=${item.width}&totalPrice=${item.totalPrice}&status=${item.status}&date=${item.date}&orderUserId=${item.userId}">
                                 ${item.orderId}
                         </a>
                     </td>

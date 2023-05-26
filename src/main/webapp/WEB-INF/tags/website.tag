@@ -40,7 +40,7 @@
                             side</a>
                     </c:if>
                     <c:if test="${sessionScope.user.role eq 'ADMIN'}">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/adminPage.jsp">Admin
+                        <a class="nav-item nav-link" href="ServletAdmincheck">Admin
                             side</a>
                     </c:if>
                     <c:if test="${sessionScope.user == null }">
