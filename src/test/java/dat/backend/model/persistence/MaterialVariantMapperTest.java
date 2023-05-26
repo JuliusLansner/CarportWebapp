@@ -29,15 +29,6 @@ class MaterialVariantMapperTest {
     public static void setUpClass() {
         connectionPool = new ConnectionPool(USER, PASSWORD, URL);
 
-        try (Connection testConnection = connectionPool.getConnection()) {
-            try (Statement stmt = testConnection.createStatement()) {
-                stmt.execute("CREATE DATABASE  IF NOT EXISTS carport_test;");
-                stmt.execute("CREATE TABLE IF NOT EXISTS carport_test.m_variant LIKE carport.m_variant;");
-            }
-        } catch (SQLException throwables) {
-            System.out.println(throwables.getMessage());
-            fail("Database connection failed");
-        }
     }
 
     @Test
@@ -63,7 +54,18 @@ class MaterialVariantMapperTest {
 
     @Test
     void createMaterialVariant() throws DatabaseException {
-        MaterialVariantMapper.createMaterialVariant(4, 2, 75, "test", 2, connectionPool);
+        List<MaterialVariant> materialVariants = MaterialVariantMapper.getAllMaterialVariants(connectionPool);
+        int mvId = MaterialVariantMapper.createMaterialVariant(4, 2, 75, "test", 2, connectionPool);
+        List<MaterialVariant> materialVariantsAfter = MaterialVariantMapper.getAllMaterialVariants(connectionPool);
+
+        boolean sizeIncreased = false;
+
+        if(materialVariants.size()+1==materialVariantsAfter.size()){
+            sizeIncreased = true;
+        }
+        assertTrue(sizeIncreased);
+
+        MaterialVariantMapper.deleteMaterialVariant(mvId,connectionPool);
     }
 
     @Test

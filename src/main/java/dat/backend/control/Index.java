@@ -31,11 +31,6 @@ public class Index extends HttpServlet {
         ConnectionPool connectionPool = new ConnectionPool();
         Boolean loggedIn = false;
         session.setAttribute("loggedin",loggedIn);
-        try {
-            connectionPool.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         try {
 

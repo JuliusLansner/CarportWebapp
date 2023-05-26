@@ -57,6 +57,7 @@ public class MaterialMapper {
 
                 material = new Material(beskrivelse, enhed, pris);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

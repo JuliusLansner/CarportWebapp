@@ -82,7 +82,7 @@ public class ServletQuickbyg extends HttpServlet {
                 orderlist.clear();
             }
             session.setAttribute("orderlist",updatedOrderList);
-            request.getRequestDispatcher("userPage.jsp").forward(request, response);
+
         } catch (DatabaseException e) {
             e.printStackTrace();
             request.setAttribute("errormessage", e.getMessage());
