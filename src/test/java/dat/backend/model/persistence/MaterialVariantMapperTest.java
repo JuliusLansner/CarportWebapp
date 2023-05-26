@@ -60,22 +60,29 @@ class MaterialVariantMapperTest {
 
         boolean sizeIncreased = false;
 
-        if(materialVariants.size()+1==materialVariantsAfter.size()){
+        if (materialVariants.size() + 1 == materialVariantsAfter.size()) {
             sizeIncreased = true;
         }
         assertTrue(sizeIncreased);
 
-        MaterialVariantMapper.deleteMaterialVariant(mvId,connectionPool);
+        MaterialVariantMapper.deleteMaterialVariant(mvId, connectionPool);
     }
 
     @Test
     void updateMaterialVariant() throws DatabaseException {
-        MaterialVariant materialVariant = MaterialVariantMapper.getMaterialVariantByID(4, connectionPool);
+        int id = MaterialVariantMapper.createMaterialVariant(1, 1, 1, "test", 200, connectionPool);
+        MaterialVariant materialVariant = MaterialVariantMapper.getMaterialVariantByID(id, connectionPool);
+
         int newLength = 300;
         materialVariant.setLength(newLength);
+
         MaterialVariantMapper.updateMaterialVariant(materialVariant, connectionPool);
-        MaterialVariant updatedMaterialVariant = MaterialVariantMapper.getMaterialVariantByID(4, connectionPool);
+
+        MaterialVariant updatedMaterialVariant = MaterialVariantMapper.getMaterialVariantByID(id, connectionPool);
+
         assertEquals(newLength, updatedMaterialVariant.getLength());
+
+        MaterialVariantMapper.deleteMaterialVariant(id,connectionPool);
     }
 
     @Test
