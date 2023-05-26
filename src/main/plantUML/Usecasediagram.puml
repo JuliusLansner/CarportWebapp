@@ -1,0 +1,20 @@
+@startuml
+!pragma layout smetana
+
+left to right direction
+
+actor Admin
+actor Kunde
+
+rectangle CarportQuickbyg{
+  Admin --> (administrere priser)
+  Admin --> (godkende/afvise en bestilling)
+
+  Kunde --> (oprette en konto)
+  Kunde --> (slette en konto)
+  Kunde --> (afgive en ordre)
+  Kunde --> (ordrestatus)
+  Kunde --> (logge ind/logge ud)
+  Kunde --> (se stykliste):godkendte ordre
+}
+@enduml

@@ -72,17 +72,16 @@ public class ServletQuickbyg extends HttpServlet {
             request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
         }
 
-        //is this used?
+        //updates the current users orderlist
         try {
-            List<Order> orderlist = (List<Order>) session.getAttribute("orderlist");
+            List<Order> userOrders = (List<Order>) session.getAttribute("userOrders");
 
             List<Order> updatedOrderList = OrderFacade.orderList(connectionPool);
 
             if (!updatedOrderList.isEmpty()) {
-                orderlist.clear();
+                userOrders.clear();
             }
-            session.setAttribute("orderlist",updatedOrderList);
-
+            session.setAttribute("userOrders",updatedOrderList);
         } catch (DatabaseException e) {
             e.printStackTrace();
             request.setAttribute("errormessage", e.getMessage());

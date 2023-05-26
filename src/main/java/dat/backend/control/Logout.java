@@ -1,7 +1,4 @@
 package dat.backend.control;
-
-import dat.backend.model.persistence.ConnectionPool;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

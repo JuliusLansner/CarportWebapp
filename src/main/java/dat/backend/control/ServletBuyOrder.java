@@ -13,6 +13,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The ServletBuyOrder handles a specific order, retrieving and filtering the relevant data that is needed to display a BOM (Bill of Materials)
+ * On approved orders, a user has the ability to see his BOM when pressing the pay button.
+ * The userPage.jsp requests the post method, and which referes back to
+ * jsp requests it and jsp it referes to userPayBOMList.jsp or to error.jsp
+ */
 @WebServlet(name = "ServletBuyOrder", value = "/ServletBuyOrder")
 public class ServletBuyOrder extends HttpServlet {
 
@@ -27,9 +33,15 @@ public class ServletBuyOrder extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 
+    /**
+     * Handles the POST request sent to this servlet, and displays the a specific orders BOM list.
+     * @param request comes from the client
+     * @param response is sent to the client
+     * @throws ServletException if servlet errors occurs
+     * @throws IOException if an I/O error happens during the request
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession();
 
         String orderIdFromParameter = request.getParameter("orderId");
@@ -69,7 +81,6 @@ public class ServletBuyOrder extends HttpServlet {
 
             List<Material> materialList = MaterialFacade.materialList(connectionPool);
             session.setAttribute("material", materialList);
-
         } catch (DatabaseException | SQLException e) {
             e.printStackTrace();
             request.setAttribute("errormessage", e.getMessage());

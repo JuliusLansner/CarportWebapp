@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: malde
-  Date: 5/11/2023
-  Time: 11:49 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -39,7 +33,7 @@
 
         <div class="userOrderTable">
             <table class="table" style="width: 100%">
-                <c:forEach var="item" items="${sessionScope.orderlist}">
+                <c:forEach var="item" items="${sessionScope.userOrders}">
                     <c:if test="${item.userId eq sessionScope.user.idUser && item.status eq 0}">
                         <tr>
                             <td class="td">
@@ -85,7 +79,7 @@
 
         <div class="userOrderTable">
             <table class="table" style="width: 100%">
-                <c:forEach var="item" items="${sessionScope.orderlist}">
+                <c:forEach var="item" items="${sessionScope.userOrders}">
                     <c:if test="${item.userId eq sessionScope.user.idUser && item.status eq 1||item.userId eq sessionScope.user.idUser && item.status eq 2 }">
                         <tr>
                             <td class="td">

@@ -1,10 +1,7 @@
 @startuml
 !pragma layout smetana
 
-'domæne diagram er før vi koder = virkelig verden H.D.J
-' identicifere conceptuelle klasser --> finde navne ord. kunde, admin, stykliste, osv.
-' minder meget om EER diagram?
-' kan lave til "alm mennesker". Evt. samme nmed martin. Et overblik og sammenspil mellem entiteter.
+
 
 left to right direction
 
