@@ -115,4 +115,26 @@ class OrderMapperTest {
         assertTrue(orderAfterIncreased);
 
     }
+
+    @Test
+    void updateOrderPrice() throws DatabaseException, SQLException {
+        OrderMapper.updateOrderPrice(200,orderId,connectionPool);
+        Order order = OrderMapper.findOrderByOrderId(orderId,connectionPool);
+        assertEquals(200,order.getTotalPrice());
+    }
+
+    @Test
+    void deleteOrder() throws DatabaseException, SQLException {
+       ArrayList<Order> orderlist = OrderMapper.orderList(connectionPool);
+       OrderMapper.deleteOrder(orderId,connectionPool);
+       ArrayList<Order> orderlistAfter = OrderMapper.orderList(connectionPool);
+
+       boolean decreasedByOne = false;
+
+       if(orderlist.size()-1 == orderlistAfter.size()){
+           decreasedByOne = true;
+       }
+
+       assertTrue(decreasedByOne);
+    }
 }
