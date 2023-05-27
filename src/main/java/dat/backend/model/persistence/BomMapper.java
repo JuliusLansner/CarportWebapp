@@ -60,9 +60,7 @@ public class BomMapper {
             }
 
             bom = new Bom(id, price, orderId);
-            connection.close();
         }
         return bom;
     }
-
 }

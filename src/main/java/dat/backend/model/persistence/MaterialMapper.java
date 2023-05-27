@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class MaterialMapper {
     /* This mapper picks up all the info about a specific material we've put in to the databse
      */
-    static ArrayList<Material> materialList(ConnectionPool connectionPool) throws DatabaseException {
+    public static ArrayList<Material> materialList(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM materiale";
         ArrayList<Material> materialList = new ArrayList<>();
 
@@ -65,7 +65,6 @@ public class MaterialMapper {
         return material;
     }
 
-
     public static void updateMaterialPricePrUnit(int updatedPricePrUnit, int materialId, ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "UPDATE carport.materiale SET pris_per_enhed = ? WHERE materiale.idmateriale = ?";
@@ -84,7 +83,4 @@ public class MaterialMapper {
             throw new DatabaseException(ex, "Error updating material price");
         }
     }
-
-
 }
-

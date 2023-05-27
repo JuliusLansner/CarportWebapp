@@ -83,4 +83,13 @@ class UserMapperTest {
         }
         assertTrue(addedUser);
     }
+
+    @Test
+    void allUsers() throws DatabaseException {
+        List<User> userList = UserMapper.allUsers(connectionPool);
+        assertNotNull(userList);
+        assertFalse(userList.isEmpty());
+        // the test db contains 1 user at the time of testing
+        assertEquals(1, userList.size());
+    }
 }
