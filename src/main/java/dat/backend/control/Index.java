@@ -34,10 +34,7 @@ public class Index extends HttpServlet {
 
 
         try {
-
-            /*ArrayList<Order>orderList = OrderFacade.orderList(connectionPool);
-            session.setAttribute("orderlist",orderList);*/
-
+            
             ArrayList<Order> userOrders = OrderFacade.orderList(connectionPool);
             session.setAttribute("userOrders", userOrders);
 
