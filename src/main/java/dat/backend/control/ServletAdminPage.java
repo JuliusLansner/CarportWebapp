@@ -111,9 +111,6 @@ public class ServletAdminPage extends HttpServlet {
         if (orderIdParameter != null && !orderIdParameter.isEmpty()) {
             orderId = Integer.parseInt(orderIdParameter);
         }
-        if (request.getParameter("action").equals("changeStatus") && status != 2) {
-            status = 1;
-        }
         try {
             OrderFacade.updateOrderStatus(status, orderId, connectionPool);
             HttpSession session = request.getSession();

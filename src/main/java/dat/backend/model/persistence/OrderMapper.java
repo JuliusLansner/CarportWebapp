@@ -151,6 +151,23 @@ public class OrderMapper {
             preparedStatement.executeUpdate();
         }
     }
+    public static void updateOrderStatus(int status, int orderId, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "UPDATE carport.ordre SET status = ? WHERE idordre = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, status);
+            ps.setInt(2, orderId);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Error updating status for order: " + orderId);
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Error updating status for order: " + orderId);
+        }
+    }
 
 
 }
