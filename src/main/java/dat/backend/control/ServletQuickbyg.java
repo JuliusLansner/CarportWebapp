@@ -67,6 +67,9 @@ public class ServletQuickbyg extends HttpServlet {
                 request.getRequestDispatcher("valgtBestilling.jsp").forward(request,response);
             } catch (DatabaseException | SQLException e) {
                 e.printStackTrace();
+                request.setAttribute("errormessage", e.getMessage());
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+                throw new RuntimeException(e);
             }
         } else {
             request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
