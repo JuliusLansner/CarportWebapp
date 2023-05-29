@@ -27,7 +27,7 @@ public class UserFacade {
         UserMapper.deleteMyAccount(email,password,connectionPool);
     }
 
-    public static List<User> allUsers(ConnectionPool connectionPool) throws DatabaseException {
-        return UserMapper.allUsers(connectionPool);
+    public static List<User> allUsers() throws DatabaseException {
+        return UserMapper.allUsers();
     }
 }

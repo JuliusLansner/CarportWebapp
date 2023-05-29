@@ -28,7 +28,7 @@ public class Index extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        ConnectionPool connectionPool = new ConnectionPool();
+
         Boolean loggedIn = false;
         session.setAttribute("loggedin",loggedIn);
 
@@ -38,10 +38,10 @@ public class Index extends HttpServlet {
             ArrayList<Order> userOrders = OrderFacade.orderList();
             session.setAttribute("userOrders", userOrders);
 
-            ArrayList<Material> materialArrayList = MaterialFacade.materialList(connectionPool);
+            ArrayList<Material> materialArrayList = MaterialFacade.materialList();
             session.setAttribute("materialList", materialArrayList);
 
-            ArrayList<User> allUsersList = (ArrayList<User>) UserFacade.allUsers(connectionPool);
+            ArrayList<User> allUsersList = (ArrayList<User>) UserFacade.allUsers();
             session.setAttribute("allUsersList", allUsersList);
 
         } catch (DatabaseException e) {

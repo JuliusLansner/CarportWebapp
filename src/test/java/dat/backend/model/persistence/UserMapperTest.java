@@ -72,9 +72,9 @@ class UserMapperTest {
 
     @Test
     void deleteMyAccount() throws SQLException, DatabaseException {
-        List<User>users = UserMapper.allUsers(connectionPool);
+        List<User>users = UserMapper.allUsers();
         UserMapper.deleteUser(user.getEmail(),connectionPool);
-        List<User> usersAfter = UserMapper.allUsers(connectionPool);
+        List<User> usersAfter = UserMapper.allUsers();
 
         boolean addedUser = false;
 
@@ -86,7 +86,7 @@ class UserMapperTest {
 
     @Test
     void allUsers() throws DatabaseException {
-        List<User> userList = UserMapper.allUsers(connectionPool);
+        List<User> userList = UserMapper.allUsers();
         assertNotNull(userList);
         assertFalse(userList.isEmpty());
         // the test db contains 1 user at the time of testing

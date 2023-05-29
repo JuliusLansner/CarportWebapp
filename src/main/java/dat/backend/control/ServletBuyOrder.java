@@ -79,7 +79,7 @@ public class ServletBuyOrder extends HttpServlet {
             }
             session.setAttribute("materialVariantList", materialVariantList);
 
-            List<Material> materialList = MaterialFacade.materialList(connectionPool);
+            List<Material> materialList = MaterialFacade.materialList();
             session.setAttribute("material", materialList);
         } catch (DatabaseException | SQLException e) {
             e.printStackTrace();

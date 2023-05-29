@@ -36,7 +36,7 @@ class MaterialMapperTest {
 
     @Test
     void materialList() throws DatabaseException {
-        ArrayList<Material>materials = MaterialMapper.materialList(connectionPool);
+        ArrayList<Material>materials = MaterialMapper.materialList();
         assertFalse(materials.isEmpty());
     }
 

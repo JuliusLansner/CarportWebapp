@@ -12,10 +12,10 @@ import java.util.ArrayList;
 public class MaterialMapper {
     /* This mapper picks up all the info about a specific material we've put in to the databse
      */
-    public static ArrayList<Material> materialList(ConnectionPool connectionPool) throws DatabaseException {
+    public static ArrayList<Material> materialList() throws DatabaseException {
         String sql = "SELECT * FROM materiale";
         ArrayList<Material> materialList = new ArrayList<>();
-
+        ConnectionPool connectionPool = new ConnectionPool();
         try (Connection connection = connectionPool.getConnection()) {
 
             try (PreparedStatement pre = connection.prepareStatement(sql)) {
@@ -30,7 +30,9 @@ public class MaterialMapper {
                     material.setPricePerUnit(rs.getInt(4));
 
                     materialList.add(material);
+
                 }
+                connection.close();
             } catch (SQLException ex) {
                 throw new DatabaseException(ex, "Error. Something went wrong. Either with the SQL, or the java syntax.");
             }

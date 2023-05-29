@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MaterialFacade {
-    public static ArrayList<Material> materialList(ConnectionPool connectionPool) throws DatabaseException {
-        return MaterialMapper.materialList(connectionPool);
+    public static ArrayList<Material> materialList() throws DatabaseException {
+        return MaterialMapper.materialList();
     }
 
     public static void  updateMaterialPricePrUnit(int updatedPricePrUnit, int materialId , ConnectionPool connectionPool) throws DatabaseException {

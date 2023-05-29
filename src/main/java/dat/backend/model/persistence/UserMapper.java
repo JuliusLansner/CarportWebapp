@@ -113,12 +113,12 @@ public class UserMapper {
         }
     }
 
-    public static List<User> allUsers(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<User> allUsers() throws DatabaseException {
 
         List<User> userList = new ArrayList<>();
 
         String sql = "SELECT * FROM bruger";
-
+        ConnectionPool connectionPool = new ConnectionPool();
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
@@ -133,7 +133,9 @@ public class UserMapper {
 
                     User user = new User(userId, email, password, address, zip, phone, role);
                     userList.add(user);
+
                 }
+                connection.close();
             }
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Error fetching all users");

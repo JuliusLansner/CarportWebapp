@@ -32,7 +32,9 @@ public class OrderMapper {
                     order.setUserId(rs.getInt(7));
 
                     orderList.add(order);
+
                 }
+                connection.close();
             } catch (SQLException ex) {
                 throw new DatabaseException(ex, "Something with the sql or the java syntax is wrong");
             }
