@@ -11,10 +11,10 @@ public class MaterialFacade {
         return MaterialMapper.materialList();
     }
 
-    public static void  updateMaterialPricePrUnit(int updatedPricePrUnit, int materialId , ConnectionPool connectionPool) throws DatabaseException {
-        MaterialMapper.updateMaterialPricePrUnit(updatedPricePrUnit, materialId, connectionPool);
+    public static void  updateMaterialPricePrUnit(int updatedPricePrUnit, int materialId) throws DatabaseException {
+        MaterialMapper.updateMaterialPricePrUnit(updatedPricePrUnit, materialId);
     }
-    public static Material getMaterialById(int id, ConnectionPool connectionPool){
-        return MaterialMapper.getMaterialById(id,connectionPool);
+    public static Material getMaterialById(int id){
+        return MaterialMapper.getMaterialById(id);
     }
  }

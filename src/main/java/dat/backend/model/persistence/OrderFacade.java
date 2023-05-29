@@ -12,23 +12,23 @@ public class OrderFacade {
         return OrderMapper.orderList();
     }
 
-    public static int createOrder(int length, int width, int totalPrice, int userId, ConnectionPool connectionPool) throws DatabaseException {
-        return OrderMapper.createOrder(length, width, totalPrice, userId, connectionPool);
+    public static int createOrder(int length, int width, int totalPrice, int userId throws DatabaseException {
+        return OrderMapper.createOrder(length, width, totalPrice, userId);
     }
 
-    public static Order findOrderByUserId(int userId, ConnectionPool connectionPool) throws SQLException {
-        return OrderMapper.findOrderByUserId(userId, connectionPool);
+    public static Order findOrderByUserId(int userId) throws SQLException {
+        return OrderMapper.findOrderByUserId(userId);
     }
 
-    public static Order findOrderByOrderId(int orderId, ConnectionPool connectionPool) throws SQLException {
-        return OrderMapper.findOrderByOrderId(orderId, connectionPool);
+    public static Order findOrderByOrderId(int orderId) throws SQLException {
+        return OrderMapper.findOrderByOrderId(orderId);
     }
 
-    public static void updateOrderStatus(int status, int orderId, ConnectionPool connectionPool) throws DatabaseException {
-        OrderMapper.updateOrderStatus(status, orderId, connectionPool);
+    public static void updateOrderStatus(int status, int orderId) throws DatabaseException {
+        OrderMapper.updateOrderStatus(status, orderId);
     }
 
-    public static void updateOrderPrice(int price, int orderId, ConnectionPool connectionPool) throws DatabaseException{
-        OrderMapper.updateOrderPrice(price,orderId,connectionPool);
+    public static void updateOrderPrice(int price, int orderId) throws DatabaseException{
+        OrderMapper.updateOrderPrice(price,orderId);
     }
 }

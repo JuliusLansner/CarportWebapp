@@ -32,7 +32,7 @@ public class MaterialMapper {
                     materialList.add(material);
 
                 }
-                connection.close();
+                connectionPool.close();
             } catch (SQLException ex) {
                 throw new DatabaseException(ex, "Error. Something went wrong. Either with the SQL, or the java syntax.");
             }
@@ -44,10 +44,10 @@ public class MaterialMapper {
         return materialList;
     }
 
-    public static Material getMaterialById(int id, ConnectionPool connectionPool){
+    public static Material getMaterialById(int id){
         String sql = "SELECT * FROM materiale WHERE idmateriale = ?";
         Material material = null;
-
+        ConnectionPool connectionPool = new ConnectionPool();
         try(Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -59,6 +59,7 @@ public class MaterialMapper {
 
                 material = new Material(beskrivelse, enhed, pris);
             }
+            connectionPool.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,10 +68,10 @@ public class MaterialMapper {
         return material;
     }
 
-    public static void updateMaterialPricePrUnit(int updatedPricePrUnit, int materialId, ConnectionPool connectionPool) throws DatabaseException {
+    public static void updateMaterialPricePrUnit(int updatedPricePrUnit, int materialId) throws DatabaseException {
 
         String sql = "UPDATE carport.materiale SET pris_per_enhed = ? WHERE materiale.idmateriale = ?";
-
+        ConnectionPool connectionPool = new ConnectionPool();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -81,6 +82,7 @@ public class MaterialMapper {
             if (rowsAffected != 1) {
                 throw new DatabaseException("Error updating material price");
             }
+            connectionPool.close();
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Error updating material price");
         }

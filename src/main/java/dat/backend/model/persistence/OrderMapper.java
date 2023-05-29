@@ -34,11 +34,11 @@ public class OrderMapper {
                     orderList.add(order);
 
                 }
-                connection.close();
+
             } catch (SQLException ex) {
                 throw new DatabaseException(ex, "Something with the sql or the java syntax is wrong");
             }
-
+            connectionPool.close();
         } catch (SQLException e) {
             throw new DatabaseException(e, "Error logging in. Something went wrong with the database");
         }
@@ -47,11 +47,11 @@ public class OrderMapper {
     }
 
 
-    public static int createOrder(int length, int width, int totalPrice, int userId, ConnectionPool connectionPool) throws DatabaseException {
+    public static int createOrder(int length, int width, int totalPrice, int userId) throws DatabaseException {
         String sql = "INSERT INTO ordre(længde, brede, samlet_pris, bruger_id) VALUES (?,?,?,?)";
         ResultSet generatedKeys = null;
         int id = 0;
-
+        ConnectionPool connectionPool = new ConnectionPool();
         try (Connection connection = connectionPool.getConnection()) {
 
             try (PreparedStatement pre = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -78,16 +78,17 @@ public class OrderMapper {
             } catch (SQLException ex) {
                 throw new DatabaseException(ex, "Something with the sql or the java syntax is wrong");
             }
-
+            connectionPool.close();
         } catch (SQLException | DatabaseException e) {
             throw new DatabaseException(e, "Something went wrong with the database");
         }
         return id;
     }
 
-    public static Order findOrderByUserId(int userId, ConnectionPool connectionPool) throws SQLException {
+    public static Order findOrderByUserId(int userId) throws SQLException {
         String sql = "SELECT * FROM ordre WHERE bruger_id = ?";
         Order order = null;
+        ConnectionPool connectionPool = new ConnectionPool();
         try (Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, userId);
             ResultSet rs = statement.executeQuery();
@@ -103,13 +104,14 @@ public class OrderMapper {
                 order = new Order(orderId, length, width, totalPrice, status, date, userId);
             }
         }
-
+        connectionPool.close();
         return order;
     }
 
-    public static Order findOrderByOrderId(int orderId, ConnectionPool connectionPool) throws SQLException {
+    public static Order findOrderByOrderId(int orderId) throws SQLException {
         String sql = "SELECT * FROM ordre WHERE idordre = ?";
         Order order = null;
+        ConnectionPool connectionPool = new ConnectionPool();
         try (Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, orderId);
             ResultSet rs = statement.executeQuery();
@@ -126,14 +128,14 @@ public class OrderMapper {
                 order = new Order(orderId, length, width, totalPrice, status, date, userId);
             }
         }
-
+        connectionPool.close();
         return order;
     }
 
-    public static void updateOrderPrice(int price, int orderId, ConnectionPool connectionPool) throws DatabaseException {
+    public static void updateOrderPrice(int price, int orderId throws DatabaseException {
 
         String sql = "UPDATE ordre SET samlet_pris = ? WHERE idordre = ?";
-
+        ConnectionPool connectionPool = new ConnectionPool();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -148,18 +150,18 @@ public class OrderMapper {
         }
     }
 
-    public static void deleteOrder(int id, ConnectionPool connectionPool) throws SQLException {
+    public static void deleteOrder(int id) throws SQLException {
         String sql = "DELETE FROM ordre WHERE idordre = ?";
-
+        ConnectionPool connectionPool = new ConnectionPool();
         try (Connection connection = connectionPool.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         }
     }
-    public static void updateOrderStatus(int status, int orderId, ConnectionPool connectionPool) throws DatabaseException {
+    public static void updateOrderStatus(int status, int orderId) throws DatabaseException {
 
         String sql = "UPDATE carport.ordre SET status = ? WHERE idordre = ?";
-
+        ConnectionPool connectionPool = new ConnectionPool();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 

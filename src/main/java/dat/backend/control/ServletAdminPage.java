@@ -22,12 +22,7 @@ import java.util.List;
 @WebServlet(name = "ServletAdminPage", value = "/ServletAdminPage")
 public class ServletAdminPage extends HttpServlet {
 
-    private ConnectionPool connectionPool;
 
-    @Override
-    public void init() throws ServletException {
-        this.connectionPool = ApplicationStart.getConnectionPool();
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,7 +69,7 @@ public class ServletAdminPage extends HttpServlet {
             updatedPricePrUnit = Integer.parseInt(updatedPricePrUnitFromParameter);
         }
         try {
-            MaterialFacade.updateMaterialPricePrUnit(updatedPricePrUnit, materialId, connectionPool);
+            MaterialFacade.updateMaterialPricePrUnit(updatedPricePrUnit, materialId);
             HttpSession session = request.getSession();
             List<Material> updatedMaterialList = (List<Material>) session.getAttribute("materialList");
             for (Material material : updatedMaterialList) {

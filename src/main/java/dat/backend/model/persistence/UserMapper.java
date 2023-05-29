@@ -135,7 +135,7 @@ public class UserMapper {
                     userList.add(user);
 
                 }
-                connection.close();
+                connectionPool.close();
             }
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Error fetching all users");
