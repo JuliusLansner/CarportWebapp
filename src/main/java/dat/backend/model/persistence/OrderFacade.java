@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class OrderFacade {
 
-    public static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
-        return OrderMapper.orderList(connectionPool);
+    public static ArrayList<Order> orderList() throws DatabaseException {
+        return OrderMapper.orderList();
     }
 
     public static int createOrder(int length, int width, int totalPrice, int userId, ConnectionPool connectionPool) throws DatabaseException {

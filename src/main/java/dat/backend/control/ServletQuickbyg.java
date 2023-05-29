@@ -79,7 +79,7 @@ public class ServletQuickbyg extends HttpServlet {
         try {
             List<Order> userOrders = (List<Order>) session.getAttribute("userOrders");
 
-            List<Order> updatedOrderList = OrderFacade.orderList(connectionPool);
+            List<Order> updatedOrderList = OrderFacade.orderList();
 
             if (!updatedOrderList.isEmpty()) {
                 userOrders.clear();

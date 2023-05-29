@@ -7,11 +7,14 @@ import dat.backend.model.exceptions.DatabaseException;
 import java.sql.*;
 import java.util.ArrayList;
 
+
 public class OrderMapper {
-    public static ArrayList<Order> orderList(ConnectionPool connectionPool) throws DatabaseException {
+    public static ArrayList<Order> orderList() throws DatabaseException {
+
         String sql = "SELECT * FROM ordre";
         ArrayList<Order> orderList = new ArrayList<>();
 
+        ConnectionPool connectionPool = new ConnectionPool();
         try (Connection connection = connectionPool.getConnection()) {
 
             try (PreparedStatement pre = connection.prepareStatement(sql)) {

@@ -43,7 +43,7 @@ class OrderMapperTest {
 
     @Test
     void orderList() throws DatabaseException {
-        ArrayList<Order> orderlist = OrderMapper.orderList(connectionPool);
+        ArrayList<Order> orderlist = OrderMapper.orderList();
 
         assertFalse(orderlist.isEmpty());
     }
@@ -102,11 +102,11 @@ class OrderMapperTest {
     @Test
     void createOrder() throws SQLException, DatabaseException {
 
-        ArrayList<Order> ordersBefore = OrderMapper.orderList(connectionPool);
+        ArrayList<Order> ordersBefore = OrderMapper.orderList();
 
         int order = OrderMapper.createOrder(1, 1, 1, user.getIdUser(), connectionPool);
 
-        ArrayList<Order> ordersAfter = OrderMapper.orderList(connectionPool);
+        ArrayList<Order> ordersAfter = OrderMapper.orderList();
 
         boolean orderAfterIncreased = false;
         if (ordersAfter.size() == ordersBefore.size() + 1) {
@@ -125,9 +125,9 @@ class OrderMapperTest {
 
     @Test
     void deleteOrder() throws DatabaseException, SQLException {
-       ArrayList<Order> orderlist = OrderMapper.orderList(connectionPool);
+       ArrayList<Order> orderlist = OrderMapper.orderList();
        OrderMapper.deleteOrder(orderId,connectionPool);
-       ArrayList<Order> orderlistAfter = OrderMapper.orderList(connectionPool);
+       ArrayList<Order> orderlistAfter = OrderMapper.orderList();
 
        boolean decreasedByOne = false;
 
