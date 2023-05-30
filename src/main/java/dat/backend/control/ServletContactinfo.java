@@ -2,6 +2,7 @@ package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Bom;
+import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
@@ -16,6 +17,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 
 @WebServlet(name = "ServletContactinfo", value = "/ServletContactinfo")
@@ -125,5 +127,20 @@ public class ServletContactinfo extends HttpServlet {
         }
 
         request.getRequestDispatcher("valgtBestilling.jsp").forward(request, response);
+        try {
+            List<Order> userOrders = (List<Order>) session.getAttribute("userOrders");
+
+            List<Order> updatedOrderList = OrderFacade.orderList(connectionPool);
+
+            if (!updatedOrderList.isEmpty()) {
+                userOrders.clear();
+            }
+            session.setAttribute("userOrders",updatedOrderList);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+
     }
 }
