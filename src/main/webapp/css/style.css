@@ -1,0 +1,460 @@
+/* CSS stylesheet  for application */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    padding-top: 0 !important;
+}
+
+#body {
+    background-color: #F5F5F3;
+
+
+    width: 100%;
+
+    text-align: center;
+
+}
+
+/* Navbar */
+.navbar {
+    padding: 0 !important;
+    margin-bottom: -15px !important;
+}
+
+a.nav-link {
+    color: #003D76 !important;
+}
+
+.navbar-brand {
+    padding: 0 !important;
+
+}
+
+/* Index */
+
+#index-body {
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: url("../images/baggrundBil.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.welcome {
+    text-align: center;
+    padding-top: 20%;
+}
+
+.welcome h1 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 105px;
+    text-align: center;
+    color: white;
+}
+
+.bestilcarport {
+    background-color: white;
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 10px 25px;
+    border: none;
+}
+
+/* quickbyg */
+.quickbyg-body {
+    width: 100% !important;
+    display: inline-block !important;
+    padding-top: 50px !important;
+    padding-bottom: 50px;
+}
+
+.quickbyg-top h1 {
+    padding-top: 50px !important;
+    padding-bottom: 30px !important;
+    font-weight: bold !important;
+}
+
+.carport-dropdowns {
+    width: 50%;
+    padding-top: 30px;
+
+    margin: 0 !important;
+    float: left !important;
+}
+
+.carport-dropdowns h2 {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    padding-bottom: 20px;
+}
+
+.quickbyg-select {
+    background-color: white !important;
+    color: #333333 !important;
+    font-family: 'Poppins', sans-serif;
+    border: 0 !important;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 10px 60px !important;
+    border-radius: 5px;
+}
+
+.fortsaet-bestilling {
+    background-color: #003D76 !important;
+    border-radius: 5px;
+    border: none;
+    color: white !important;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 8px 30px !important;
+    margin-top: 20px !important;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.quickbygbillede {
+    width: 50%;
+    margin: 0 !important;
+    float: right !important;
+    padding-top: 30px;
+}
+
+.quickbygbillede img {
+    display: block;
+    max-width:100%;
+    max-height:100%;
+    width: auto;
+    height: auto;
+}
+
+.quickbyg-top-text {
+    margin: 0 auto !important;
+    width: 50%;
+}
+
+/*kontakt info*/
+.kontaktinfo {
+    width: 100% !important;
+    display: inline-block !important;
+    padding-top: 50px !important;
+    padding-bottom: 50px;
+}
+
+.kontaktinfo-input {
+    display: block;
+    width: 40% !important;
+    margin: 0 auto !important;
+
+}
+
+.kontaktinfo-input label {
+    float: left;
+    padding-top: 15px;
+    font-size: 14px;
+}
+
+.admin-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overviewOfAllOrdersTable {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.allOrders-div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    max-height: 50vh;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.allOrders-div th,
+.allOrders-div td {
+    padding: 10px 20px;
+    /*padding-left: 10px;
+    padding-right: 10px;*/
+}
+
+.price-overview {
+    text-align: center;
+}
+
+.price-table, .order-table {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.price-table th {
+    padding: 10px 20px;
+}
+
+.approve-button, .priceApprove-button {
+    color: white;
+    background-color: green;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 5px 15px !important;
+    text-align: center;
+}
+
+.declined-button {
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 5px 15px !important;
+    text-align: center;
+}
+
+.priceApprove-button {
+    color: white;
+    background-color: green;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 5px 15px !important;
+    text-align: center;
+}
+
+.kontaktinfo-input input {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    padding: 10px 10px !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.price-per-unit-input {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    padding: 7px;
+    margin-right: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    overflow-y: scroll;
+    width: 100%;
+    height: 150px;
+}
+
+.td, th {
+    /*border: 1px solid #dddddd;*/
+    text-align: left;
+    padding: 10px;
+}
+
+
+.table1, .table2 {
+    margin: 0 auto;
+    margin-top: 70px !important;
+    margin-bottom: 70px !important;
+    width: 70%;
+}
+
+.table1 th,
+.table1 td,
+.table2 th,
+.table2 td{
+    width: 16.66% !important;
+}
+
+
+.userOrderTable {
+    overflow-y: scroll;
+    width: auto;
+    height: 200px;
+}
+
+.tableTitles {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    overflow-y: scroll;
+}
+
+.titles {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.orderDetails-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh;
+    background-color: #F5F5F3;
+}
+
+.orderDetails {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.orderDetails-table {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.orderDetails-table th, .orderDetails-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.orderDetails-backButton {
+    background-color: #003D76 !important;
+    border-radius: 5px;
+    border: none;
+    color: white !important;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 8px 30px !important;
+    text-align: center;
+}
+
+.deleteOwnUserButton {
+    text-align: center;
+}
+
+.deleteOwnUserButton button[type="submit"] {
+    width: 200px;
+    padding: 5px;
+    background-color: red;
+    color: white;border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pay-button {
+    color: white;
+    background-color: green;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 5px 15px !important;
+    text-align: center;
+}
+
+.deleteOwnUserButton input[type="password"] {
+    width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.userPayBOMList {
+    background-color: white;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.userPayBOMList th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.userPayBOMList th {
+    font-weight: bold;
+}
+
+.userPayBOMList tbody tr {
+    border: 1px solid black;
+}
+
+.userPayBOMList tbody td {
+    border: 1px solid black;
+}
+
+.contacterrormsg {
+    margin-top: 20px;
+    color: #bf1111;
+    font-weight: bold;
+}
+
+.login-header {
+    padding-top: 70px;
+    margin-bottom: 20px;
+}
+
+.login-text {
+    font-size: 20px;
+}
+
+.login-form {
+    padding-bottom: 100px;
+    padding-top: 20px;
+}
+
+.login-input {
+    width: 20%;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.20);
+    padding: 10px 10px !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.login-button {
+    background-color: #003D76 !important;
+    border-radius: 5px;
+    border: none;
+    color: white !important;
+    box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 16px -4px rgba(0, 0, 0, 0.55);
+    padding: 8px 30px !important;
+    text-align: center;
+}

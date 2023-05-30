@@ -1,0 +1,66 @@
+@startuml
+!pragma layout smetana
+
+title Carport Quickbyg Projekt
+state "index.jsp" as indexJSP
+state "login.jsp" as loginJSP
+state "error.jsp" as errorJSP
+state "signUp.jsp" as signUpJSP
+state "contactInfo.jsp" as contactInfoJSP
+state "quickByg.jsp" as quickBygJSP
+state "valgtBestilling.jsp" as valgtBestillingJSP
+state "welcome.jsp" as welcomeJSP
+state navbar#Strategy: altid tilgængelig
+state "navbar" as navbar1 #Strategy
+state "navbar" as navbar2 #Strategy
+state "logget på som admin" as admin
+state "logget på som bruger" as bruger
+
+note left of loginJSP
+brugernavn & rolle gemmes i session
+end note
+
+[*] --> indexJSP
+indexJSP --> navbar1
+indexJSP --> quickBygJSP
+navbar1 --> loginJSP
+navbar1 --> signUpJSP
+navbar1 --> indexJSP
+loginJSP --> welcomeJSP:log ind [ok]
+loginJSP --> errorJSP:log ind [fejl]
+signUpJSP --> loginJSP
+errorJSP --> loginJSP
+errorJSP --> indexJSP
+welcomeJSP --> navbar2
+navbar2 --> admin
+state admin #LightSkyBlue{
+state "navbar" as navbar3 #Strategy
+state "adminPage.jsp" as adminPageJSP #LightSkyBlue
+state "orderDetails.jsp" as orderDetailsJSP1 #LightSkyBlue
+[*] --> navbar3
+navbar3 --> adminPageJSP
+adminPageJSP --> orderDetailsJSP1
+orderDetailsJSP1 --> adminPageJSP
+orderDetailsJSP1 --> navbar3
+adminPageJSP --> navbar3
+}
+navbar2 --> bruger
+state bruger #CCCCEE{
+state "userPayBOMList.jsp" as userPayBOMListJSP #CCCCEE
+state "orderDetails.jsp" as orderDetailsJSP #CCCCEE
+state "userPage.jsp" as userPageJSP #CCCCEE
+state "navbar" as navbar4 #Strategy
+[*] --> navbar4
+navbar4 --> userPageJSP
+userPageJSP --> navbar4
+userPageJSP --> orderDetailsJSP
+orderDetailsJSP --> userPageJSP
+orderDetailsJSP --> navbar4
+userPageJSP --> userPayBOMListJSP
+userPayBOMListJSP --> userPageJSP
+userPayBOMListJSP --> navbar4
+}
+quickBygJSP --> contactInfoJSP
+contactInfoJSP --> valgtBestillingJSP
+valgtBestillingJSP --> navbar1
+@enduml

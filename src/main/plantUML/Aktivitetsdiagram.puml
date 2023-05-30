@@ -1,0 +1,47 @@
+@startuml
+Title Carport Quickbyg Projekt
+|Bruger|
+start
+:gå til hjemmeside;
+|Hjemmeside|
+fork
+:opret bruger;
+:log ind;
+fork again
+:log ind;
+end fork
+fork
+|Bruger|
+:kundeside;
+fork
+:Se ordre;
+fork again
+:betal for ordre;
+:se stykliste;
+end fork
+stop
+fork again
+
+|Admin|
+:admin side;
+fork
+:administrer priser;
+fork again
+:godkend/afvis ordre;
+end fork
+stop
+|Hjemmeside|
+:quickbyg;
+fork
+:logget ind(true);
+:valgtbestilling;
+fork again
+:logget ind(false);
+:contactInfo;
+:opret bruger / log ind;
+:Bestil;
+:valgtbestilling;
+end fork
+stop
+@enduml
+

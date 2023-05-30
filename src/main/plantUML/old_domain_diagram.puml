@@ -1,0 +1,39 @@
+@startuml
+!pragma layout smetana
+
+
+
+left to right direction
+
+class Admin{
+
+}
+
+class Kunde{
+
+}
+
+class Order{
+
+}
+
+class Product{
+
+}
+
+class stykliste{
+}
+
+class tilbud{
+}
+
+class 3DModel{}
+
+Kunde --  Order :1 placerer 1
+Order -- 3DModel :1 indeholder 1
+Admin -- Order :1 godkender 1
+Admin -- tilbud : laver
+tilbud -- Kunde : godkende/afvis
+Order -- stykliste : indeholder
+stykliste -- Product : indeholder
+@enduml
