@@ -17,21 +17,23 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+
 @WebServlet(name = "ServletContactinfo", value = "/ServletContactinfo")
+/**
+ * checks for the user by email in database - Then either signing up or adding a user in the session
+ * that can be used to add the order to the account.
+ * name, email, address,zipcode and phonenumber stored in session for further use.
+ * <p>
+ * Sends user to valgtBestilling.jsp. an exception sends user to error.jsp. An error in passwordCheck sends user
+ * to contactInfo.jsp. An error in number/zipcode not being an int, sends user to contactinfo.jsp with an error message.
+ *
+ * @param userFind - finds user by email, has access to and uses the database.
+ * @return user- returns a user. If null, we make a user with the given email/password.
+ * @throws DatabaseException - if anything goes wrong in try/catch, we get a database exception(e)
+ * @param passwordCheck - checks password against security measures.
+ */
 public class ServletContactinfo extends HttpServlet {
-    /**
-     * checks for the user by email in database - Then either signing up or adding a user in the session
-     * that can be used to add the order to the account.
-     * name, email, address,zipcode and phonenumber stored in session for further use.
-     * <p>
-     * Sends user to valgtBestilling.jsp. an exception sends user to error.jsp. An error in passwordCheck sends user
-     * to contactInfo.jsp. An error in number/zipcode not being an int, sends user to contactinfo.jsp with an error message.
-     *
-     * @param userFind - finds user by email, has access to and uses the database.
-     * @return user- returns a user. If null, we make a user with the given email/password.
-     * @throws DatabaseException - if anything goes wrong in try/catch, we get a database exception(e)
-     * @param passwordCheck - checks password against security measures.
-     */
+
     private ConnectionPool connectionPool;
 
     @Override

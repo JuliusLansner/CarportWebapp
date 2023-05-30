@@ -13,19 +13,16 @@ public class BomMapper {
         ArrayList<Bom> bomList = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
-            Bom bom = null;
-            int id = 0;
-            int price = 0;
-            int orderId = 0;
+
 
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                id = rs.getInt(1);
-                price = rs.getInt(2);
-                orderId = rs.getInt(3);
+               int id = rs.getInt(1);
+               int price = rs.getInt(2);
+               int orderId = rs.getInt(3);
 
-                bom = new Bom(id, price, orderId);
+               Bom bom = new Bom(id, price, orderId);
                 bomList.add(bom);
             }
         }
