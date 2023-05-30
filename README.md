@@ -1,3 +1,3 @@
-Gruppe: Malde, Mikkel og Julius Hold A
-
-Carport Quickbyg eksamens projekt.
+Dat2 F23 semester projekt
+gruppe 5 hold A
+Mikkel, Malde og Julius.
