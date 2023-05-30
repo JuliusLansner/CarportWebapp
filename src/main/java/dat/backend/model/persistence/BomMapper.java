@@ -27,7 +27,6 @@ public class BomMapper {
 
                 bom = new Bom(id, price, orderId);
                 bomList.add(bom);
-                connection.close();
             }
         }
         return bomList;

@@ -10,7 +10,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +30,6 @@ public class Index extends HttpServlet {
         ConnectionPool connectionPool = new ConnectionPool();
         Boolean loggedIn = false;
         session.setAttribute("loggedin",loggedIn);
-
 
         try {
             

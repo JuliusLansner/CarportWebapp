@@ -1,5 +1,6 @@
 package dat.backend.control;
 
+import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.services.PasswordSecurityCheck;
@@ -13,6 +14,14 @@ import java.sql.SQLException;
 
 @WebServlet(name = "ServletSignup", value = "/ServletSignup")
 public class ServletSignup extends HttpServlet {
+
+    private ConnectionPool connectionPool;
+
+    @Override
+    public void init() throws ServletException {
+        this.connectionPool = ApplicationStart.getConnectionPool();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -20,7 +29,6 @@ public class ServletSignup extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ConnectionPool connectionPool = new ConnectionPool();
 
         String email = request.getParameter("email");
         String address = request.getParameter("adress");
@@ -40,19 +48,13 @@ public class ServletSignup extends HttpServlet {
 
             UserFacade.createUser(email,password,address,zipcode,phoneNumber,connectionPool);
 
-        } catch (DatabaseException e) {
+        } catch (DatabaseException | SQLException e) {
             e.printStackTrace();
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
 
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("errormessage", e.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
 
-       request.getRequestDispatcher("login.jsp").forward(request,response);
+        request.getRequestDispatcher("login.jsp").forward(request,response);
     }
 }

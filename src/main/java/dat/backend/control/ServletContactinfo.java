@@ -23,7 +23,7 @@ public class ServletContactinfo extends HttpServlet {
      * checks for the user by email in database - Then either signing up or adding a user in the session
      * that can be used to add the order to the account.
      * name, email, address,zipcode and phonenumber stored in session for further use.
-     *
+     * <p>
      * Sends user to valgtBestilling.jsp. an exception sends user to error.jsp. An error in passwordCheck sends user
      * to contactInfo.jsp. An error in number/zipcode not being an int, sends user to contactinfo.jsp with an error message.
      *
@@ -60,9 +60,9 @@ public class ServletContactinfo extends HttpServlet {
 
         //checks if user exists in the system, if so log in and use the user for the order. If not, create user.
         try {
-             user = UserFacade.findUserByEmail(email, connectionPool);
+            user = UserFacade.findUserByEmail(email, connectionPool);
             if (user != null && !address.isEmpty() && zipcode.isEmpty() && phoneNumber.isEmpty() && !name.isEmpty()) {
-                 user = UserFacade.login(email, password, connectionPool);
+                user = UserFacade.login(email, password, connectionPool);
                 session = request.getSession();
                 session.setAttribute("user", user);
                 request.getRequestDispatcher("valgtBestilling.jsp").forward(request, response);
@@ -74,25 +74,22 @@ public class ServletContactinfo extends HttpServlet {
                 if (!PasswordSecurityCheck.securityCheck(password)) {
                     request.setAttribute("Fejl", "Adgangskoden skal skal have mindst 1 stort bogstav, 1 lille bogstav, 3 tal og mindst 6 karakterer");
                     request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
-                }
-                try {
+                } else {
                     try {
-                        //tests if the zipcode and phonenumber string are numbers, if not throw an error.
-                        int zipInt = Integer.parseInt(zipcode);
-                        int phoneInt = Integer.parseInt(phoneNumber);
-                        user = UserFacade.createUser(email, password, address, zipInt, phoneInt, connectionPool);
+                        try {
+                            //tests if the zipcode and phonenumber string are numbers, if not throw an error.
+                            int zipInt = Integer.parseInt(zipcode);
+                            int phoneInt = Integer.parseInt(phoneNumber);
+                            user = UserFacade.createUser(email, password, address, zipInt, phoneInt, connectionPool);
 
-                    } catch (NumberFormatException e) {
-                        request.setAttribute("Fejl", "Postnummer og telefonnummer skal være tal. ");
-                        request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
+                        } catch (NumberFormatException e) {
+                            request.setAttribute("Fejl", "Postnummer og telefonnummer skal være tal. ");
+                            request.getRequestDispatcher("contactInfo.jsp").forward(request, response);
+                        }
+                    } catch (DatabaseException | SQLException e) {
+                        request.setAttribute("errormessage", e.getMessage());
+                        request.getRequestDispatcher("error.jsp").forward(request, response);
                     }
-                } catch (DatabaseException e) {
-                    request.setAttribute("errormessage", e.getMessage());
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
-
-                } catch (SQLException e) {
-                    request.setAttribute("errormessage", e.getMessage());
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             }
         } catch (DatabaseException e) {
@@ -102,26 +99,24 @@ public class ServletContactinfo extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        
 
-       
         //width, length and user for creating order and bom
         int width = (int) session.getAttribute("width");
         int length = (int) session.getAttribute("length");
 
         try {
             //creates order and stores id for order in int, so a bom with orderID can be created.
-            int orderId = OrderFacade.createOrder(length,width,0,user.getIdUser(),connectionPool);
+            int orderId = OrderFacade.createOrder(length, width, 0, user.getIdUser(), connectionPool);
 
 
             //creates materialvariants based on length and width of the carport and creates a bom which is put into a objekt.
-            Bom bom = MaterialVariantListMaker.carportMaterialList(length,width,orderId,connectionPool);
+            Bom bom = MaterialVariantListMaker.carportMaterialList(length, width, orderId, connectionPool);
 
             //updates the price of the order.
-            OrderMapper.updateOrderPrice(bom.getPrice(),orderId,connectionPool);
+            OrderMapper.updateOrderPrice(bom.getPrice(), orderId, connectionPool);
 
             //makes a session attribute to store bomID in for later when user needs to recieve it.
-            session.setAttribute("bom",bom);
+            session.setAttribute("bom", bom);
 
         } catch (DatabaseException | SQLException e) {
             e.printStackTrace();
@@ -130,4 +125,3 @@ public class ServletContactinfo extends HttpServlet {
         request.getRequestDispatcher("valgtBestilling.jsp").forward(request, response);
     }
 }
-
