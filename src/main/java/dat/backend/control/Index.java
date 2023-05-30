@@ -1,5 +1,6 @@
 package dat.backend.control;
 
+import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Material;
 import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
@@ -27,7 +28,7 @@ public class Index extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        ConnectionPool connectionPool = new ConnectionPool();
+        ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
         Boolean loggedIn = false;
         session.setAttribute("loggedin",loggedIn);
 

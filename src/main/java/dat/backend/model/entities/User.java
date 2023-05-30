@@ -1,6 +1,6 @@
 package dat.backend.model.entities;
 
-import java.util.Objects;
+
 
 public class User
 {
